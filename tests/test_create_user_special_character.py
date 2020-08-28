@@ -32,12 +32,12 @@ class TCP4_761(BaseTest):
     ''' Test that the country of an user can be changed '''
 
     def test_create_user_special_character(self):
-        self.log.append('Load server url')
-        self.driver.get(data['server_url'])
 
-        # Log in and note step in log
-        self.log.append('Log in to server')
-        login_page = PageLogin(self.driver, data).login()
+        self.driver = PageLogin(self.driver, data).login()
+
+        PageMenu(self.driver,data).goto_admin()
+        page_user = PageUsers(self.driver,data)
+        page_user.create_user()
 
         self.assertEqual(2,2)
         print('d')
