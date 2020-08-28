@@ -39,7 +39,6 @@ class TCP4_761(BaseTest):
         self.log.append('Log in to server')
         login_page = PageLogin(self.driver, data).login()
 
-
         self.assertEqual(2,2)
         print('d')
 
