@@ -60,6 +60,11 @@ class PageUsers:
         PageCreateUser(self.driver, self.data).fill_new_user()
         self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
 
+    def create_user_data(self,data_user):
+        self.create_user_button.click()
+
+
+
     def check_users_exists(self):
         ''' Check if there are 2 users, create one if not'''
 
