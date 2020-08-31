@@ -1,8 +1,7 @@
 #!/usr/local/bin/python3
 
 # Check if using local environment
-from os import getenv
-from Config import Config
+from includes.Config import Config
 Config.init_config('../../config/default.ini')
 print('mesg = ', Config.get("ENVIRONMENT"))
 if Config.get('ENVIRONMENT') == 'local':
@@ -15,12 +14,7 @@ import util
 from page_login import PageLogin
 from page_menu import PageMenu
 from page_users import PageUsers
-from page_user_information import PageUserInformation
-import unittest
-import time
-from selenium.webdriver.support.ui import WebDriverWait, Select
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+
 
 class TCP4_761(BaseTest):
     ''' Test that the country of an user can be changed '''

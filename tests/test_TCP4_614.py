@@ -1,14 +1,13 @@
 #!/usr/local/bin/python3
 
 # Check if using local environment
-from os import getenv
-from Config import Config
+from includes.Config import Config
 Config.init_config('../config/default.ini')
 print('mesg = ', Config.get("ENVIRONMENT"))
 if Config.get('ENVIRONMENT') == 'local':
     from sys import path
     path.append('../includes')
-    data = {"server_url": Config.get("server_url"), "username":Config.get("username") , "password": Config.get("password")}
+    data = {"server_url": Config.get("server_url"), "username":Config.get("pm_username") , "password": Config.get("pm_password")}
 
 from test_parent import BaseTest
 import util
@@ -16,7 +15,7 @@ from page_login import PageLogin
 from page_menu import PageMenu
 from page_users import PageUsers
 from page_user_information import PageUserInformation
-import unittest
+
 
 class TCP4_614(BaseTest):
     ''' Test that the country of an user can be changed '''
