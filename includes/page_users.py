@@ -4,17 +4,9 @@
 # Check if using local environment
 from os import getenv
 
-if getenv('ENVIRONMENT') != 'local':
-    from page_create_user import PageCreateUser
-    from page_user_information import PageUserInformation
-    from page_menu import PageMenu
-
-# If using local environment
-else:
-    from includes.page_create_user import PageCreateUser
-    from includes.page_user_information import PageUserInformation
-    from includes.page_menu import PageMenu
-
+from page_create_user import PageCreateUser
+from page_user_information import PageUserInformation
+from page_menu import PageMenu
 
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By

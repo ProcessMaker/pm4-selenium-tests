@@ -1,12 +1,7 @@
 #!/usr/local/bin/python3
 """ User Info Page class. """
 from os import getenv
-
-if getenv('ENVIRONMENT') != 'local':
-    import util
-# If using local environment
-else:
-    from includes import util
+import util
 
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
