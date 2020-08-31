@@ -35,7 +35,7 @@ class TCP4_761(BaseTest):
 
 
         self.assertEqual(2,2)
-        output('d')
+        output= "test"
 
 if __name__ == "__main__":
     import __main__  
