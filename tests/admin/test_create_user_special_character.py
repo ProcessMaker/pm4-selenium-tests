@@ -31,10 +31,11 @@ class TCP4_761(BaseTest):
 
         PageMenu(self.driver,data).goto_admin()
         page_user = PageUsers(self.driver,data)
-        page_user.create_user(self.user_data)
+        page_user.create_user_data(user_data)
+
 
         self.assertEqual(2,2)
-        print('d')
+        output('d')
 
 if __name__ == "__main__":
     import __main__  
