@@ -2,11 +2,13 @@
 
 # Check if using local environment
 from os import getenv
-
-if getenv('ENVIRONMENT') == 'local':
+from Config import Config
+Config.init_config('../../config/default.ini')
+print('mesg = ', Config.get("ENVIRONMENT"))
+if Config.get('ENVIRONMENT') == 'local':
     from sys import path
     path.append('../../includes')
-    from __init__ import data
+    data = {"server_url": Config.get("server_url"), "username":Config.get("pm_username") , "password": Config.get("pm_password")}
 
 from test_parent import BaseTest
 import util
