@@ -50,3 +50,8 @@ class PageCreateUser:
         self.new_user_password.send_keys(self.user_pass)
         self.new_user_confpassword.send_keys(self.user_pass)
         self.new_user_save.click()
+
+    def fill_new_user_1(self,data):
+        self.paths_create_user()
+        self.new_user_username.send_keys("uno")
+
