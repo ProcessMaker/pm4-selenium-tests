@@ -2,7 +2,7 @@
 
 # Check if using local environment
 from sys import path
-from config_properties import Config
+from Config import Config
 Config.init_config('config/default.ini')
 if Config.get('ENVIRONMENT') == 'local':
     path.append('../includes')
