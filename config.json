@@ -2,5 +2,9 @@
   {
     "name": "test-create-user",
     "path": "tests/test_TCP4_614.py"
+  },
+  {
+    "name": "config",
+    "path": "config_properties.py"
   }
 ]
