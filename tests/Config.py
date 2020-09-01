@@ -125,3 +125,4 @@ class Section:
 
     def getboolean(self, option: str):
         return Config.getboolean(self.section, option)
+

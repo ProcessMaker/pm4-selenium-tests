@@ -1,11 +1,11 @@
 #!/usr/local/bin/python3
 
 # Check if using local environment
+from sys import path
+path.append('../')
 from Config import Config
-Config.init_config('../../config/default.ini')
-print('mesg = ', Config.get("ENVIRONMENT"))
+Config.init_config('../config/default.ini')
 if Config.get('ENVIRONMENT') == 'local':
-    from sys import path
     path.append('../../includes')
     data = Config.getsection("DEFAULT")
 
@@ -14,6 +14,8 @@ import util
 from page_login import PageLogin
 from page_menu import PageMenu
 from page_users import PageUsers
+import logging
+
 
 
 class TCP4_761(BaseTest):
@@ -27,11 +29,14 @@ class TCP4_761(BaseTest):
 
         PageMenu(self.driver,data).goto_admin()
         page_user = PageUsers(self.driver,data)
-        page_user.create_user_data(user_data)
 
-
-        self.assertEqual(2,2)
-        output= "test"
+        logging.debug('This is a debug message')
+        logging.info('This is an info message')
+        logging.warning('This is a warning message')
+        logging.error('This is an error message')
+        logging.critical('This is a critical message')
+        logging.debug('This is a debug message')
+        logging.info('This is an info message')
 
 if __name__ == "__main__":
     import __main__  

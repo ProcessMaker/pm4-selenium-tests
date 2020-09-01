@@ -1,13 +1,12 @@
 #!/usr/local/bin/python3
 
 # Check if using local environment
+from sys import path
 from Config import Config
-Config.init_config('../config/default.ini')
+Config.init_config('config/default.ini')
 if Config.get('ENVIRONMENT') == 'local':
-    from sys import path
     path.append('../includes')
     data = Config.getsection("DEFAULT")
-    print('mesg = ', data['server_url'],data['pm_username'],data['pm_password'])
 
 from test_parent import BaseTest
 import util
