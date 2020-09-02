@@ -22,12 +22,6 @@ logging.basicConfig(filename='example.log',level=logging.INFO)
 
 class TCP4_761(BaseTest):
 
-    def setUp(self):
-        #Load server url
-        self.driver.get(data['server_url'])
-        login_page = PageLogin(self.driver, data)
-        login_page.login()
-
     def test_correct_login(self):
         #Constants
         data_user = {'password': 'Co1054!"·$%&/()=', 'confPassword': 'Co1054!"·$%&/()='}
@@ -37,17 +31,20 @@ class TCP4_761(BaseTest):
         pageUser = PageUsers(self.driver, data)
 
         # STEP 1: Load login page.
+        logging.info('Step 1: Load Login page')
+        self.driver.get(data['server_url'])
+        login_page = PageLogin(self.driver, data)
+        login_page.login()
+
+        # STEP 2: Go to admin.
+        logging.info('Step 2: Go to Admin')
         pageMenu.goto_admin()
-        logging.info('Step 1: Go to Admin')
 
-        # STEP 2: Click on the +user button
-        logging.info('Step 2: Click +User')
-
-        # STEP 3: Fill the data with special character
-        result = pageUser.create_user_data(data_user)
+        # STEP 3: Fill the user data with special character
         try:
+            logging.info('Step 3: Create User with special character')
+            result = pageUser.create_user_data(data_user)
             self.assertIn('The user was successfully created',result.text)
-            logging.info('Step 3: User created with special character')
         except:
             logging.error('Step 3: User could not be created, an error occurred')
 
