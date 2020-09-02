@@ -2,7 +2,7 @@
 """ New Users Page class. """
 from os import getenv
 import util
-
+import logging
 
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
@@ -34,6 +34,7 @@ class PageCreateUser:
         self.char_set = string.ascii_letters
         self.user_information = util.generate_text()
         self.user_pass = util.generate_text()
+        self.user_email = util.generate_email()
 
         self.new_user_save = self.wait.until(EC.visibility_of_element_located((By.ID, "saveUser")))
 
@@ -51,7 +52,17 @@ class PageCreateUser:
         self.new_user_confpassword.send_keys(self.user_pass)
         self.new_user_save.click()
 
-    def fill_new_user_1(self,data):
+    def fill_new_user_data(self,data):
         self.paths_create_user()
-        self.new_user_username.send_keys("uno")
+        self.new_user_username.send_keys(self.user_information)
+        self.new_user_firstname.send_keys(self.user_information)
+        self.new_user_lastname.send_keys(self.user_information)
+        self.new_user_title.send_keys(self.user_information)
+        self.new_user_status.click()
+        self.new_user_select_status.click()
+        self.new_user_email.send_keys(util.generate_email())
+        self.new_user_password.send_keys(data['password'])
+        self.new_user_confpassword.send_keys(data['password'])
+        self.new_user_save.click()
+
 

@@ -15,28 +15,43 @@ from page_login import PageLogin
 from page_menu import PageMenu
 from page_users import PageUsers
 import logging
+import unittest
+import time
 
-
+logging.basicConfig(filename='example.log',level=logging.INFO)
 
 class TCP4_761(BaseTest):
-    ''' Test that the country of an user can be changed '''
 
-    def test_create_user_special_character(self):
+    def setUp(self):
+        #Load server url
+        self.driver.get(data['server_url'])
+        login_page = PageLogin(self.driver, data)
+        login_page.login()
 
-        user_data = {'username': 'smoke','firstName': 'test','lastName': 'test qa','jobTitle': 'smoke test','status': 'Active',
-                     'email': 'test@processmaker.com','password': 'Co1054!"·$%&/()='}
-        self.driver = PageLogin(self.driver, data).login()
+    def test_correct_login(self):
+        #Constants
+        data_user = {'password': 'Co1054!"·$%&/()=', 'confPassword': 'Co1054!"·$%&/()='}
 
-        PageMenu(self.driver,data).goto_admin()
-        page_user = PageUsers(self.driver,data)
+        # Pages Instance
+        pageMenu = PageMenu(self.driver, data)
+        pageUser = PageUsers(self.driver, data)
 
-        logging.debug('This is a debug message')
-        logging.info('This is an info message')
-        logging.warning('This is a warning message')
-        logging.error('This is an error message')
-        logging.critical('This is a critical message')
-        logging.debug('This is a debug message')
-        logging.info('This is an info message')
+        # STEP 1: Load login page.
+        pageMenu.goto_admin()
+        logging.info('Step 1: Go to Admin')
+
+        # STEP 2: Click on the +user button
+        logging.info('Step 2: Click +User')
+
+        # STEP 3: Fill the data with special character
+        result = pageUser.create_user_data(data_user)
+        try:
+            self.assertIn('The user was successfully created',result.text)
+            logging.info('Step 3: User created with special character')
+        except:
+            logging.error('Step 3: User could not be created, an error occurred')
+
+
 
 if __name__ == "__main__":
     import __main__  

@@ -14,7 +14,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
 
-
 class PageUsers:
     ''' Page object model for users page'''
 
@@ -55,9 +54,9 @@ class PageUsers:
     def create_user_data(self,user_data):
         self.paths_users()
         self.create_user_button.click()
-        PageCreateUser(self.driver, self.data).fill_new_user_1(user_data)
-
-
+        PageCreateUser(self.driver, self.data).fill_new_user_data(user_data)
+        self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+        return self.create_user_succes
 
     def check_users_exists(self):
         ''' Check if there are 2 users, create one if not'''
