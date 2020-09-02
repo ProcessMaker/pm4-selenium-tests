@@ -38,3 +38,13 @@ class PageLogin:
         self.login_button.click()
 
         return self.driver
+
+    def user_long_string(self):
+        long_user = False
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'username')))
+
+        self.driver.find_element_by_id("username").send_keys('qwertyuiopasdfghjklñzxcvbnmqwertyuiopasdfghjklñzxcvbnmqwerty')
+        if(self.driver.find_element_by_id("username").get_property('value'), 'qwertyuiopasdfghjklñzxcvbnmqwertyuiopasdfghjklñzxcvbnmqwerty'):
+            long_user = True
+
+        return(long_user)
