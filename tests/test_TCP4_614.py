@@ -10,7 +10,7 @@ if getenv('ENVIRONMENT') == 'local':
     # remote Trogdor test imports
     from sys import path
     path.append('../includes')
-    # Import __init__ to include data configuration
+    # Import __init__ to include data configuration  
     from __init__ import data
 
 

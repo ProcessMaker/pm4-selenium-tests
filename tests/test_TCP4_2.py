@@ -46,4 +46,3 @@ class TCP4_2(BaseTest):
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_2, data, __main__)
-
