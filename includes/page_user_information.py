@@ -82,8 +82,10 @@ class PageUserInformation:
         self.user_country_cambodia = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "option[value='KH']")))
         
         self.user_datetime = self.wait.until(EC.visibility_of_element_located((By.ID, "datetime_format")))
-
         self.user_datetime_dmyhi = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "option[value = 'd/m/Y H:i']")))
+
+        self.user_timezone = self.wait.until(EC.visibility_of_element_located((By.ID, "timezone")))
+        self.user_timezone_africa = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "option[value = 'Africa/Abidjan']")))
 
 
         self.char_set = string.ascii_letters
@@ -164,3 +166,28 @@ class PageUserInformation:
         except TimeoutException:
             return False
             
+
+    def change_user_timezone(self, selected_datetime):
+        ''' Changes the language for the user to the specified one'''
+        self.paths_user_information()
+        self.user_timezone.click()
+        self.switch_timezone(selected_datetime)
+
+    def switch_timezone(self, selected_datetime):
+        ''' Switch to click on the language selected'''
+        switcher = {
+            "africa": self.user_timezone_africa.click()
+        }
+        self.save_user_information.click()
+        self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+
+    def confirm_timezone(self, selected_datetime):
+        ''' Confirms that a country is the expected one '''
+        try:    # changes the non-admin user password if it already exists
+            if(selected_datetime == "africa"):
+                self.selected_country = self.driver.find_element_by_css_selector("option:checked[value='Africa/Abidjan']")       
+            return True
+
+        # Need to run test to find exact exception type
+        except TimeoutException:
+            return False
