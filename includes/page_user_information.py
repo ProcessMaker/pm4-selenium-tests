@@ -127,8 +127,13 @@ class PageUserInformation:
         self.save_user_information.click()
         self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
 
-    def confirm_country(self, selected_language):
+    def confirm_country(self, selected_datetime):
         ''' Confirms that a country is the expected one '''
-        dropdown = Select(self.driver.find_element_by_css_selector("div[class='form-group col']>select"))
-        option = dropdown.first_selected_option
-        return (option.text == selected_language)
+        try:    # changes the non-admin user password if it already exists
+            if(selected_datetime == "bolivia"):
+                self.selected_country = self.driver.find_element_by_css_selector("option:checked[value='BO']")       
+            return True
+
+        # Need to run test to find exact exception type
+        except TimeoutException:
+            return False

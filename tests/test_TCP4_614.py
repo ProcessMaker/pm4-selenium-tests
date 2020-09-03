@@ -41,18 +41,14 @@ class TCP4_614(BaseTest):
         # Redirect to Admin Users page, wait for +User button to be clickable
         PageMenu(self.driver, data).goto_admin()
 
-        # Find table record with ID = '2', find edit button in this element, and click
-        PageUsers(self.driver, data).check_users_exists()
-
         # Wait for user edit form to load, changes the country and save
-        PageMenu(self.driver, data).goto_admin()
         PageUsers(self.driver, data).edit_non_admin()
         PageUserInformation(self.driver, data).change_user_country('bolivia')
 
         # Gets the text from the selected option and confirms it changed
         PageMenu(self.driver, data).goto_admin()
         PageUsers(self.driver, data).edit_non_admin()
-        PageUserInformation(self.driver, data).confirm_country('bolivia')
+        self.assertTrue(PageUserInformation(self.driver, self.data).confirm_country("bolivia"))
 
 
 if __name__ == "__main__":
