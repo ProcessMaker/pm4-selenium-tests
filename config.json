@@ -1,6 +1,6 @@
 [
   {
     "name": "test-create-user",
-    "path": "tests/test_TCP4_614.py"
+    "path": "tests/admin/test_TCP4_761.py"
   }
 ]
