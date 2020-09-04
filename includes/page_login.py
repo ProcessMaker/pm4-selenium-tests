@@ -33,8 +33,8 @@ class PageLogin:
         self.paths_login()
 
         # Log in using user provided credentials
-        self.username_field.send_keys(self.data['pm_username'])
-        self.password_field.send_keys(self.data['pm_password'])
+        self.username_field.send_keys(self.data['username'])
+        self.password_field.send_keys(self.data['password'])
         self.login_button.click()
 
         return self.driver

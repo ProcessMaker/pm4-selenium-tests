@@ -1,12 +1,12 @@
 #!/usr/local/bin/python3
 
 # Check if using local environment
-from sys import path
-from Config import Config
-Config.init_config('config/default.ini')
-if Config.get('ENVIRONMENT') == 'local':
+from os import getenv
+
+if getenv('ENVIRONMENT') == 'local':
+    from sys import path
     path.append('../includes')
-    data = Config.getsection("DEFAULT")
+    from __init__ import data
 
 from test_parent import BaseTest
 import util
