@@ -23,9 +23,9 @@ class PageMenu:
         ''' Function to navigate to the admin tab. '''
         self.driver.get(self.data['server_url'] + '/admin/users')
 
-    def goto_request(self):
+    def goto_tasks(self):
         ''' Function to navigate to the request tab. '''
-        self.driver.get(self.data['server_url'] + 'request')
+        self.driver.get(self.data['server_url'] + 'tasks')
 
     def log_out(self):
         ''' Logs out the current user '''
