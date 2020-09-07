@@ -1,6 +1,6 @@
 [
   {
-    "name": "opens a task",
+    "name": "opens-a-task",
     "path": "tests/test_TCP4_774.py"
   }
 ]
