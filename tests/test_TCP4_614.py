@@ -24,6 +24,7 @@ class TCP4_614(BaseTest):
 
         # Login using configured url, workspace, username, and password
         self.driver = PageLogin(self.driver, data).login()
+        print('mi primer valor')
 
         # Redirect to Admin Users page, wait for +User button to be clickable 
         PageMenu(self.driver, data).goto_admin()
