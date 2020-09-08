@@ -23,6 +23,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
+from util import * 
 
 
 class PageUsers:
@@ -79,3 +80,39 @@ class PageUsers:
             PageMenu(self.driver, self.data).goto_request()
 
             return False
+
+    def searchUser(self, findName):
+        ''' Search some user'''
+        self.paths_users()
+        self.user_search_bar.send_keys(findName)
+        try:
+            existUsers = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='users-listing']/div[2]/div/div[1]")))
+            #validate option
+            userTest = existUsers.value_of_css_property("display")
+            if userTest == 'block':
+                return True
+            else:
+                return False
+        except TimeoutException:
+            return False
+
+    def create_new_user(self, username, password, email, status):                                                                              
+        ''' Create an inactive user'''
+        self.paths_users()
+        self.create_user_button.click()
+        PageCreateUser(self.driver, self.data).fill_new_user(username, password, email, status)
+        self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+
+    def verifyUser(self):
+        # new user information
+        username = 'userAutomation'+generate_text()
+        password = generate_randomPassword(8)
+        email = generate_email()
+        status = 'active'
+
+        # Validate if the user exists
+        noExistUser = PageUsers(self.driver, data).searchUser(username)
+        if noExistUser == True:
+            # Create an user if not exist
+            PageUsers(self.driver, data).create_new_user(username, password, email, status)
+        return [username, password]

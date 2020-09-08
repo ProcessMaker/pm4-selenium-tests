@@ -48,3 +48,18 @@ class PageLogin:
             long_user = True
 
         return(long_user)
+
+    #login for a different user
+    def loginNoAdmin(self, NewUsername, NewPassword):
+        ''' Function to log a specific user in to workspace.
+        '''
+        # Navigate to Login Page and get Page elements
+        self.get_page()
+        self.paths_login()
+
+        # Log in using user provided credentials
+        self.username_field.send_keys(NewUsername)
+        self.password_field.send_keys(NewPassword)
+        self.login_button.click()
+
+        return self.driver

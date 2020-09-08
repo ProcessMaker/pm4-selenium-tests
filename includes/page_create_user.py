@@ -60,3 +60,31 @@ class PageCreateUser:
         self.new_user_password.send_keys(self.user_pass)
         self.new_user_confpassword.send_keys(self.user_pass)
         self.new_user_save.click()
+
+    def paths_create_userStatus(self,userStatus):
+        ''' Function to get page elements. '''
+        self.new_user_username = self.wait.until(EC.visibility_of_element_located((By.ID, "username")))
+        self.new_user_firstname = self.wait.until(EC.visibility_of_element_located((By.ID, "firstname")))
+        self.new_user_lastname = self.wait.until(EC.visibility_of_element_located((By.ID, "lastname")))
+        self.new_user_title = self.wait.until(EC.visibility_of_element_located((By.ID, "title")))
+        self.new_user_status = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//select[@name='size']")))
+        self.new_user_select_status = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//option[contains(text(),'"+userStatus+"')]")))
+        self.new_user_email = self.wait.until(EC.visibility_of_element_located((By.ID, "email")))
+        self.new_user_password = self.wait.until(EC.visibility_of_element_located((By.ID, "password")))
+        self.new_user_confpassword = self.wait.until(EC.visibility_of_element_located((By.ID, "confpassword")))
+        self.user_information = util.generate_text()
+        self.new_user_save = self.wait.until(EC.visibility_of_element_located((By.ID, "saveUser")))
+
+    def fill_data_user(self, username, password, email, status):
+        ''' Fills the fields of a new user'''
+        self.paths_create_userStatus(status)
+        self.new_user_username.send_keys(username)
+        self.new_user_firstname.send_keys(self.user_information)
+        self.new_user_lastname.send_keys(self.user_information)
+        self.new_user_title.send_keys(self.user_information)
+        self.new_user_status.click()
+        self.new_user_select_status.click()
+        self.new_user_email.send_keys(email)
+        self.new_user_password.send_keys(password)
+        self.new_user_confpassword.send_keys(password)
+        self.new_user_save.click()
