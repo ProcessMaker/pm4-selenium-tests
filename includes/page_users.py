@@ -26,6 +26,7 @@ import time
 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
+from util import *
 
 
 
@@ -84,27 +85,28 @@ class PageUsers:
 
             return False
 
-
     def searchUser(self, findName):
         ''' Search some user'''
-        self.searchBox= self.driver.find_element_by_xpath("//*[@id='search']/div/input")
-        self.searchBox.send_keys(findName)
+        self.paths_users()
+        self.user_search_bar.send_keys(findName)
 
-        try:          
+        try:
             # self.existUsers = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='nav-users']/div[2]/div/div[1]/div/div/h3"))).text          
-            self.existUsers = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='users-listing']/div[2]/div/div[1]")))
-            print("** "+self.existUsers.value_of_css_property("display")+"**")
+            existUsers = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='users-listing']/div[2]/div/div[1]")))
+            print("**"+existUsers.value_of_css_property("display")+"**")
             #validate option
-            self.userTest = self.existUsers.value_of_css_property("display")
-            if self.userTest == 'block':
-                print("1 no user found")
+            userTest = existUsers.value_of_css_property("display")
+            if userTest == 'block':
+                #print("1 no user found")
                 return True
             else:
-                print("2 ok user found")
+                #print("2 ok user found")
                 return False
+
         except TimeoutException:
-            print("3 ok user found")
+            #print("3 ok user found")
             return False
+            
 
     def create_inactive_user(self, username, password, email, status):
         ''' Create an inactive user'''
@@ -112,3 +114,17 @@ class PageUsers:
         self.create_user_button.click()
         PageCreateUser(self.driver, self.data).fill_inactive_user(username, password, email, status)
         self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+
+    def verifyUser(self):
+        # new inactive user information
+        username = 'userInactive3'
+        password = generate_randonPassword(8)
+        email = generate_email()
+        status = 'Inactive'
+
+        # Validate if the user exists
+        noExistUser = PageUsers(self.driver, data).searchUser(username)
+        if noExistUser == True:
+            # Create an user if not exist
+            PageUsers(self.driver, data).create_inactive_user(username, password, email, status)
+        return [username, password]

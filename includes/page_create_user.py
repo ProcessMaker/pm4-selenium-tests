@@ -72,13 +72,8 @@ class PageCreateUser:
         self.new_user_email = self.wait.until(EC.visibility_of_element_located((By.ID, "email")))
         self.new_user_password = self.wait.until(EC.visibility_of_element_located((By.ID, "password")))
         self.new_user_confpassword = self.wait.until(EC.visibility_of_element_located((By.ID, "confpassword")))
-
-        self.char_set = string.ascii_letters
         self.user_information = util.generate_text()
-        self.user_pass = util.generate_text()
-
         self.new_user_save = self.wait.until(EC.visibility_of_element_located((By.ID, "saveUser")))
-
 
     def fill_inactive_user(self, username, password, email, status):
         ''' Fills the fields of a new user'''
