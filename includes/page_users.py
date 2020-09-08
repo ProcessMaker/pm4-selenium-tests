@@ -93,7 +93,7 @@ class PageUsers:
         try:
             # self.existUsers = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='nav-users']/div[2]/div/div[1]/div/div/h3"))).text          
             existUsers = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@id='users-listing']/div[2]/div/div[1]")))
-            print("**"+existUsers.value_of_css_property("display")+"**")
+            #print("**"+existUsers.value_of_css_property("display")+"**")
             #validate option
             userTest = existUsers.value_of_css_property("display")
             if userTest == 'block':
