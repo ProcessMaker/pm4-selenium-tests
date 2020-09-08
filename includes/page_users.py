@@ -118,7 +118,7 @@ class PageUsers:
     def verifyUser(self):
         # new inactive user information
         username = 'userInactive3'
-        password = generate_randonPassword(8)
+        password = generate_randomPassword(8)
         email = generate_email()
         status = 'Inactive'
 

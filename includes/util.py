@@ -114,7 +114,7 @@ def generate_email():
         '@' + ''.join(random.choice(string.ascii_letters) for n in range(5)) +\
         '.' + ''.join(random.choice(string.ascii_letters) for n in range(5))
 
-def generate_randonPassword(length):    
+def generate_randomPassword(length):    
     letters_and_digits = string.ascii_letters + string.digits
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
     return result_str

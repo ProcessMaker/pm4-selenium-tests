@@ -45,6 +45,7 @@ class TCP4_874(BaseTest):
 
         # Login using configured url, workspace, username, and password as an Inactive user
         self.driver = PageLogin(self.driver, data).loginNoAdmin(user[0],user[1])
+        print('passwd= '+user[1])
 
         # The inactive user does not access
         self.assertEqual(self.driver.current_url,data['server_url'] + '/login')
