@@ -1,6 +1,7 @@
 #!/usr/local/bin/python3
 
 # Check if using local environment
+import sys
 from os import getenv
 
 if getenv('ENVIRONMENT') == 'local':
@@ -24,7 +25,7 @@ class TCP4_614(BaseTest):
 
         # Login using configured url, workspace, username, and password
         self.driver = PageLogin(self.driver, data).login()
-        print('mi primer valor')
+        print('fatal error', file=sys.stderr)
 
         # Redirect to Admin Users page, wait for +User button to be clickable 
         PageMenu(self.driver, data).goto_admin()

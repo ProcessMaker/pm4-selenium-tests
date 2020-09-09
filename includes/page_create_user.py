@@ -53,7 +53,7 @@ class PageCreateUser:
 
     def fill_new_user_data(self,data):
         self.paths_create_user()
-        self.new_user_username.send_keys(self.user_information)
+        self.new_user_username.send_keys(data['user_name'])
         self.new_user_firstname.send_keys(self.user_information)
         self.new_user_lastname.send_keys(self.user_information)
         self.new_user_title.send_keys(self.user_information)
