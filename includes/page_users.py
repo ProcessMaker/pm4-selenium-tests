@@ -22,6 +22,7 @@ class PageUsers:
     USER_TABLE_XPATH      = "//*[@id='users-listing']/div[2]/div/div[2]"
     CONFIRM_DELETE_XPATH  = "//button[text()='Confirm']"
     CANCEL_DELETE_XPATH   = "//button[text()='Cancel']"
+    DELETED_USER_FOUND    = "//button[text()='Yes']"
     ''' Page object model for users page'''
 
     def __init__(self, driver, data):
@@ -61,11 +62,18 @@ class PageUsers:
         self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
 
     def create_user_data(self,user_data):
+        li=[]
         create_user = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageUsers.CREATE_USER_BUTTON)))
         create_user.click()
-        PageCreateUser(self.driver, self.data).fill_new_user_data(user_data)
-        self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
-        return self.create_user_succes
+        user_name = PageCreateUser(self.driver, self.data).fill_new_user_data(user_data)
+        create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']"))).text
+        li.append(create_user_succes)
+        li.append(user_name)
+        return li
+
+    def create_user_personal_dates(self):
+        print(True)
+
 
     def check_users_exists(self):
         ''' Check if there are 2 users, create one if not'''
@@ -167,14 +175,25 @@ class PageUsers:
 
 
     def delete_user(self, element):
-        self.paths_users()
         print("Delete Element", file=sys.stderr)
         butttons = element.find_elements(By.TAG_NAME, "button")
         print(butttons[1], file=sys.stderr)
         butttons[1].click()
         print("llego a delete", file=sys.stderr)
-        self.wait.until(EC.visibility_of_element_located((By.XPATH, PageUsers.CONFIRM_DELETE_XPATH)))
-        self.confirm_delete_button.click()
+        confirm_deleted_user = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageUsers.CONFIRM_DELETE_XPATH)))
+        confirm_deleted_user.click()
+        delete_user_succes = self.wait.until(EC.visibility_of_element_located(
+            (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-danger']")))
+        return delete_user_succes
+
+    def verify_user_created(self):
+        try:
+            self.wait.until(EC.visibility_of_element_located((By.XPATH, PageUsers.DELETED_USER_FOUND)))
+            return True
+        except:
+            return False
+
+
 
 
 

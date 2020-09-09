@@ -53,15 +53,18 @@ class PageCreateUser:
 
     def fill_new_user_data(self,data):
         self.paths_create_user()
-        self.new_user_username.send_keys(data['user_name'])
+        self.new_user_username.send_keys(self.user_information)
         self.new_user_firstname.send_keys(self.user_information)
         self.new_user_lastname.send_keys(self.user_information)
         self.new_user_title.send_keys(self.user_information)
         self.new_user_status.click()
         self.new_user_select_status.click()
-        self.new_user_email.send_keys(util.generate_email())
+        self.new_user_email.send_keys(self.user_email)
         self.new_user_password.send_keys(data['password'])
         self.new_user_confpassword.send_keys(data['password'])
         self.new_user_save.click()
+        user_data = {'user_username': self.user_information, 'user_firstname': self.user_information, 'user_lastname': self.user_information,
+                     'user_title': self.user_information, 'user_email':self.user_email, 'user_password':data['password'],}
+        return self.user_information
 
 

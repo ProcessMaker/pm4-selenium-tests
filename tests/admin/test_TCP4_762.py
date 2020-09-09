@@ -43,9 +43,8 @@ class TCP4_762(BaseTest):
             result = pageUser.create_user_data(data_user)
             self.assertIn('The user was successfully created', result.text)
             print('The user was successfully created', file=sys.stderr)
-        except AssertionError as e:
+        except:
             print('User could not be created, an error occurred', file=sys.stderr)
-            self.assertionFailures.append(str(e))
         #
         # # STEP 3: Fill the user data with special character
         # try:

@@ -30,6 +30,12 @@ class PageUserInformation:
         self.user_language_english = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//option[@value='en']")))
         self.user_language_spanish = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//option[@value='es']")))
         self.user_language_french = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//option[@value='fr']")))
+
+        self.user_address = self.wait.until(EC.visibility_of_element_located((By.ID, "address")))
+        self.user_city = self.wait.until(EC.visibility_of_element_located((By.ID, "city")))
+        self.user_posta_code = self.wait.until(EC.visibility_of_element_located((By.ID, "postal")))
+
+
         self.save_user_information = self.wait.until(EC.visibility_of_element_located((By.ID, 'saveUser')))
 
         self.user_country = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "label[for='country']~select")))
@@ -72,6 +78,9 @@ class PageUserInformation:
 
         self.char_set = string.ascii_letters
         self.user_pass = util.generate_text()
+        self.user_address_information = util.generate_text()
+        self.user_city_information = util.generate_text()
+        self.user_posta_code_information = util.generate_text()
         
     def goto_user_permissions(self):
         ''' Click on the user permissions tab'''
@@ -122,3 +131,11 @@ class PageUserInformation:
         dropdown = Select(self.driver.find_element_by_css_selector("div[class='form-group col']>select"))
         option = dropdown.first_selected_option
         return (option.text == selected_language)
+
+    def fill_user_information(self):
+        ''' Fill the information data '''
+        self.paths_user_information()
+        self.user_address.send_keys(self.user_address_information)
+        self.user_city.send_keys(self.user_city_information)
+        self.user_posta_code.send_keys(self.user_posta_code_information)
+        self.save_user_information.click()

@@ -21,7 +21,9 @@ class TCP4_761(BaseTest):
     def test_create_user(self):
         ''' Create user with special characters '''
         #Constants
-        data_user = {'user_name':'RB6','password': 'Co1054!"·$%&/()='}
+        data_user = {'user_name':'JULIETA','password': 'Co1054!"·$%&/()='}
+        user_result_search = None
+        result =[]
 
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
@@ -41,7 +43,7 @@ class TCP4_761(BaseTest):
         try:
             print('Step 3: Create User with special character', file=sys.stderr)
             result = pageUser.create_user_data(data_user)
-            self.assertIn('The user was successfully created',result.text)
+            self.assertIn('The user was successfully created',result[0])
             print('The user was successfully created', file=sys.stderr)
         except AssertionError as e:
             print('User could not be created, an error occurred', file=sys.stderr)
@@ -54,9 +56,9 @@ class TCP4_761(BaseTest):
         # STEP 5: Find user Created
         try:
             print('Step 5: Find user created', file=sys.stderr)
-            user = pageUser.search_user(data_user['user_name'])
-            print(user, file=sys.stderr)
-            self.assertTrue(user!=None)
+            user_result_search = pageUser.search_user(result[1])
+            print(user_result_search, file=sys.stderr)
+            self.assertTrue(user_result_search!=None)
             print('User was found', file=sys.stderr)
         except AssertionError as e:
             print('User was not found, an error ocurred', file=sys.stderr)
@@ -64,12 +66,14 @@ class TCP4_761(BaseTest):
 
         # STEP 6: Delete newly created User
         try:
-            print('Step 5: Deleted newly created User', file=sys.stderr)
-            pageUser.delete_user(data_user['user_name'])
+            print('Step 6: Deleted newly created User', file=sys.stderr)
+            print(user_result_search, file=sys.stderr)
+            user_deleted = pageUser.delete_user(user_result_search)
+
             # Verify uf user was deleted
-            user = pageUser.search_user(data_user['user_name'])
-            self.assertEqual(user,None)
-            print('User was deleted successfuly', file=sys.stderr)
+            print('Step 7: Verify user was deleted', file=sys.stderr)
+            self.assertIn('The user was deleted', user_deleted.text)
+            print('The user was successfully deleted', file=sys.stderr)
         except AssertionError as e:
             print('User was not deleted, an error ocurred', file=sys.stderr)
             self.assertionFailures.append(str(e))
