@@ -6,5 +6,9 @@
   {
     "name": "opens-a-task",
     "path": "tests/test_TCP4_774.py"
+  },
+  {
+    "name": "creates-a-new-saved-search",
+    "path": "tests/test_TCP4_783.py"
   }
 ]
