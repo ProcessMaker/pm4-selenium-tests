@@ -48,7 +48,6 @@ class TCP4_783(BaseTest):
         self.assertTrue(PageSavedsearch(self.driver, data).search_savedsearches(savedsearch_name))
 
 
-
 if __name__ == "__main__":
     import __main__
     output = run_test(TCP4_783, data, __main__)
