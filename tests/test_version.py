@@ -22,7 +22,8 @@ import util
 from page import *
 # Import Python unittest module
 import unittest, re
-
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 class TestServerVersions(BaseTest):
     ''' Brief description of the Test Case. '''
@@ -52,6 +53,7 @@ class TestServerVersions(BaseTest):
         self.log.append('Open "About" Page')
         self.driver.get(data['server_url'] + '/about')
 
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'navbar-request-button')))
         self.log.append('Pull page source, regex check pm4 version against the first group data list')
         page_source = self.driver.page_source
         pm4_version = re.search(r'(?<=ProcessMaker 4 v)([\d].+)', page_source).group(0)
@@ -77,8 +79,6 @@ class TestServerVersions(BaseTest):
             # Verify test case
             self.assertTrue(Page.method())
         '''
-        from time import sleep
-        sleep(2)
 
 ''' Main call. Only used in test file.'''
 
