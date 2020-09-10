@@ -1,6 +1,6 @@
 [
   {
     "name": "test-login-active-user",
-    "path": "tests/test_TCP4_870.py"
+    "path": "tests/loginActiveUser/test_TCP4_870.py"
   }
 ]
