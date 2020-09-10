@@ -24,6 +24,7 @@ from page import *
 import unittest, re
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from time import sleep
 
 class TestServerVersions(BaseTest):
     ''' Brief description of the Test Case. '''
@@ -53,7 +54,8 @@ class TestServerVersions(BaseTest):
         self.log.append('Open "About" Page')
         self.driver.get(data['server_url'] + '/about')
 
-        self.wait.until(EC.visibility_of_element_located((By.ID, 'userMenu')))
+        #self.wait.until(EC.visibility_of_element_located((By.ID, 'userMenu')))
+        sleep(2)
         self.log.append('Pull page source, regex check pm4 version against the first group data list')
         page_source = self.driver.page_source
         pm4_version = re.search(r'(?<=ProcessMaker 4 v)([\d].+)', page_source).group(0)
