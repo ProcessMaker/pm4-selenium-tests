@@ -27,6 +27,10 @@ class PageMenu:
         ''' Function to navigate to the request tab. '''
         self.driver.get(self.data['server_url'] + 'tasks')
 
+    def goto_request(self):
+        ''' Function to navigate to the request tab. '''
+        self.driver.get(self.data['server_url'] + 'requests')
+
     def log_out(self):
         ''' Logs out the current user '''
         self.paths_menu()
