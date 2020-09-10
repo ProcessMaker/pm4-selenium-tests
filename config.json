@@ -1,6 +1,6 @@
 [
   {
-    "name": "test-login-long-username",
-    "path": "tests/test-login/test_TCP4_48.py"
+    "name": "test-server-versions",
+    "path": "tests/test_version.py"
   }
 ]
