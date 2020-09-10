@@ -1,6 +1,6 @@
 [
   {
-    "name": "test-server-versions",
+    "name": "Test Server Versions",
     "path": "tests/test_version.py"
   }
 ]
