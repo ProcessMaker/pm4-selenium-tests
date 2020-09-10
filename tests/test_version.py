@@ -58,6 +58,7 @@ class TestServerVersions(BaseTest):
         sleep(2)
         self.log.append('Pull page source, regex check pm4 version against the first group data list')
         page_source = self.driver.page_source
+        self.log.append(page_source)
         pm4_version = re.search(r'(?<=ProcessMaker 4 v)([\d].+)', page_source).group(0)
         #print(pm4_version)
 
