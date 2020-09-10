@@ -1,14 +1,6 @@
 [
   {
     "name": "test-login-long-username",
-    "path": "tests/test_TCP4_614.py"
-  },
-  {
-    "name": "test-login-long-username",
-    "path": "tests/test_TCP4_1.py"
-  },
-  {
-    "name": "test-login-long-username",
-    "path": "tests/test_TCP4_2.py"
+    "path": "tests/test_TCP4_783.py"
   }
 ]
