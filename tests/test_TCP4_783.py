@@ -45,10 +45,11 @@ class TCP4_783(BaseTest):
         savedsearch_name = PageNewSavedsearch(self.driver, data).create_new_savedsearch()
 
         PageLateralRequest(self.driver, data).open_edit_savedsearchs()
-        PageSavedsearch(self.driver, data).search_savedsearches(savedsearch_name)
+        self.assertTrue(PageSavedsearch(self.driver, data).search_savedsearches(savedsearch_name))
 
 
 
 if __name__ == "__main__":
     import __main__
     output = run_test(TCP4_783, data, __main__)
+    print(output)

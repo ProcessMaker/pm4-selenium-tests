@@ -26,4 +26,8 @@ class PageSavedsearch:
         ''' Searches for the savedsearch. '''
         self.paths_lateral_menu()
         self.search_savedsearch.send_keys(name)
-        self.search_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageSavedsearch.SEARCH_RESULTS_CSS)))
+        try:
+            self.search_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageSavedsearch.SEARCH_RESULTS_CSS)))
+            return(True)
+        except:
+            return(False)
