@@ -2,5 +2,9 @@
   {
     "name": "test-create-user",
     "path": "tests/admin/test_TCP4_761.py"
+  },
+  {
+    "name": "opens-a-task",
+    "path": "tests/test_TCP4_774.py"
   }
 ]
