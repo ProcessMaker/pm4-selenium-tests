@@ -6,10 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class PageLateralRequest:
-    ''' Page object model for Login Page. '''
+    ''' Page object model for lateral request. '''
 
     def __init__(self, driver, data):
-        ''' Instantiate PageLogin class. '''
+        ''' Instantiate lateral request class. '''
         self.driver = driver
         self.data = data
         self.wait = WebDriverWait(driver, 30)

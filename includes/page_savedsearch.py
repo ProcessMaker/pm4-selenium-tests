@@ -7,7 +7,7 @@ import time
 
 
 class PageSavedsearch:
-    ''' Page object model for Login Page. '''
+    ''' Page object model for saved searches. '''
 
     SEARCH_SAVEDSEARCH_CSS = "input[placeholder= 'Search']"
     SEARCH_RESULTS_CSS = "tr[item-index= '0']"
@@ -23,6 +23,7 @@ class PageSavedsearch:
         self.search_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageSavedsearch.SEARCH_SAVEDSEARCH_CSS)))
 
     def search_savedsearches(self, name):
+        ''' Searches for the savedsearch. '''
         self.paths_lateral_menu()
         self.search_savedsearch.send_keys(name)
         self.search_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageSavedsearch.SEARCH_RESULTS_CSS)))

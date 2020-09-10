@@ -11,7 +11,7 @@ import time
 
 
 class PageNewSavedsearch:
-    ''' Page object model for Login Page. '''
+    ''' Page object model for new saved searches Page. '''
 
     NEW_SAVEDSEARCH_WINDOW_ID = "save-search-modal___BV_modal_content_"
 
@@ -32,7 +32,7 @@ class PageNewSavedsearch:
     
 
     def __init__(self, driver, data):
-        ''' Instantiate PageLogin class. '''
+        ''' Instantiate new saved searches class. '''
         self.driver = driver
         self.data = data
         self.wait = WebDriverWait(driver, 30)
@@ -53,7 +53,7 @@ class PageNewSavedsearch:
 
         
     def create_new_savedsearch(self):
-        ''' Function to navigate to Login page. '''
+        ''' Creates a new saved searche. '''
         name = generate_text()
         self.paths_new_savessearch()
         self.new_savedsearch_name.send_keys(name)

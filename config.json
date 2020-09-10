@@ -1,6 +1,6 @@
 [
   {
-    "name": "test-login-long-username",
+    "name": "creates-new-saved-search",
     "path": "tests/test_TCP4_783.py"
   }
 ]

@@ -6,12 +6,12 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class PageRequest:
-    ''' Page object model for Login Page. '''
+    ''' Page object model for request Page. '''
 
     NEW_SAVEDSEARCH_CSS = "button[title='Save Search']"
 
     def __init__(self, driver, data):
-        ''' Instantiate PageLogin class. '''
+        ''' Instantiate Request class. '''
         self.driver = driver
         self.data = data
         self.wait = WebDriverWait(driver, 30)
@@ -21,6 +21,6 @@ class PageRequest:
         self.new_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageRequest.NEW_SAVEDSEARCH_CSS)))
 
     def create_savedsearch(self):
-        ''' Function to navigate to Login page. '''
+        ''' Creates a new saved search. '''
         self.paths_request()
         self.new_savedsearch.click()
