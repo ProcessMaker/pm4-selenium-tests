@@ -60,10 +60,9 @@ class TCP4_874(BaseTest):
         try:
             self.log.append('STEP 5: Log in with a new user with status active')
             myPage = login_page.loginNoAdmin(user_data['user_username'], user_data['user_password'])
-
             self.assertEqual(myPage.current_url,data['server_url'] + '/login')
         except AssertionError as e:
-            cad = 2
+            raise Exception('Error in loginNoAdmin function',e)
 
 if __name__ == "__main__":
     import __main__
