@@ -4,6 +4,10 @@
     "path": "tests/admin/test_TCP4_761.py"
   },
   {
+    "name": "test_fill_user_information",
+    "path": "tests/admin/test_TCP4_762.py"
+  },
+  {
     "name": "opens-a-task",
     "path": "tests/test_TCP4_774.py"
   },

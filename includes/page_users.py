@@ -132,3 +132,13 @@ class PageUsers:
             return None
         else:
             return None
+
+    def edit_user(self, element):
+        buttons = element.find_elements(By.TAG_NAME, "button")
+        buttons[0].click()
+        PageUserInformation(self.driver,self.data).page_user_information_wait_visible()
+
+
+
+
+
