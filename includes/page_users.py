@@ -138,6 +138,15 @@ class PageUsers:
         buttons[0].click()
         PageUserInformation(self.driver,self.data).page_user_information_wait_visible()
 
+    def delete_user(self, element):
+        buttons = element.find_elements(By.TAG_NAME, "button")
+        buttons[1].click()
+        confirm_deleted_user = self.wait.until(
+            EC.visibility_of_element_located((By.XPATH, PageUsers.CONFIRM_DELETE_XPATH)))
+        confirm_deleted_user.click()
+        delete_user_succes = self.wait.until(EC.visibility_of_element_located(
+            (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-danger']")))
+
 
 
 
