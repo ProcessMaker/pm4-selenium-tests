@@ -1,6 +1,6 @@
 [
   {
     "name": "test-login-inactive-username",
-    "path": "tests/test_TCP4_874.py"
+    "path": "tests/loginInactiveUser/test_TCP4_874.py"
   }
 ]
