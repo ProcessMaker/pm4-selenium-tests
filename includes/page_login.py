@@ -49,7 +49,7 @@ class PageLogin:
 
         return(long_user)
 
-    #login for a different user 
+    #login for a different user
     def loginNoAdmin(self, NewUsername, NewPassword):
         ''' Function to log a specific user in to workspace.
         '''
@@ -62,4 +62,4 @@ class PageLogin:
         self.password_field.send_keys(NewPassword)
         self.login_button.click()
 
-        return self.driver 
+        return self.driver

@@ -114,6 +114,10 @@ def generate_email():
         '@' + ''.join(random.choice(string.ascii_letters) for n in range(5)) +\
         '.' + ''.join(random.choice(string.ascii_letters) for n in range(5))
 
+def generate_text_with_special_char():
+    ''' Function to generate a random string 10 chars long with special character. '''
+    return  ''.join(random.choice(string.punctuation) for n in range(10))
+
 def generate_randomPassword(length):    
     letters_and_digits = string.ascii_letters + string.digits
     result_str = ''.join((random.choice(letters_and_digits) for i in range(length)))
