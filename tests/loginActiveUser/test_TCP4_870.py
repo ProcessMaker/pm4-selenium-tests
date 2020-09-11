@@ -63,7 +63,7 @@ class TCP4_870(BaseTest):
 
             self.assertEqual(myPage.current_url,data['server_url'] + '/requests')
         except AssertionError as e:
-            cad = 2
+            raise Exception('Error in loginNoAdmin function',e)
 
 if __name__ == "__main__":
     import __main__
