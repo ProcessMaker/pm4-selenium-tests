@@ -68,4 +68,3 @@ class TCP4_870(BaseTest):
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_870, data, __main__)
-    print(output)
