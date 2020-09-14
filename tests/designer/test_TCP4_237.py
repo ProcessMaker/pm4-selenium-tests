@@ -21,7 +21,7 @@ class TCP4_237(BaseTest):
     def test_create_active_category(self):
         ''' Create an active screen category '''
         #Constants
-        category_data = {}            # To save user data, when you create an user
+        category_data = {}       # To save user data, when you create a category
         
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
@@ -40,17 +40,17 @@ class TCP4_237(BaseTest):
         # STEP 3: Create a new Category with active status.
         self.log.append('STEP 3: Create a new category with active status.')
         category_data = PageProcess.create_category('active')
-        print(category_data)
+        
         try:
             # STEP 4: Verify the Category
             category_result_search = PageProcess.search_category(category_data['category_name'])
-            print(category_result_search)
+            #print(category_result_search)
             self.assertTrue(category_result_search!=None)
         except AssertionError as e:
-            print(e)
+            raise Exception('Error in search_category',e)
+            #print(e)
 
 
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_237, data, __main__)
-    print(output)

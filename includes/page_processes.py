@@ -114,7 +114,7 @@ class PageProcesses:
 
             for row in rows:
                 col = row.find_elements(By.TAG_NAME, "td")
-                category = col[1].text
+                category = col[0].text
                 if (category == category_name):
                     #returns the column where the edit and delete buttons are located
                     return col[0]
