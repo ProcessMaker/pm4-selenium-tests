@@ -18,5 +18,9 @@
   {
     "name": "creates-a-new-saved-search",
     "path": "tests/test_TCP4_783.py"
+  },
+  {
+    "name": "create-an-active-category",
+    "path": "tests/designer/test_TCP4_237.py"
   }
 ]
