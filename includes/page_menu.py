@@ -18,6 +18,7 @@ class PageMenu:
     def paths_menu(self):
         ''' Function to get page elements. '''
         self.avatar = self.wait.until(EC.visibility_of_element_located((By.ID, 'avatarMenu')))
+        self.request_button = self.wait.until(EC.visibility_of_element_located((By.ID, 'navbar-request-button')))
 
     def goto_admin(self):
         ''' Function to navigate to the admin tab. '''
@@ -37,3 +38,8 @@ class PageMenu:
         self.avatar.click()
         self.logout_button = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "li>a[href='/logout']")))
         self.logout_button.click()
+
+    def start_request(self):
+        ''' Logs out the current user '''
+        self.paths_menu()
+        self.request_button.click()

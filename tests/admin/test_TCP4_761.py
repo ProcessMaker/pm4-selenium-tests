@@ -20,10 +20,7 @@ class TCP4_761(BaseTest):
 
     def test_create_user(self):
         ''' Create user with special characters '''
-        #Constants
-        user_data = {}            # To save user data, when you create an user
-        user_result_search = None # To save webElement, if the user was found
-
+        
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
         pageUser = PageUsers(self.driver, data)
