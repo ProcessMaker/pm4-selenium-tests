@@ -40,6 +40,6 @@ class PageMenu:
         self.logout_button.click()
 
     def start_request(self):
-        ''' Logs out the current user '''
+        ''' Opens the request popup '''
         self.paths_menu()
         self.request_button.click()

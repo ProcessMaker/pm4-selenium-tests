@@ -16,13 +16,10 @@ from page_new_request import PageNewRequest
 import unittest
 
 class TCP4_778(BaseTest):
-    ''' Test to verify the creation of users with special characters '''
+    ''' Starts a request '''
 
     def test_tcp4_778(self):
         ''' Create user with special characters '''
-        #Constants
-        user_data = {}            # To save user data, when you create an user
-        user_result_search = None # To save webElement, if the user was found
 
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
