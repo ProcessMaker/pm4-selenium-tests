@@ -29,17 +29,17 @@ class TCP4_237(BaseTest):
         PageProcess = PageProcesses(self.driver, data)
 
         # STEP 1: Load login page.
-        #self.log.append('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page')
         self.driver.get(data['server_url'])
         login_page = PageLogin(self.driver, data)
         login_page.login()
 
         # STEP 2: Go to Designer.
-        #self.log.append('Step 2: Go to Designer')
+        self.log.append('Step 2: Go to Designer')
         pageMenu.goto_designer()
 
         # STEP 3: Create a new Category with active status.
-        #self.log.append('STEP 3: Create a new category with active status.')
+        self.log.append('STEP 3: Create a new category with active status.')
         category_data = PageProcess.create_category('active')
         
         try:
