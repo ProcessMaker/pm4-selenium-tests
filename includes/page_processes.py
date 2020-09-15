@@ -9,7 +9,7 @@ import time
 
 class PageProcesses:
     ''' Page object model for users page'''
-    TAB_PROCESSES = "//*[@id='nav-sources-tab']"
+    TAB_PROCESSES_ID = "nav-sources-tab"
     BUTTON_NEW_PROCESS_ID = "create_process"
 
     TAB_CATEGORIES = "//*[@id='nav-categories-tab']"
@@ -28,7 +28,7 @@ class PageProcesses:
 
     def paths_processes(self):
         ''' Function to get page elements. '''
-        self.processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_PROCESSES)))
+        self.processes = self.wait.until(EC.visibility_of_element_located((By.ID, self.TAB_PROCESSES_ID)))
         self.new_process_button = self.wait.until(EC.visibility_of_element_located((By.ID, self.BUTTON_NEW_PROCESS_ID)))
 
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
