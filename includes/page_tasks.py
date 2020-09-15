@@ -21,7 +21,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class PageTasks:
     ''' Page object model for tasks page'''
 
-    TASK_LIST_CSS = "div[class='jumbotron jumbotron-fluid']"
+    TASK_LIST_CSS = "div[class='data-table']"
     TASK_EDIT_BUTTON_CSS = "a[class='btn btn-link']"
 
     def __init__(self, driver, data):
