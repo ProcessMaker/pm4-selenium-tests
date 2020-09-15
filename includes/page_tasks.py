@@ -28,7 +28,7 @@ class PageTasks:
         ''' Instantiate PageTasks object. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 20)
 
     def paths_tasks(self):
         ''' Function to get page elements. '''
