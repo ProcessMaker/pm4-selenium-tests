@@ -18,7 +18,7 @@ import unittest
 class TCP4_237(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
-    def test_create_active_category(%self):
+    def test_create_active_category(self):
         ''' Create an active screen category '''
         #Constants
         category_data = {}       # To save user data, when you create a category
