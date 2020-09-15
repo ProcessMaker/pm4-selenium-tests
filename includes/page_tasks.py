@@ -21,6 +21,9 @@ from selenium.webdriver.support import expected_conditions as EC
 class PageTasks:
     ''' Page object model for tasks page'''
 
+    TASK_LIST_CSS = "div[class='jumbotron jumbotron-fluid']"
+    TASK_EDIT_BUTTON_CSS = "a[class='btn btn-link']"
+
     def __init__(self, driver, data):
         ''' Instantiate PageTasks object. '''
         self.driver = driver
@@ -29,8 +32,8 @@ class PageTasks:
 
     def paths_tasks(self):
         ''' Function to get page elements. '''
-        self.task_list = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[class='card card-body table-card']")))
-        self.task_edit_button = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "a[class='btn btn-link']")))
+        self.task_list = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageTasks.TASK_LIST_CSS)))
+        self.task_edit_button = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageTasks.TASK_EDIT_BUTTON_CSS)))
 
     def edit_task(self):
         ''' Function to edit a task. '''
