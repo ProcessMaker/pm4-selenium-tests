@@ -104,7 +104,6 @@ class PageProcesses:
 
         # Wait until the search ends
         category_founded = self.search_wait_loading()
-        print(category_founded)
 
         # Iterate through the list to check if the user with user_name is found
         if (category_founded):
