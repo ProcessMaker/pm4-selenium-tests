@@ -48,7 +48,8 @@ class TCP4_237(BaseTest):
             self.assertTrue(category_result_search!=None)
         except AssertionError as e:
             #raise Exception('Error in search_category',e)
-            print(e)
+            cad=2
+            #print(e)
 
 
 if __name__ == "__main__":
