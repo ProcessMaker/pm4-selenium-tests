@@ -21,7 +21,8 @@ class TCP4_237(BaseTest):
     def test_create_active_category(self):
         ''' Create an active screen category '''
         #Constants
-        category_data = None       # To save user data, when you create a category
+        category_data = {}       # To save user data, when you create a category
+        category_result_search = None
         
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
