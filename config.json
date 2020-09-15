@@ -18,14 +18,13 @@
   {
     "name": "creates-a-new-saved-search",
     "path": "tests/test_TCP4_783.py"
-  }
-  ,
+  },
   {
-    "name": "creates-a-new-saved-search",
+    "name": "starts_a_request",
     "path": "tests/new_request/test_TCP4_778.py"
   },
   {
-    "name": "test-create-user",
+    "name": "creates_a_processr",
     "path": "tests/designer/test_TCP4_768.py"
   }
 ]
