@@ -39,7 +39,7 @@ class PageUsers:
         ''' Instantiate PageUsers object. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 30)
 
     def paths_users(self):
         ''' Function to get page elements. '''
