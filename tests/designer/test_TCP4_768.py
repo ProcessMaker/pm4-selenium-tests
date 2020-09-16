@@ -17,10 +17,10 @@ from page_new_process import PageNewProcess
 import unittest
 
 class TCP4_768(BaseTest):
-    ''' Starts a request '''
+    ''' Creates a process '''
 
     def test_tcp4_768(self):
-        ''' Create user with special characters '''
+        ''' Creates a process '''
         # constants
         process_name = None
 

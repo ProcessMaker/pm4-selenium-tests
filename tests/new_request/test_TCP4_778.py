@@ -19,7 +19,7 @@ class TCP4_778(BaseTest):
     ''' Starts a request '''
 
     def test_tcp4_778(self):
-        ''' Create user with special characters '''
+        ''' Starts a request '''
 
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
