@@ -24,7 +24,7 @@
     "path": "tests/new_request/test_TCP4_778.py"
   },
   {
-    "name": "creates_a_processr",
+    "name": "creates_a_process",
     "path": "tests/designer/test_TCP4_768.py"
   },
   {
