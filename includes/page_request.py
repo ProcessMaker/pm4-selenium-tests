@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class PageRequest:
     ''' Page object model for request Page. '''
 
-    NEW_SAVEDSEARCH_CSS = "button[title='Save Search']"
+    NEW_SAVEDSEARCH_XPATH = "//button[@title='Save Search']"
 
     def __init__(self, driver, data):
         ''' Instantiate Request class. '''
@@ -18,7 +18,7 @@ class PageRequest:
 
     def paths_request(self):
         ''' Function to get page elements. '''
-        self.new_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageRequest.NEW_SAVEDSEARCH_CSS)))
+        self.new_savedsearch = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageRequest.NEW_SAVEDSEARCH_XPATH)))
 
     def create_savedsearch(self):
         ''' Creates a new saved search. '''
