@@ -10,7 +10,7 @@ from page_create_category import PageCreateCategory
 class PageProcesses:
     ''' Page object model for users page'''
     TAB_PROCESSES_CSS = "a[id='nav-sources-tab']"
-    BUTTON_NEW_PROCESS_ID = "create_process"
+    BUTTON_NEW_PROCESS_XPATH = "//a[@id='create_process']"
 
     TAB_CATEGORIES = "//*[@id='nav-categories-tab']"
     TAB_ARCHIVED_PROCESSES = "//*[@id='nav-archived-tab']"
@@ -29,7 +29,7 @@ class PageProcesses:
     def paths_processes(self):
         ''' Function to get page elements. '''
         self.processes = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.TAB_PROCESSES_CSS)))
-        self.new_process_button = self.wait.until(EC.visibility_of_element_located((By.ID, self.BUTTON_NEW_PROCESS_ID)))
+        self.new_process_button = self.wait.until(EC.visibility_of_element_located((By.ID, self.BUTTON_NEW_PROCESS_XPATH)))
 
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
         self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
