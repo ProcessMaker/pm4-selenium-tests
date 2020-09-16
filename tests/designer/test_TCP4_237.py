@@ -19,7 +19,7 @@ class TCP4_237(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
     def test_create_active_category(self):
-        ''' Create an active screen category '''
+        ''' Create an active category '''
         #Constants
         category_data = {}       # To save user data, when you create a category
         category_result_search = None

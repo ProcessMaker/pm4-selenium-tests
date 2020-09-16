@@ -1,18 +1,19 @@
 #!/usr/local/bin/python3
 """ Users Page class. """
-from page_create_category import PageCreateCategory
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
-
+from page_create_category import PageCreateCategory
 
 class PageProcesses:
     ''' Page object model for users page'''
-    TAB_PROCESSES_XPATH = "//*[@id='nav-sources-tab']"
-    TAB_CATEGORIES_XPATH = "//*[@id='nav-categories-tab']"
-    TAB_ARCHIVED_PROCESSES_XPATH = "//*[@id='nav-archived-tab']"
+    TAB_PROCESSES_CSS = "a[id='nav-sources-tab']"
+    BUTTON_NEW_PROCESS_ID = "create_process"
+
+    TAB_CATEGORIES = "//*[@id='nav-categories-tab']"
+    TAB_ARCHIVED_PROCESSES = "//*[@id='nav-archived-tab']"
     BTN_CREATE_CATEGORY = "//*[@id='create_category']"
 
     CATEGORY_SEARCH_BAR_XPATH = "(//input[@placeholder='Search'])[2]" #"//input[@placeholder='Search']"
@@ -27,9 +28,9 @@ class PageProcesses:
 
     def paths_processes(self):
         ''' Function to get page elements. '''
-        self.processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_PROCESSES_XPATH)))
-        self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES_XPATH)))
-        self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES_XPATH)))
+        self.processes = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.TAB_PROCESSES_CSS)))
+        self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
+        self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
     
     # buttons sidebar left
     def goto_processes(self):
@@ -57,7 +58,7 @@ class PageProcesses:
         ''' Function to click tab categories. '''
         self.paths_processes()        
         self.categories.click()
-        self.btn_category = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BTN_CREATE_CATEGORY)))
+        self.btnCategory = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BTN_CREATE_CATEGORY)))
         self.category_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.CATEGORY_SEARCH_BAR_XPATH)))
         
     def tab_archived_processes(self):
@@ -65,11 +66,16 @@ class PageProcesses:
         self.paths_processes()
         self.archive_processes.click()  
     
+    def create_process(self):
+        ''' Function to create a category. '''
+        self.paths_processes()
+        self.new_process_button.click()
+
     def create_category(self, status):
         ''' Function to create a category. '''
         self.paths_processes()
         self.tab_categories()
-        self.btn_category.click()
+        self.btnCategory.click()
         # status = Active or Inactive
         category_data = PageCreateCategory(self.driver,self.data).create_categories(status)
         self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
@@ -104,7 +110,7 @@ class PageProcesses:
 
         # Wait until the search ends
         category_founded = self.search_wait_loading()
-
+        
         # Iterate through the list to check if the user with user_name is found
         if (category_founded):
             table_user = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageProcesses.CATEGORY_TABLE_XPATH)))
