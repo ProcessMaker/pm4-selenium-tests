@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
-
+from page_create_category import PageCreateCategory
 
 class PageProcesses:
     ''' Page object model for users page'''

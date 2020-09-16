@@ -26,5 +26,9 @@
   {
     "name": "creates_a_processr",
     "path": "tests/designer/test_TCP4_768.py"
+  },
+  {
+    "name": "create-an-active-category",
+    "path": "tests/designer/test_TCP4_237.py"
   }
 ]
