@@ -24,7 +24,7 @@ class PageCreateCategory:
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 30)
+        self.wait = WebDriverWait(driver, 10)
 
     def paths_create_category(self):
         ''' Function to get page elements. '''

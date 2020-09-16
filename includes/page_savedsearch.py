@@ -16,7 +16,7 @@ class PageSavedsearch:
         ''' Instantiate PageLogin class. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 30)
+        self.wait = WebDriverWait(driver, 10)
 
     def paths_lateral_menu(self):
         ''' Function to get page elements. '''

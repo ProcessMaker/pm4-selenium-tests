@@ -14,7 +14,7 @@ class PageRequest:
         ''' Instantiate Request class. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 30)
+        self.wait = WebDriverWait(driver, 10)
 
     def paths_request(self):
         ''' Function to get page elements. '''
