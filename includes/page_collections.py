@@ -36,6 +36,10 @@ class PageCollection:
             (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
         return collection_data
 
+    def goto_collection_home(self):
+        collection_home = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'Collections')]")))
+        collection_home.click()
+
     def wait_search_collection(self):
         try:
             self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.NO_DATA_AVAILABLE_XPATH)))

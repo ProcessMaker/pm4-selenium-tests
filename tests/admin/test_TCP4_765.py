@@ -42,7 +42,7 @@ class TCP4_765(BaseTest):
 
         # STEP 4: Go to Collections.
         # print('STEP 4: Go to Collections')
-        pageMenu.goto_collections()
+        pageCollection.goto_collection_home()
 
         # STEP 5: Verify if the collection was created.
         # print('STEP 5: Verify if the collection was created')
