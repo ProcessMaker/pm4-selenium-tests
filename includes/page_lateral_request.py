@@ -19,4 +19,4 @@ class PageLateralRequest:
 
     def open_edit_savedsearchs(self):
         ''' opens the saved searches edit menu '''
-        self.driver.get(self.data['server_url'] + 'requests/saved-searches')
+        self.driver.get(self.data['server_url'] + '/requests/saved-searches')
