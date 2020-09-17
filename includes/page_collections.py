@@ -33,8 +33,16 @@ class PageCollection:
         self.create_collection_button.click()
         collection_data = PageCreateCollection(self.driver,self.data).fill_new_collection(edit_screen,display_screen)
         self.wait.until(EC.visibility_of_element_located(
-            (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+            (By.ID, "addUserCollection")))
         return collection_data
+
+    def goto_collection_home(self):
+        collection_home = None
+        try:
+            collection_home = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'Collections')]")))
+        except:
+            collection_home = self.driver.find_element((By.XPATH, "//a[contains(text(),'Collections')]"))
+        collection_home.click()
 
     def wait_search_collection(self):
         try:
