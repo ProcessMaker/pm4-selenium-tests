@@ -60,7 +60,6 @@ class PageProcesses:
 
     def tab_categories(self):
         ''' Function to click tab categories. '''
-        self.paths_processes()
         self.categories.click()
         self.btnCategory = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BTN_CREATE_CATEGORY)))
         self.category_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.CATEGORY_SEARCH_BAR_XPATH)))
@@ -108,12 +107,10 @@ class PageProcesses:
     def search_category(self, category_name):
         ''' Search for a category_name: return webElement if this exits and return None if the category doesn't exit'''
 
-        self.paths_processes()
         self.category_search_bar.send_keys(category_name)
 
         # Wait until the search ends
         category_founded = self.search_wait_loading()
-        print(category_founded)
 
         # Iterate through the list to check if the user with user_name is found
         if (category_founded):
