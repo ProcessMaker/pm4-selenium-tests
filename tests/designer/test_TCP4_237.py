@@ -44,7 +44,7 @@ class TCP4_237(BaseTest):
         try:
             # STEP 4: Verify the Category
             category_result_search = PageProcess.search_category(category_data['category_name'])
-            self.assertTrue(category_result_search!=None)
+            self.assertTrue(category_result_search is not None)
         except AssertionError as e:
             raise Exception('Error in search_category', e)
 
