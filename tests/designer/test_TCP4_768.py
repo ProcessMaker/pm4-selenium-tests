@@ -37,7 +37,7 @@ class TCP4_768(BaseTest):
 
         # STEP 2: Go to the designer section.
         self.log.append('Step 2: Opens the designer section')        
-        pageMenu.goto_processes()
+        pageMenu.goto_designer()
 
         # STEP 3: Creates a new process.
         self.log.append('Step 3: Creates a new process')   
