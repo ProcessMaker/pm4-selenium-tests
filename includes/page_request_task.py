@@ -32,6 +32,6 @@ class PageRequestTask:
         self.request_form = self.wait.until(EC.visibility_of_element_located((By.ID, "pending-tab")))
 
     def request_task_is_open(self):
-        ''' Confirm the task request is open. '''        
-        self.paths_request_tasks()        
+        ''' Confirm the task request is open. '''
+        self.paths_request_tasks()
         return (self.request_form.is_enabled())

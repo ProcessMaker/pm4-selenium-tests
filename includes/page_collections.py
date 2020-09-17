@@ -8,12 +8,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
+
 class PageCollection:
     ''' Page object model for collections page'''
-    CREATE_COLLECTION_BUTTON_ID    = "addUserCollection"
-    COLLECTION_SEARCH_BAR_XPATH    = "//*[@placeholder='Search']"
-    COLLECTION_TABLE_XPATH         = "//*[@id='collectionIndex']/div[2]/div"
-    NO_DATA_AVAILABLE_XPATH        = "//tbody/child::tr/td[@class='vuetable-empty-result']"
+    CREATE_COLLECTION_BUTTON_ID = "addUserCollection"
+    COLLECTION_SEARCH_BAR_XPATH = "//*[@placeholder='Search']"
+    COLLECTION_TABLE_XPATH = "//*[@id='collectionIndex']/div[2]/div"
+    NO_DATA_AVAILABLE_XPATH = "//tbody/child::tr/td[@class='vuetable-empty-result']"
 
     def __init__(self, driver, data):
         ''' Instantiate PageCollection object. '''
@@ -24,14 +25,14 @@ class PageCollection:
     def paths_collection(self):
         ''' Function to get page elements. '''
         self.create_collection_button = self.wait.until(EC.visibility_of_element_located((By.ID, PageCollection.CREATE_COLLECTION_BUTTON_ID)))
-        self.collection_search_bar    = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.COLLECTION_SEARCH_BAR_XPATH)))
+        self.collection_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.COLLECTION_SEARCH_BAR_XPATH)))
 
-    def create_new_collection(self,edit_screen, display_screen):
+    def create_new_collection(self, edit_screen, display_screen):
         ''' Function to create a new collection. '''
         self.paths_collection()
 
         self.create_collection_button.click()
-        collection_data = PageCreateCollection(self.driver,self.data).fill_new_collection(edit_screen,display_screen)
+        collection_data = PageCreateCollection(self.driver, self.data).fill_new_collection(edit_screen, display_screen)
         self.wait.until(EC.visibility_of_element_located(
             (By.ID, "addUserCollection")))
         return collection_data
@@ -40,7 +41,7 @@ class PageCollection:
         collection_home = None
         try:
             collection_home = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'Collections')]")))
-        except:
+        except TimeoutException:
             collection_home = self.driver.find_element((By.XPATH, "//a[contains(text(),'Collections')]"))
         collection_home.click()
 
@@ -48,7 +49,7 @@ class PageCollection:
         try:
             self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.NO_DATA_AVAILABLE_XPATH)))
             return False
-        except:
+        except TimeoutException:
             return True
 
     def search_collection(self, name_collection):
@@ -71,18 +72,3 @@ class PageCollection:
             return None
         else:
             return None
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

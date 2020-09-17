@@ -7,6 +7,7 @@ from selenium.common.exceptions import TimeoutException
 import time
 from page_create_category import PageCreateCategory
 
+
 class PageProcesses:
     ''' Page object model for users page'''
     TAB_PROCESSES_CSS = "a[id='nav-sources-tab']"
@@ -16,10 +17,10 @@ class PageProcesses:
     TAB_ARCHIVED_PROCESSES = "//*[@id='nav-archived-tab']"
     BTN_CREATE_CATEGORY = "//*[@id='create_category']"
 
-    CATEGORY_SEARCH_BAR_XPATH = "(//input[@placeholder='Search'])[2]" #"//input[@placeholder='Search']"
+    CATEGORY_SEARCH_BAR_XPATH = "(//input[@placeholder='Search'])[2]"   # "//input[@placeholder='Search']"
     LOADING_MESSAGE_XPATH = "//*[@id='categories-listing']/div[2]/div[1]"
-    CATEGORY_TABLE_XPATH  = "//*[@id='categories-listing']/div[2]/div[2]"
-    
+    CATEGORY_TABLE_XPATH = "//*[@id='categories-listing']/div[2]/div[2]"
+
     def __init__(self, driver, data):
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
@@ -33,7 +34,7 @@ class PageProcesses:
 
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
         self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
-    
+
     # buttons sidebar left
     def goto_processes(self):
         ''' Function to go to scripts. '''
@@ -42,7 +43,7 @@ class PageProcesses:
     def goto_scripts(self):
         ''' Function to go to scripts. '''
         self.driver.get(self.data['server_url'] + '/designer/scripts')
-    
+
     def goto_screens(self):
         ''' Function to go to screens. '''
         self.driver.get(self.data['server_url'] + '/designer/screens')
@@ -50,24 +51,25 @@ class PageProcesses:
     def goto_environment_varibles(self):
         ''' Function to go to environment variables. '''
         self.driver.get(self.data['server_url'] + '/designer/environment-variables')
+
     # tab and buttons
     def tab_processes(self):
         ''' Function to click tab processecs. '''
         self.paths_processes()
         self.processes.click()
-    
-    def tab_categories(self):        
+
+    def tab_categories(self):
         ''' Function to click tab categories. '''
-        self.paths_processes()        
+        self.paths_processes()
         self.categories.click()
         self.btnCategory = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BTN_CREATE_CATEGORY)))
         self.category_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.CATEGORY_SEARCH_BAR_XPATH)))
-        
+
     def tab_archived_processes(self):
         ''' Function to click tab archive processes. '''
         self.paths_processes()
-        self.archive_processes.click()  
-    
+        self.archive_processes.click()
+
     def create_process(self):
         ''' Function to create a category. '''
         self.paths_processes()
@@ -79,10 +81,10 @@ class PageProcesses:
         self.tab_categories()
         self.btnCategory.click()
         # status = Active or Inactive
-        category_data = PageCreateCategory(self.driver,self.data).create_categories(status)
+        category_data = PageCreateCategory(self.driver, self.data).create_categories(status)
         self.create_user_succes = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
         return category_data
-    
+
     def search_wait_loading(self):
         ''' Verify if the search was finished'''
         try:
@@ -100,9 +102,8 @@ class PageProcesses:
                 return True
             else:
                 return False
-        except:
+        except TimeoutException:
             return True
-
 
     def search_category(self, category_name):
         ''' Search for a category_name: return webElement if this exits and return None if the category doesn't exit'''
@@ -124,9 +125,8 @@ class PageProcesses:
                 col = row.find_elements(By.TAG_NAME, "td")
                 category = col[0].text
                 if (category == category_name):
-                    #returns the column where the edit and delete buttons are located
+                    # returns the column where the edit and delete buttons are located
                     return col[0]
             return None
         else:
             return None
-    

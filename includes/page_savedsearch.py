@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from selenium.common.exceptions import TimeoutException
 
 
 class PageSavedsearch:
@@ -29,5 +30,5 @@ class PageSavedsearch:
         try:
             self.search_savedsearch = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageSavedsearch.SEARCH_RESULTS_CSS)))
             return(True)
-        except:
+        except TimeoutException:
             return(False)

@@ -31,7 +31,7 @@ class PageMenu:
     def goto_request(self):
         ''' Function to navigate to the request tab. '''
         self.driver.get(self.data['server_url'] + '/requests')
-    
+
     def goto_designer(self):
         ''' Function to navigate to the request tab. '''
         self.driver.get(self.data['server_url'] + '/processes')

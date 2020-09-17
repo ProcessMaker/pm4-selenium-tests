@@ -19,6 +19,7 @@ from selenium.webdriver.support.ui import WebDriverWait
         Page.text_field
 """
 
+
 class BasePageElement(object):
     """ Base Page Element class that's initialized on every Page Object class. """
     def __init__(self, element_type=None):

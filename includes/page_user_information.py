@@ -23,14 +23,13 @@ import string
 
 class PageUserInformation:
     ''' Page object model for user information page'''
-    USER_PHONE_ID           = "phone"
-    USER_FAX_ID             = "fax"
-    USER_CELL_ID            = "cell"
-    USER_ADRESS_ID          = "address"
-    USER_CITY_ID            = "city"
-    USER_STATE_REGION_ID    = "state"
-    USER_POSTAL_CODE_ID     = "postal"
-
+    USER_PHONE_ID = "phone"
+    USER_FAX_ID = "fax"
+    USER_CELL_ID = "cell"
+    USER_ADRESS_ID = "address"
+    USER_CITY_ID = "city"
+    USER_STATE_REGION_ID = "state"
+    USER_POSTAL_CODE_ID = "postal"
 
     def __init__(self, driver, data):
         ''' Instantiate PageUserInformation object. '''
@@ -96,23 +95,22 @@ class PageUserInformation:
         self.user_timezone_africa = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "option[value = 'Africa/Abidjan']")))
 
         # User Profile Information
-        self.user_phone     = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_PHONE_ID)))
-        self.user_fax       = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_FAX_ID)))
-        self.user_cell      = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_CELL_ID)))
-        self.user_address   = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_ADRESS_ID)))
-        self.user_city      = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_CITY_ID)))
-        self.user_state_region  = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_STATE_REGION_ID)))
-        self.user_postal_code   = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_POSTAL_CODE_ID)))
-
+        self.user_phone = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_PHONE_ID)))
+        self.user_fax = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_FAX_ID)))
+        self.user_cell = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_CELL_ID)))
+        self.user_address = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_ADRESS_ID)))
+        self.user_city = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_CITY_ID)))
+        self.user_state_region = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_STATE_REGION_ID)))
+        self.user_postal_code = self.wait.until(EC.visibility_of_element_located((By.ID, PageUserInformation.USER_POSTAL_CODE_ID)))
 
         # Dynamically generated values with util.py
-        self.user_phone_val     = util.generate_phone()
-        self.user_fax_val       = util.generate_text()
-        self.user_cell_val      = util.generate_phone()
-        self.user_address_val   = util.generate_text()
-        self.user_city_val      = util.generate_text()
-        self.user_state_region_val  = util.generate_text()
-        self.user_postal_code_val   = util.generate_text()
+        self.user_phone_val = util.generate_phone()
+        self.user_fax_val = util.generate_text()
+        self.user_cell_val = util.generate_phone()
+        self.user_address_val = util.generate_text()
+        self.user_city_val = util.generate_text()
+        self.user_state_region_val = util.generate_text()
+        self.user_postal_code_val = util.generate_text()
 
         self.char_set = string.ascii_letters
         self.user_pass = util.generate_text()
@@ -188,13 +186,12 @@ class PageUserInformation:
         ''' Confirms that a country is the expected one '''
         try:    # changes the non-admin user password if it already exists
             if(selected_datetime == "dmyhi"):
-                self.selected_country = self.driver.find_element_by_css_selector("option:checked[value='d/m/Y H:i']")       
+                self.selected_country = self.driver.find_element_by_css_selector("option:checked[value='d/m/Y H:i']")
             return True
 
         # Need to run test to find exact exception type
         except TimeoutException:
             return False
-            
 
     def change_user_timezone(self, selected_datetime):
         ''' Changes the language for the user to the specified one'''
@@ -214,7 +211,7 @@ class PageUserInformation:
         ''' Confirms that a country is the expected one '''
         try:    # changes the non-admin user password if it already exists
             if(selected_datetime == "africa"):
-                self.selected_country = self.driver.find_element_by_css_selector("option:checked[value='Africa/Abidjan']")       
+                self.selected_country = self.driver.find_element_by_css_selector("option:checked[value='Africa/Abidjan']")
             return True
 
         # Need to run test to find exact exception type
@@ -238,10 +235,10 @@ class PageUserInformation:
         self.updated_user_succes = self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
 
-        #Returns user data information generated
-        user_data_information = {'user_phone': self.user_phone_val, 'user_fax':self.user_fax_val,
-                                 'user_cell' : self.user_cell_val,  'user_address': self.user_address_val,
-                                 'user_city' : self.user_city_val,  'user_state_region': self.user_state_region_val,
+        # Returns user data information generated
+        user_data_information = {'user_phone': self.user_phone_val, 'user_fax': self.user_fax_val,
+                                 'user_cell': self.user_cell_val, 'user_address': self.user_address_val,
+                                 'user_city': self.user_city_val, 'user_state_region': self.user_state_region_val,
                                  'user_postal_code': self.user_postal_code_val}
         return user_data_information
 
@@ -249,9 +246,9 @@ class PageUserInformation:
         ''' Get values of the fields of user '''
         self.paths_user_information()
 
-        user_phone =self.user_phone.get_attribute('value')
+        user_phone = self.user_phone.get_attribute('value')
         user_fax = self.user_fax.get_attribute('value')
-        user_cell =self.user_cell.get_attribute('value')
+        user_cell = self.user_cell.get_attribute('value')
         user_address = self.user_address.get_attribute('value')
         user_city = self.user_city.get_attribute('value')
         user_state_region = self.user_state_region.get_attribute('value')

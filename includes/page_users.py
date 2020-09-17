@@ -28,12 +28,12 @@ import time
 class PageUsers:
     ''' Page object model for users page'''
     CREATE_USER_BUTTON_XPATH = "//button[@class='btn btn-secondary']"
-    USER_SEARCH_BAR_XPATH    = "//input[@placeholder='Search']"
-    LOADING_MESSAGE_XPATH    = "//*[@id='users-listing']/div[2]/div/div[1]"
-    USER_TABLE_XPATH         = "//*[@id='users-listing']/div[2]/div/div[2]"
-    CONFIRM_DELETE_XPATH     = "//button[text()='Confirm']"
-    CANCEL_DELETE_XPATH      = "//button[text()='Cancel']"
-    DELETED_USER_FOUND       = "//button[text()='Yes']"
+    USER_SEARCH_BAR_XPATH = "//input[@placeholder='Search']"
+    LOADING_MESSAGE_XPATH = "//*[@id='users-listing']/div[2]/div/div[1]"
+    USER_TABLE_XPATH = "//*[@id='users-listing']/div[2]/div/div[2]"
+    CONFIRM_DELETE_XPATH = "//button[text()='Confirm']"
+    CANCEL_DELETE_XPATH = "//button[text()='Cancel']"
+    DELETED_USER_FOUND = "//button[text()='Yes']"
 
     def __init__(self, driver, data):
         ''' Instantiate PageUsers object. '''
@@ -46,7 +46,7 @@ class PageUsers:
         try:
             self.non_admin_user = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//td[text() = '12']/following-sibling::td[@class='vuetable-slot'][2]")))
         # Need to run test to find exact exception type
-        except:
+        except TimeoutException:
             pass
         self.user_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//input[@placeholder='Search']")))
         self.create_user_button = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//button[@class='btn btn-secondary']")))
@@ -105,7 +105,7 @@ class PageUsers:
                 return True
             else:
                 return False
-        except:
+        except TimeoutException:
             return True
 
     def search_user(self, user_name):
@@ -127,7 +127,7 @@ class PageUsers:
                 col = row.find_elements(By.TAG_NAME, "td")
                 user = col[1].text
                 if (user == user_name):
-                    #returns the column where the edit and delete buttons are located
+                    # returns the column where the edit and delete buttons are located
                     return col[8]
             return None
         else:
@@ -136,7 +136,7 @@ class PageUsers:
     def edit_user(self, element):
         buttons = element.find_elements(By.TAG_NAME, "button")
         buttons[0].click()
-        PageUserInformation(self.driver,self.data).page_user_information_wait_visible()
+        PageUserInformation(self.driver, self.data).page_user_information_wait_visible()
 
     def delete_user(self, element):
         buttons = element.find_elements(By.TAG_NAME, "button")
@@ -146,8 +146,3 @@ class PageUsers:
         confirm_deleted_user.click()
         delete_user_succes = self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-danger']")))
-
-
-
-
-

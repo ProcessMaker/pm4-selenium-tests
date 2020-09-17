@@ -20,11 +20,11 @@ class PageNewRequest:
         self.request_popup = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[class='row no-gutters']")))
         self.start_button = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "div[class='col-2 text-right']")))
 
-    def open_request(self,request):
+    def open_request(self, request):
         ''' Function that opens a specific request. '''
         self.paths_new_request()
 
-        if(request=='any'):
+        if(request == 'any'):
             self.start_button.click()
             self.tasks_table = self.wait.until(EC.visibility_of_element_located((By.ID, "requestTab")))
             return (self.tasks_table.is_enabled())

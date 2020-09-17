@@ -11,15 +11,13 @@ import util
 
 class PageCreateCategory:
     ''' Page object model for category page'''
-    #constants
+    # constants
     CATEGORY_MODAL = "createCategory"
     CATEGORY_NAME = "name"
     CATEGORY_STATUS = "//*[@id='status']"
     CATEGORY_SAVE = "btn-secondary"
     CATEGORY_CANCEL = "btn-outline-secondary"
 
-    
-    
     def __init__(self, driver, data):
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
@@ -33,13 +31,12 @@ class PageCreateCategory:
         self.status = Select(modal.find_element_by_xpath(self.CATEGORY_STATUS))
         self.new_category_save = modal.find_element_by_class_name(self.CATEGORY_SAVE)
         self.new_category_cancel = modal.find_element_by_class_name(self.CATEGORY_CANCEL)
-    
-    def create_categories(self,status):
+
+    def create_categories(self, status):
         self.paths_create_category()
-        name = 'category-'+util.generate_text()
+        name = 'category-' + util.generate_text()
         self.name.send_keys(name)
         self.status.select_by_visible_text(status)
-        self.new_category_save.click() 
+        self.new_category_save.click()
         category_data = {'category_name': name, 'category_status': status}
         return category_data
-    

@@ -29,7 +29,6 @@ class PageNewSavedsearch:
     NEW_SAVEDSEARCH_SAVE_CSS = "button[class= 'btn btn-secondary']"
 
     NEW_SAVEDSEARCH_TABLE_CSS = "div[class= 'jumbotron jumbotron-fluid']"
-    
 
     def __init__(self, driver, data):
         ''' Instantiate new saved searches class. '''
@@ -51,7 +50,6 @@ class PageNewSavedsearch:
 
         self.new_savedsearch_save = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewSavedsearch.NEW_SAVEDSEARCH_SAVE_CSS)))
 
-        
     def create_new_savedsearch(self):
         ''' Creates a new saved searche. '''
         name = generate_text()

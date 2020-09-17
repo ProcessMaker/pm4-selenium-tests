@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from util import generate_text
 
+
 class PageNewProcess:
     ''' Page object model for Navigation Menu. '''
 
@@ -32,23 +33,23 @@ class PageNewProcess:
         self.process_name = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_NAME_CSS)))
         self.process_description = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_DESCRIPTION_CSS)))
 
-        self.process_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_CATEGORY_CSS)))        
+        self.process_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_CATEGORY_CSS)))
 
-        self.process_save = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_SAVE_CSS)))        
+        self.process_save = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_SAVE_CSS)))
 
     def fill_new_process(self, category):
         ''' Logs out the current user '''
-        name = generate_text()      
+        name = generate_text()
 
         self.paths_menu()
         self.process_name.send_keys(name)
-        self.process_description.send_keys(name)        
+        self.process_description.send_keys(name)
 
         self.process_category.click()
-        self.process_any_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_ANY_CATEGORY_CSS)))  
+        self.process_any_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_ANY_CATEGORY_CSS)))
         if(category == 'any'):
             self.process_any_category.click()
 
         self.process_save.click()
-        self.process_canvas = self.wait.until(EC.visibility_of_element_located((By.ID, PageNewProcess.PROCESS_CANVAS_ID)))  
+        self.process_canvas = self.wait.until(EC.visibility_of_element_located((By.ID, PageNewProcess.PROCESS_CANVAS_ID)))
         return (self.process_canvas.is_enabled())
