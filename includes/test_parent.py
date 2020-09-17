@@ -8,6 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 
+
 class BaseTest(unittest.TestCase):
     """ The BaseTest class from which tests will inherit. """
     log = ['Log initiated']

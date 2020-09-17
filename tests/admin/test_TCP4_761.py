@@ -15,12 +15,13 @@ from page_menu import PageMenu
 from page_users import PageUsers
 import unittest
 
+
 class TCP4_761(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
     def test_create_user(self):
         ''' Create user with special characters '''
-        
+
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
         pageUser = PageUsers(self.driver, data)
@@ -46,10 +47,10 @@ class TCP4_761(BaseTest):
             # print('Step 5: Verify if the user was created')
             user_result_search = pageUser.search_user(user_data['user_username'])
 
-            self.assertTrue(user_result_search!=None)
+            self.assertTrue(user_result_search is not None)
             # print('User was found')
         except AssertionError as e:
-            raise Exception('Error in search_user function',e)
+            raise Exception('Error in search_user function', e)
             # print('User was not found, an error ocurred')
 
         # print('Create User Test completed')

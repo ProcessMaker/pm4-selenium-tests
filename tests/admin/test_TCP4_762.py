@@ -16,12 +16,13 @@ from page_users import PageUsers
 from page_user_information import PageUserInformation
 import unittest
 
+
 class TCP4_762(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
     def test_fill_user_information(self):
         ''' Create user with Complete User information '''
-        #Constants
+        # Constants
         user_data = {}              # To save user data, when you create an user
         user_data_information = {}  # To save user data information, when you fill fields in userdata information
         user_result_search = None   # To save webElement, if the user was found
@@ -55,9 +56,9 @@ class TCP4_762(BaseTest):
         # print('STEP 6: Search user created.')
         try:
             user_result_search = pageUser.search_user(user_data['user_username'])
-            self.assertTrue(user_result_search != None)
+            self.assertTrue(user_result_search is not None)
         except AssertionError as e:
-            raise Exception('Error in search_user function',e)
+            raise Exception('Error in search_user function', e)
 
         # STEP 7: Edit user.
         # print('STEP 7: Edit user created before.')
@@ -71,7 +72,7 @@ class TCP4_762(BaseTest):
             self.assertTrue(result_user_information_saved)
             # print('The user_data_information was saved successfully')
         except AssertionError as e:
-            raise Exception('Error in verify user data information',e)
+            raise Exception('Error in verify user data information', e)
 
         # print('Fills User data information Test completed')
 

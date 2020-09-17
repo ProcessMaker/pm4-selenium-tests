@@ -5,6 +5,7 @@ Classes to extend unittest classes.
 
 import unittest
 
+
 class CustomTestSuite(unittest.TestSuite):
     ''' Subclass TestSuite to add custom attributes. '''
     log = []
@@ -15,9 +16,11 @@ class CustomTestSuite(unittest.TestSuite):
             result.log = test.log
         return super(CustomTestSuite, self).run(result)
 
+
 class CustomTestLoader(unittest.TestLoader):
     ''' Subclass TestLoader to add custom TestSuite. '''
     suiteClass = CustomTestSuite
+
 
 class CustomTextTestResult(unittest.TextTestResult):
     ''' Subclass TextTestResult to add custom results. '''

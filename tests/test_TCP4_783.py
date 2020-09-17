@@ -37,7 +37,7 @@ class TCP4_783(BaseTest):
         # Login using configured url, workspace, username, and password
         self.driver = PageLogin(self.driver, data).login()
 
-        # Redirect to Admin Users page, wait for +User button to be clickable 
+        # Redirect to Admin Users page, wait for +User button to be clickable
         PageMenu(self.driver, data).goto_request()
 
         # Wait for user edit form to load, changes the country and save
@@ -49,7 +49,7 @@ class TCP4_783(BaseTest):
             self.assertTrue(PageSavedsearch(self.driver, data).search_savedsearches(savedsearch_name))
 
         except AssertionError as e:
-            raise Exception('Error during saved search creation',e)
+            raise Exception('Error during saved search creation', e)
 
 
 if __name__ == "__main__":

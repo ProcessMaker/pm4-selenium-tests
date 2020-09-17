@@ -36,7 +36,7 @@ class TCP4_774(BaseTest):
         # Login using configured url, workspace, username, and password
         self.driver = PageLogin(self.driver, data).login()
 
-        # Redirect to Admin Users page, wait for +User button to be clickable 
+        # Redirect to Admin Users page, wait for +User button to be clickable
         PageMenu(self.driver, data).goto_tasks()
 
         # Wait for user edit form to load, changes the country and save
@@ -45,7 +45,7 @@ class TCP4_774(BaseTest):
             self.assertTrue(PageRequestTask(self.driver, data).request_task_is_open())
 
         except AssertionError as e:
-            raise Exception('Error while opening a task',e)  
+            raise Exception('Error while opening a task', e)
 
 
 if __name__ == "__main__":

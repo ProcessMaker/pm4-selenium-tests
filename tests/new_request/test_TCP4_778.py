@@ -15,6 +15,7 @@ from page_menu import PageMenu
 from page_new_request import PageNewRequest
 import unittest
 
+
 class TCP4_778(BaseTest):
     ''' Starts a request '''
 
@@ -32,15 +33,14 @@ class TCP4_778(BaseTest):
         login_page.login()
 
         # STEP 2: start a request.
-        self.log.append('Step 2: Starts a request')        
-        pageMenu.start_request() 
+        self.log.append('Step 2: Starts a request')
+        pageMenu.start_request()
         try:
-            # print('Step 5: Verify if the user was created')       
+            # print('Step 5: Verify if the user was created')
             self.assertTrue(pageNewRequest.open_request('any'))
 
         except AssertionError as e:
-            raise Exception('There was an error during the assertion',e)  
-        
+            raise Exception('There was an error during the assertion', e)
 
 
 if __name__ == "__main__":

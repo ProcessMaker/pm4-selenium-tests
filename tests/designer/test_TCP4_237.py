@@ -15,15 +15,16 @@ from page_menu import PageMenu
 from page_processes import PageProcesses
 import unittest
 
+
 class TCP4_237(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
     def test_create_active_category(self):
         ''' Create an active category '''
-        #Constants
+        # Constants
         category_data = {}       # To save user data, when you create a category
         category_result_search = None
-        
+
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
         PageProcess = PageProcesses(self.driver, data)
@@ -41,14 +42,14 @@ class TCP4_237(BaseTest):
         # STEP 3: Create a new Category with active status.
         self.log.append('STEP 3: Create a new category with active status.')
         category_data = PageProcess.create_category('active')
-        
+
         try:
             # STEP 4: Verify the Category
             category_result_search = PageProcess.search_category(category_data['category_name'])
-            #print(category_result_search)
-            self.assertTrue(category_result_search!=None)
+            # print(category_result_search)
+            self.assertTrue(category_result_search is not None)
         except AssertionError as e:
-            raise Exception('Error in search_category',e)
+            raise Exception('Error in search_category', e)
 
 
 if __name__ == "__main__":

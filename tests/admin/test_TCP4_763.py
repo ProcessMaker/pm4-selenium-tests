@@ -16,12 +16,13 @@ from page_users import PageUsers
 from page_user_information import PageUserInformation
 import unittest
 
+
 class TCP4_763(BaseTest):
     ''' Test to verify that a user was deleted '''
 
     def test_delete_user(self):
         ''' Create user with Complete User information '''
-        #Constants
+        # Constants
         user_data = {}              # To save user data, when you create an user
         user_result_search = None   # To save webElement, if the user was found
 
@@ -50,9 +51,9 @@ class TCP4_763(BaseTest):
         # print('STEP 5: Search user created.')
         try:
             user_result_search = pageUser.search_user(user_data['user_username'])
-            self.assertTrue(user_result_search != None)
+            self.assertTrue(user_result_search is not None)
         except AssertionError as e:
-            raise Exception('Error in search_user function',e)
+            raise Exception('Error in search_user function', e)
 
         # STEP 6: Deleted user created.
         # print('STEP 6: Delete user created before.')
@@ -66,12 +67,13 @@ class TCP4_763(BaseTest):
         # print('STEP 8: Delete user created before.')
         try:
             user_result_search = pageUser.search_user(user_data['user_username'])
-            self.assertTrue(user_result_search == None)
+            self.assertTrue(user_result_search is None)
             # print('User was deleted successfully')
         except AssertionError as e:
-            raise Exception('Error in delete_user function',e)
+            raise Exception('Error in delete_user function', e)
 
         # print('Deleted user Test completed')
+
 
 if __name__ == "__main__":
     import __main__
