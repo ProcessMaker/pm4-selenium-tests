@@ -27,9 +27,7 @@ class TCP4_761(BaseTest):
 
         # STEP 1: Load login page.
         self.log.append('Step 1: Load Login page')
-        self.driver.get(data['server_url'])
-        login_page = PageLogin(self.driver, data)
-        login_page.login()
+        self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to admin.
         self.log.append('Step 2: Go to Admin')
@@ -51,7 +49,7 @@ class TCP4_761(BaseTest):
             self.assertTrue(user_result_search!=None)
             # print('User was found')
         except AssertionError as e:
-            cad = 2
+            raise Exception('Error in search_user function',e)
             # print('User was not found, an error ocurred')
 
         # print('Create User Test completed')

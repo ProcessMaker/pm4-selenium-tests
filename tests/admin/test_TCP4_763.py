@@ -32,9 +32,7 @@ class TCP4_763(BaseTest):
 
         # STEP 1: Load login page.
         # print('Step 1: Load Login page')
-        self.driver.get(data['server_url'])
-        login_page = PageLogin(self.driver, data)
-        login_page.login()
+        self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to admin.
         # print('Step 2: Go to Admin')
