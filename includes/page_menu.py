@@ -40,6 +40,14 @@ class PageMenu:
         ''' Function to navigate to the request tab. '''
         self.driver.get(self.data['server_url'] + 'processes')
 
+    def goto_designer_screen(self):
+        ''' Function to navigate to the Screens tab. '''
+        self.driver.get(self.data['server_url'] + '/designer/screens')
+
+    def goto_collections(self):
+        ''' Function to navigate to the Screens tab. '''
+        self.driver.get(self.data['server_url'] + '/collections')
+
     def log_out(self):
         ''' Logs out the current user '''
         self.paths_menu()
