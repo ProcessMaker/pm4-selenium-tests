@@ -48,8 +48,7 @@ class TCP4_768(BaseTest):
             self.assertTrue(pageNewProcess.fill_new_process('any'))
 
         except AssertionError as e:
-            self.log.append(e,' There was an error during process creation')    
-        
+            raise Exception('Error during process creation',e)        
 
 
 if __name__ == "__main__":

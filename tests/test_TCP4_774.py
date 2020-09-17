@@ -24,6 +24,7 @@ from page_request_task import PageRequestTask
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import unittest
 
 
 class TCP4_774(BaseTest):
@@ -40,7 +41,11 @@ class TCP4_774(BaseTest):
 
         # Wait for user edit form to load, changes the country and save
         PageTasks(self.driver, data).edit_task()
-        self.assertTrue(PageRequestTask(self.driver, data).request_task_is_open())
+        try:
+            self.assertTrue(PageRequestTask(self.driver, data).request_task_is_open())
+
+        except AssertionError as e:
+            raise Exception('Error while opening a task',e)  
 
 
 if __name__ == "__main__":

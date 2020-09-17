@@ -39,7 +39,7 @@ class TCP4_778(BaseTest):
             self.assertTrue(pageNewRequest.open_request('any'))
 
         except AssertionError as e:
-            self.log.append('There was an error during the assertion')    
+            raise Exception('There was an error during the assertion',e)  
         
 
 

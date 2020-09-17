@@ -45,7 +45,11 @@ class TCP4_783(BaseTest):
         savedsearch_name = PageNewSavedsearch(self.driver, data).create_new_savedsearch()
 
         PageLateralRequest(self.driver, data).open_edit_savedsearchs()
-        self.assertTrue(PageSavedsearch(self.driver, data).search_savedsearches(savedsearch_name))
+         try:
+            self.assertTrue(PageSavedsearch(self.driver, data).search_savedsearches(savedsearch_name))
+
+        except AssertionError as e:
+            raise Exception('Error during saved search creation',e)
 
 
 if __name__ == "__main__":
