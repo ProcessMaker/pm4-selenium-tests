@@ -37,7 +37,11 @@ class PageCollection:
         return collection_data
 
     def goto_collection_home(self):
-        collection_home = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'Collections')]")))
+        collection_home = None
+        try:
+            collection_home = self.wait.until(EC.visibility_of_element_located((By.XPATH, "//a[contains(text(),'Collections')]")))
+        except:
+            collection_home = self.driver.find_element((By.XPATH, "//a[contains(text(),'Collections')]"))
         collection_home.click()
 
     def wait_search_collection(self):
