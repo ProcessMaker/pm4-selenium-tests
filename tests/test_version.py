@@ -1,7 +1,4 @@
 #!/usr/local/bin/python3
-""" Class template to be used for creating new test cases.
-"""
-
 # Import methods to get environment
 from os import getenv
 # Check if tests are run on local machine
@@ -18,22 +15,22 @@ if getenv('ENVIRONMENT') == 'local':
 from test_parent import BaseTest
 # Import util file where all helper functions are located
 import util
+from util import read_from_json_file
 # Import all page classes
 from page import *
-# Import Python unittest module
+# Import Python unittest & regex modules
 import unittest, re
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from time import sleep
 
 class TestServerVersions(BaseTest):
-    ''' Brief description of the Test Case. '''
+    '''  Checking the target server to ensure PM4 and Package versions are up to date '''
 
     def setUp(self):
         ''' Method to run before each test method. '''
         # Load server url and note step in log
         self.log.append('Load server url')
-        self.driver.get(data['server_url'])
+        self.driver.get(data['server_url'] + '/about')
 
         # Log in and note step in log
         self.log.append('Log in to server')
@@ -49,39 +46,59 @@ class TestServerVersions(BaseTest):
         self.assertEqual([], self.assertionFailures)
 
     def test_server_versions(self):
-        ''' Verify that a string 61+ characters long will be accepted in the username field.'''
-        # Perform step tests and note steps in log
+        ''' Verify server & package version numbers '''
         self.log.append('Open "About" Page')
-        self.driver.get(data['server_url'] + '/about')
-
-        #self.wait.until(EC.visibility_of_element_located((By.ID, 'userMenu')))
-        sleep(2)
-        self.log.append('Pull page source, regex check pm4 version against the first group data list')
+        self.wait.until(EC.visibility_of_element_located((By.ID, 'userMenu')))
+        self.log.append('Pull page source')
         page_source = self.driver.page_source
-        self.log.append(page_source)
-        pm4_version = re.search(r'(?<=ProcessMaker 4 v)([\d].+)', page_source).group(0)
-        #print(pm4_version)
+
+        self.log.append('Check PM4 version: ')
+#        pm4 = read_from_json_file('/Users/bfields/dev/pm4-selenium-tests', '/includes/expected_values.json', 'PM4')
+        pm4 = read_from_json_file(self.driver.data['repository_path'], '/includes/expected_values.json', 'PM4')
+        server_version = re.search(r'(?<=ProcessMaker 4 v)([\d].+)(?:<\/div>)', page_source).group(1)
 
         try:
             # Verify test case
-            self.assertTrue("4.0.11" in pm4_version)
-
+            self.assertTrue(pm4['Version'] in server_version)
             # Add success message to log if assertion succeeded
-            self.log.append('Correct PM4 version')
+            self.log[-1] += 'Correct: ' + server_version
+            #self.log.append('Correct: ' + server_version)
 
-        except AssertionError as e:
+#        except AssertionError as e:
+        except:
             # Add failure message to log if assertion failed
-            self.log.append('Invalid PM4 version')
+            self.log[-1] += 'Invalid! Expecting: ' + pm4['Version'] + ' - saw: ' + server_version
+            #self.log.append('Invalid! Expecting: ' + pm4['Version'] + ' - saw: ' + server_version)
 
-            # Add AssertionError to assertionFailures log
-            # This will cause final assertion in tearDown() method to fail
-            self.assertionFailures.append(str(e))
+#            self.assertionFailures.append(str(e))
+            #self.fail()
+            fail_flag = 1
 
-        ''' For simple unittest output:
+        # Retrieve Custom Plugins dictionary from expected_values.json
+#        pm4_packages = read_from_json_file('/Users/bfields/dev/pm4-selenium-tests', '/includes/expected_values.json', 'Custom Packages')
+        pm4_packages = read_from_json_file(self.driver.data['repository_path'], '/includes/expected_values.json', 'Custom Packages')
 
-            # Verify test case
-            self.assertTrue(Page.method())
-        '''
+        # Verify all packages are visible on page with correct version
+        packages = [element.text for element in self.driver.find_elements_by_class_name('list-group-item')]
+        fail_flag = 0
+        self.log.append('Package Versions: ')
+        for elem in packages:
+            for key in pm4_packages.keys():
+                if key in elem:
+                    try:
+                        self.assertTrue(pm4_packages[key]['Version'] in elem)
+                        #self.log.append('Correct: ' + key + ' ' + pm4_packages[key]['Version'] + '; ')
+                        #self.log[-1] += 'Correct: ' + key + ' ' + pm4_packages[key]['Version'] + '; '
+                    except:
+                        #self.log.append('Wrong: ' + key + ' version. ')
+                        #self.log[-1] += 'Wrong: ' + key + ' version. '
+                        self.log[-1] += 'INVALID: ' + elem + ' - Expected: ' + pm4_packages[key]['Version'] + '; '
+                        fail_flag = 1
+
+                    del pm4_packages[key]
+                    break
+        if fail_flag == 1:
+            self.fail()
 
 ''' Main call. Only used in test file.'''
 

@@ -1,0 +1,111 @@
+[
+	{
+		"PM4": {
+			"Version": "4.0.11 RC2"
+		},
+		"Custom Packages": {
+		"Processmaker/connector-pdf-print": {
+			"Version": "1.2.0"
+		},
+		"Processmaker/connector-send-email": {
+			"Version": "1.2.2"
+		},
+		"Processmaker/docker-executor-csharp": {
+			"Version": "1.0.1"
+		},
+		"Processmaker/docker-executor-java": {
+			"Version": "1.0.1"
+		},
+		"Processmaker/docker-executor-node": {
+			"Version": "1.0.2"
+		},
+		"Processmaker/docker-executor-python": {
+			"Version": "1.0.0"
+		},
+		"Processmaker/docker-executor-r": {
+			"Version": "1.0.0"
+		},
+		"Processmaker/package-actions-by-email": {
+			"Version": "1.2.0"
+		},
+		"Processmaker/package-advancedforms": {
+			"Version": "1.1.4"
+		},
+		"Processmaker/package-auth-auth0": {
+			"Version": "1.0.1"
+		},
+		"Processmaker/package-auth-saml": {
+			"Version": "1.1.0"
+		},
+		"Processmaker/package-collections": {
+			"Version": "1.6.1"
+		},
+		"Processmaker/package-comments": {
+			"Version": "1.0.3"
+		},
+		"Processmaker/package-data-sources": {
+			"Version": "1.0.20"
+		},
+		"Processmaker/package-dynamic-ui": {
+			"Version": "1.0.0"
+		},
+		"Processmaker/package-files": {
+			"Version": "1.1.1"
+		},
+		"Processmaker/package-process-documenter": {
+			"Version": "1.0.3"
+		},
+		"Processmaker/package-process-optimization": {
+			"Version": "1.0.3"
+		},
+		"Processmaker/package-savedsearch": {
+			"Version": "1.9.1"
+		},
+		"Processmaker/package-sentry": {
+			"Version": "1.0.2"		
+		},
+		"Processmaker/package-signature": {
+			"Version": "1.0.0"
+		},
+		"Processmaker/package-translations": {
+			"Version": "2.0.5"
+		},
+		"Processmaker/package-versions": {
+			"Version": "1.0.4"
+		},
+		"Processmaker/package-vocabularies": {
+			"Version": "2.2.0"
+		},
+		"Processmaker/package-webentry": {
+			"Version": "1.2.2"
+		},
+		"Processmaker/packages": {
+			"Version": "0.0.1"
+		},
+		"Processmaker/docker-executor-lua": {
+			"Version": "1.0.0"
+		},
+		"Processmaker/docker-executor-php": {
+			"Version": "1.0.0"
+		},
+		"Processmaker/nayra": {
+			"Version": "1.0.3"
+		},
+		"Processmaker/pmql": {
+			"Version": "1.1.2"
+		},
+		"@processmaker/modeler": {
+			"Version": "0.24.4"
+		},
+		"@processmaker/processmaker-bpmn-moddle": {
+			"Version": "0.7.0"
+		},
+		"@processmaker/screen-builder": {
+			"Version": "1.1.4"
+		},
+		"@processmaker/vue-form-elements": {
+			"Version": "0.14.15"
+		}
+	}
+}
+]

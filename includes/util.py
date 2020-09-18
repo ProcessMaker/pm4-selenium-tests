@@ -4,6 +4,7 @@
 
 import random
 import string
+import json
 from contextlib import redirect_stdout
 from io import StringIO
 from test_classes import CustomTextTestRunner, CustomTestLoader
@@ -67,6 +68,7 @@ def run_test(classname, data, modulename):
             elif 'WARNING' in log[-1]:
                 log[-1] = parse_log_warning(log[-1])
             test_output = buffer.getvalue()
+            #return {"result": parse_results(test_output), "message": log[-1]}
             return {"result": parse_results(test_output), "message": test_output + " " + log[-1]}
 
 def parse_results(buffer):
@@ -103,3 +105,13 @@ def generate_email():
     return ''.join(random.choice(string.ascii_letters) for n in range(10)) +\
         '@' + ''.join(random.choice(string.ascii_letters) for n in range(5)) +\
         '.' + ''.join(random.choice(string.ascii_letters) for n in range(5))
+
+def read_from_json_file(repository_path, filename, key=''):
+    ''' Function to open JSON file, read, and deserialize.
+    Return the entire dictionary or specific key.
+    '''
+    with open(repository_path + filename) as jsonFile:
+        expected_values = json.loads(jsonFile.read())
+        if key:
+            return expected_values[0][key]
+        return expected_values[0]
