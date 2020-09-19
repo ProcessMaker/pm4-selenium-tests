@@ -58,7 +58,7 @@ class PageCollection:
         self.collection_search_bar.send_keys(name_collection)
         result_search = self.wait_search_collection()
 
-        if(result_search):
+        if result_search:
             table_collection = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.COLLECTION_TABLE_XPATH)))
             table_content = table_collection.find_element(By.TAG_NAME, 'tbody')
             rows = table_content.find_elements(By.TAG_NAME, 'tr')
@@ -66,9 +66,14 @@ class PageCollection:
             for row in rows:
                 col = row.find_elements(By.TAG_NAME, "td")
                 collection = col[1].text
-                if (collection == name_collection):
+                if collection == name_collection:
                     # returns the column where the edit and delete buttons are located
                     return col[7]
             return None
         else:
             return None
+
+    def select_collection(self, element):
+        ''' Function to select an collection. '''
+        buttons = element.find_elements(By.TAG_NAME, "button")
+        buttons[0].click()

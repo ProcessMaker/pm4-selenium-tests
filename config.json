@@ -16,6 +16,10 @@
     "path": "tests/admin/test_TCP4_765.py"
   },
   {
+    "name": "test_add_record_to_collection",
+    "path": "tests/admin/test_TCP4_766.py"
+  },
+  {
     "name": "opens-a-task",
     "path": "tests/test_TCP4_774.py"
   },
