@@ -119,5 +119,6 @@ if __name__ == "__main__":
     run_test() is the method that provides this dictionary. It requires the class name,
       the data object, and the __main__ module.
     '''
+    data['repository_path'] = repository_path
     output = util.run_test(TestServerVersions, data, __main__)
     print(output)
