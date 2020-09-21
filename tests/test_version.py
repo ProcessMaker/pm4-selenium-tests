@@ -53,7 +53,7 @@ class TestServerVersions(BaseTest):
         page_source = self.driver.page_source
 
         self.log[-1] += 'Check PM4 version: '
-        pm4 = read_from_json_file(data['repository_path'], '/includes/expected_values.json', 'PM4')
+        pm4 = read_from_json_file(self.data['repository_path'], '/includes/expected_values.json', 'PM4')
         server_version = re.search(r'(?<=ProcessMaker 4 v)([\d].+)(?:<\/div>)', page_source).group(1)
 
         try:
@@ -68,7 +68,7 @@ class TestServerVersions(BaseTest):
             self.assertionFailures.append(str(e))
 
         # Retrieve Custom Plugins dictionary from expected_values.json
-        pm4_packages = read_from_json_file(data['repository_path'], '/includes/expected_values.json', 'Custom Packages')
+        pm4_packages = read_from_json_file(self.data['repository_path'], '/includes/expected_values.json', 'Custom Packages')
 
         # Verify all packages are visible on page with correct version
         packages = [element.text for element in self.driver.find_elements_by_class_name('list-group-item')]
