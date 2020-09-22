@@ -13,8 +13,10 @@ import util
 from page_login import PageLogin
 from page_menu import PageMenu
 from page_screens import PageScreens
+from page_screen_designer import PageScreenDesigner
 
 import unittest
+import time
 
 
 class TCP4_770(BaseTest):
@@ -28,15 +30,22 @@ class TCP4_770(BaseTest):
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
         pageScreens = PageScreens(self.driver, data)
+        pageScreenDesigner = PageScreenDesigner(self.driver, data)
 
         self.driver = PageLogin(self.driver, data).login()
+        self.driver.get('https://release-testing.processmaker.net/designer/screen-builder/471/edit')
 
-        pageMenu.goto_designer_screen()
+        time.sleep(5)
+        pageScreenDesigner.drag_drop()
+        pageScreenDesigner.location_element()
+        pageScreenDesigner.save_versions()
+        # pageScreenDesigner.drag_and_drop_input()
 
-        collection_result_search = pageScreens.search_screen('AutomationTrogdorScreen')
-        pageScreens.edit_screen(collection_result_search)
+        # pageScreenDesigner.click_and_hold_1()
+        # pageScreenDesigner.location_element()
 
 
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_770, data, __main__)
+    print(output, file=sys.stderr)
