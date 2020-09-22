@@ -26,9 +26,29 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
 
+# Import util file where all helper functions are located
+import util
+# Import all page classes
+from page import *
+# Import Python unittest module
+import unittest
+
 
 class TCP4_774(BaseTest):
     ''' Test that a task can be opened'''
+
+    def setUp(self):
+        ''' Method to run before each test method. '''
+        # Load server url and note step in log
+        self.log.append('Load server url')
+        self.driver.get(data['server_url'])
+
+        # Log in and note step in log
+        self.log.append('Log in to server')
+        self.driver = PageLogin(self.driver, data).login()
+
+        # For use with logs
+        self.assertionFailures = []
 
     def test_tcp4_774(self):
         '''Opens a task'''
@@ -46,6 +66,12 @@ class TCP4_774(BaseTest):
 
         except AssertionError as e:
             raise Exception('Error while opening a task', e)
+
+    def tearDown(self):
+        ''' Method to run after each test method. '''
+        # Runs final assert check. If assertionFailures list is empty, all assertions
+        # passed. If it is not empty, assertions failed.
+        self.assertEqual([], self.assertionFailures)
 
 
 if __name__ == "__main__":
