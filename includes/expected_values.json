@@ -1,11 +1,11 @@
 [
 	{
 		"PM4": {
-			"Version": "4.0.11 RC2"
+			"Version": "4.0.12 RC2"
 		},
 		"Custom Packages": {
 		"Processmaker/connector-pdf-print": {
-			"Version": "1.2.0"
+			"Version": "1.3.1"
 		},
 		"Processmaker/connector-send-email": {
 			"Version": "1.2.2"
@@ -59,7 +59,7 @@
 			"Version": "1.0.3"
 		},
 		"Processmaker/package-savedsearch": {
-			"Version": "1.9.1"
+			"Version": "1.9.2"
 		},
 		"Processmaker/package-sentry": {
 			"Version": "1.0.2"		
@@ -71,13 +71,13 @@
 			"Version": "2.0.5"
 		},
 		"Processmaker/package-versions": {
-			"Version": "1.0.4"
+			"Version": "1.0.5"
 		},
 		"Processmaker/package-vocabularies": {
 			"Version": "2.2.0"
 		},
 		"Processmaker/package-webentry": {
-			"Version": "1.2.2"
+			"Version": "1.2.3"
 		},
 		"Processmaker/packages": {
 			"Version": "0.0.1"
@@ -101,10 +101,10 @@
 			"Version": "0.7.0"
 		},
 		"@processmaker/screen-builder": {
-			"Version": "1.1.4"
+			"Version": "1.1.6"
 		},
 		"@processmaker/vue-form-elements": {
-			"Version": "0.14.15"
+			"Version": "0.15.1"
 		}
 	}
 }

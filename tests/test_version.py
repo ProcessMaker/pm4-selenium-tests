@@ -49,7 +49,7 @@ class TestServerVersions(BaseTest):
         ''' Verify server & package version numbers '''
         self.log.append('Open "About" Page')
         self.wait.until(EC.visibility_of_element_located((By.ID, 'userMenu')))
-        self.log.append('Pull page source\n')
+        self.log.append('Pull page source ')
         page_source = self.driver.page_source
 
         self.log[-1] += 'Check PM4 version: '
