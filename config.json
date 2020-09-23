@@ -1,55 +1,55 @@
 [
   {
-    "name": "test-create-user",
+    "name": "761_test-create-user",
     "path": "tests/admin/test_TCP4_761.py"
   },
   {
-    "name": "test_fill_user_information",
+    "name": "762_test_fill_user_information",
     "path": "tests/admin/test_TCP4_762.py"
   },
   {
-    "name": "test_deleted_user",
+    "name": "763_test_deleted_user",
     "path": "tests/admin/test_TCP4_763.py"
   },
   {
-    "name": "test_create_collection",
+    "name": "765_test_create_collection",
     "path": "tests/admin/test_TCP4_765.py"
   },
   {
-    "name": "test_add_record_to_collection",
+    "name": "766_test_add_record_to_collection",
     "path": "tests/admin/test_TCP4_766.py"
   },
   {
-    "name": "test_verify_searcher_PMQL_in_collection",
+    "name": "1653_test_verify_searcher_PMQL_in_collection",
     "path": "tests/admin/test_TCP4_1653.py"
   },
   {
-    "name": "opens-a-task",
+    "name": "774_opens-a-task",
     "path": "tests/test_TCP4_774.py"
   },
   {
-    "name": "creates-a-new-saved-search",
+    "name": "783_creates-a-new-saved-search",
     "path": "tests/test_TCP4_783.py"
   },
   {
-    "name": "starts_a_request",
+    "name": "778_starts_a_request",
     "path": "tests/new_request/test_TCP4_778.py"
   },
   {
-    "name": "creates_a_process",
+    "name": "768_creates_a_process",
     "path": "tests/designer/test_TCP4_768.py"
   },
   {
-    "name": "create-an-active-category",
+    "name": "237_create-an-active-category",
     "path": "tests/designer/test_TCP4_237.py"
   },
   {
-    "name": "create-a_new_process",
+    "name": "775_create-a_new_process",
     "path": "tests/designer/test_TCP4_775.py"
   },
   {
 
-    "name": "create-data_connector",
+    "name": "785_create-data_connector",
     "path": "tests/designer/test_TCP4_785.py"
   }
 ]
