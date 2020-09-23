@@ -133,3 +133,7 @@ def generate_phone():
     while last in ['1111', '2222', '3333', '4444', '5555', '6666', '7777', '8888']:
         last = (str(random.randint(1, 9998)).zfill(4))
     return '{}-{}-{}'.format(first, second, last)
+
+def generate_numbers(r):
+    ''' Function to generate a random number of n digits. '''
+    return ''.join(random.choice(string.digits) for n in range(r))
