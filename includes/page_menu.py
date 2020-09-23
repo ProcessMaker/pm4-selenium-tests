@@ -44,6 +44,10 @@ class PageMenu:
         ''' Function to navigate to the Screens tab. '''
         self.driver.get(self.data['server_url'] + '/collections')
 
+    def goto_connectors(self):
+       ''' Function to navigate to the Data connectors tab. '''
+       self.driver.get(self.data['server_url'] + '/designer/data-sources')
+
     def log_out(self):
         ''' Logs out the current user '''
         self.paths_menu()

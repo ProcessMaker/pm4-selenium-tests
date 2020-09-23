@@ -42,5 +42,9 @@
   {
     "name": "create-an-active-category",
     "path": "tests/designer/test_TCP4_237.py"
+  },
+  {
+    "name": "create-data_connector",
+    "path": "tests/designer/test_TCP4_785.py"
   }
 ]
