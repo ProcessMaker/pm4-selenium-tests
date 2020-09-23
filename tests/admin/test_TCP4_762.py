@@ -34,26 +34,32 @@ class TCP4_762(BaseTest):
 
         # STEP 1: Load login page.
         # print('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to admin.
         # print('Step 2: Go to Admin')
+        self.log.append('Step 2: Go to admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 3: Create User
         # print('Step 3: Create User')
+        self.log.append('Step 3: Create user////////////////')
         user_data = pageUser.create_user()
 
         # STEP 4: Complete User information
         # print('Step 4: Complete User information')
+        self.log.append('Step 4: Complete user information////////////////')
         user_data_information = pageUserInformation.fill_user_information()
 
         # STEP 5: Go to admin.
         # print('Step 5: Go to Admin')
+        self.log.append('Step 5: Go to admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 6: Search user created.
         # print('STEP 6: Search user created.')
+        self.log.append('Step 6: Search user created////////////////')
         try:
             user_result_search = pageUser.search_user(user_data['user_username'])
             self.assertTrue(user_result_search is not None)
@@ -62,6 +68,7 @@ class TCP4_762(BaseTest):
 
         # STEP 7: Edit user.
         # print('STEP 7: Edit user created before.')
+        self.log.append('Step 7: Edit the created user////////////////')
         pageUser.edit_user(user_result_search)
 
         # STEP 8: Verify if the user data information was saved.

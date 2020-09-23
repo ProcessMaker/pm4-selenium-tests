@@ -54,12 +54,15 @@ class TCP4_774(BaseTest):
         '''Opens a task'''
 
         # Login using configured url, workspace, username, and password
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # Redirect to Admin Users page, wait for +User button to be clickable
+        self.log.append('Step 2: go to tasks////////////////')
         PageMenu(self.driver, data).goto_tasks()
 
         # Wait for user edit form to load, changes the country and save
+        self.log.append('Step 3: Opens a task////////////////')
         PageTasks(self.driver, data).edit_task()
         try:
             self.assertTrue(PageRequestTask(self.driver, data).request_task_is_open())

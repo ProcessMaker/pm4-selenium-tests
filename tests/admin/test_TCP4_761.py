@@ -27,24 +27,27 @@ class TCP4_761(BaseTest):
         pageUser = PageUsers(self.driver, data)
 
         # STEP 1: Load login page.
-        self.log.append('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to admin.
-        self.log.append('Step 2: Go to Admin')
+        self.log.append('Step 2: Go to Admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 3: Create User with special character
         # print('Step 3: Create User with special character')
+        self.log.append('Step 3: Creates an user with a special character////////////////')
         user_data = pageUser.create_user()
 
         # STEP 4: Go to Admin
         # print('Step 4: Go to Admin')
+        self.log.append('Step 4: Go to admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 5: Verify if the user was created
         try:
             # print('Step 5: Verify if the user was created')
+            self.log.append('Step 3: Verify if the user was created////////////////')
             user_result_search = pageUser.search_user(user_data['user_username'])
 
             self.assertTrue(user_result_search is not None)

@@ -45,6 +45,7 @@ class TCP4_237(BaseTest):
 
         try:
             # STEP 4: Verify the Category
+            self.log.append('Step 4: Verigy the category////////////////')
             category_result_search = PageProcess.search_category(category_data['category_name'])
             # print(category_result_search)
             self.assertTrue(category_result_search is not None)

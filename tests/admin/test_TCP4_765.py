@@ -31,22 +31,27 @@ class TCP4_765(BaseTest):
 
         # STEP 1: Load login page.
         # print('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to Collections.
         # print('STEP 2: Go to Collections')
+        self.log.append('Step 2: Go to collections////////////////')
         pageMenu.goto_collections()
 
         # STEP 3: Create a new collection.
         # print('STEP 3: Create a new collection')
+        self.log.append('Step 3: Create a collection////////////////')
         collection_data = pageCollection.create_new_collection("", "")
 
         # STEP 4: Go to Collections.
         # print('STEP 4: Go to Collections')
+        self.log.append('Step 4: Go to collections////////////////')
         pageCollection.goto_collection_home()
 
         # STEP 5: Verify if the collection was created.
         # print('STEP 5: Verify if the collection was created')
+        self.log.append('Step 5: Verify created collection////////////////')
         try:
             collection_result_search = pageCollection.search_collection(collection_data['collection_name'])
             self.assertTrue(collection_result_search is not None)

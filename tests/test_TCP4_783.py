@@ -35,12 +35,15 @@ class TCP4_783(BaseTest):
         '''Creates a new saved search'''
 
         # Login using configured url, workspace, username, and password
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # Redirect to Admin Users page, wait for +User button to be clickable
+        self.log.append('Step 2: Go to request////////////////')
         PageMenu(self.driver, data).goto_request()
 
-        # Wait for user edit form to load, changes the country and save
+        # Creates a saved search
+        self.log.append('Step 3: Creates a saved search////////////////')
         PageRequest(self.driver, data).create_savedsearch()
         savedsearch_name = PageNewSavedsearch(self.driver, data).create_new_savedsearch()
 

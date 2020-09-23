@@ -33,22 +33,27 @@ class TCP4_763(BaseTest):
 
         # STEP 1: Load login page.
         # print('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to admin.
         # print('Step 2: Go to Admin')
+        self.log.append('Step 2: Go to admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 3: Create User
         # print('Step 3: Create User')
+        self.log.append('Step 3: Create user////////////////')
         user_data = pageUser.create_user()
 
         # STEP 4: Go to admin.
         # print('Step 4: Go to Admin')
+        self.log.append('Step 4: go to admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 5: Search user created.
         # print('STEP 5: Search user created.')
+        self.log.append('Step 5: Search created user////////////////')
         try:
             user_result_search = pageUser.search_user(user_data['user_username'])
             self.assertTrue(user_result_search is not None)
@@ -57,14 +62,17 @@ class TCP4_763(BaseTest):
 
         # STEP 6: Deleted user created.
         # print('STEP 6: Delete user created before.')
+        self.log.append('Step 6: Delete created user////////////////')
         pageUser.delete_user(user_result_search)
 
         # STEP 7: Go to admin.
         # print('Step 7: Go to Admin')
+        self.log.append('Step 7: Go to admin////////////////')
         pageMenu.goto_admin()
 
         # STEP 8: Verify deleted user.
         # print('STEP 8: Delete user created before.')
+        self.log.append('Step 8: Delete created user////////////////')
         try:
             user_result_search = pageUser.search_user(user_data['user_username'])
             self.assertTrue(user_result_search is None)
