@@ -17,6 +17,7 @@ from page_new_process import PageNewProcess
 from page_process_canvas import PageProcessCanvas
 import unittest
 import time
+import pprint
 
 
 class TCP4_775(BaseTest):
@@ -30,7 +31,7 @@ class TCP4_775(BaseTest):
 
         # Log in and note step in log
         self.log.append('Log in to server')
-        self.log.append('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page////////////////')')
         self.driver.get(data['server_url'])
         login_page = PageLogin(self.driver, data)
         login_page.login()
@@ -50,16 +51,16 @@ class TCP4_775(BaseTest):
         pageProcessCanvass = PageProcessCanvas(self.driver, data)
 
         # STEP 2: Go to the designer section.
-        self.log.append('Step 2: Opens the designer section')
+        self.log.append('Step 2: Opens the designer section////////////////')')
         pageMenu.goto_designer()
 
         # STEP 3: Creates a new process.
-        self.log.append('Step 3: Creates a new process')
+        self.log.append('Step 3: Creates a new process////////////////')')
         pageProcesses.create_process()
         pageNewProcess.fill_new_process(process_category)
 
         # STEP 4: Fills process.
-        self.log.append('Step 4: Fills a process')
+        self.log.append('Step 4: Fills a process////////////////')')
 
         # Drages every element by an offset of X, Y
         pageProcessCanvass.drag_n_drop("start_origin", 300, 100)
