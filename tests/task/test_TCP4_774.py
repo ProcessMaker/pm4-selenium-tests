@@ -41,20 +41,16 @@ class TCP4_774(BaseTest):
 
         # Log in and note step in log
         self.log.append('Log in to server')
-        self.driver = PageLogin(self.driver, data).login()
+        self.log.append('Step 1: Load Login page////////////////')
+        self.driver.get(data['server_url'])
+        login_page = PageLogin(self.driver, data)
+        login_page.login()
 
         # For use with logs
         self.assertionFailures = []
 
     def test_tcp4_774(self):
         '''Opens a task'''
-
-        # Login using configured url, workspace, username, and password
-        self.log.append('Log in to server')
-        self.log.append('Step 1: Load Login page////////////////')
-        self.driver.get(data['server_url'])
-        login_page = PageLogin(self.driver, data)
-        login_page.login()
 
         # Redirect to Admin Users page, wait for +User button to be clickable
         self.log.append('Step 2: go to tasks////////////////')
@@ -79,3 +75,4 @@ class TCP4_774(BaseTest):
 if __name__ == "__main__":
     import __main__
     output = run_test(TCP4_774, data, __main__)
+    print(output)
