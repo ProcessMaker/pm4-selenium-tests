@@ -2,14 +2,10 @@
 
 # Check if using local environment
 from os import getenv
-
 if getenv('ENVIRONMENT') == 'local':
-    # Import sys.path to add the /includes directory to the path
-    # This matches the docker executor's path so local test imports match
-    # remote Trogdor test imports
+    import sys
     from sys import path
-    path.append('../includes')
-    # Import __init__ to include data configuration
+    path.append('../../includes')
     from __init__ import data
 
 

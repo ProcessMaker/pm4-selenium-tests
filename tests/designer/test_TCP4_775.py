@@ -51,16 +51,16 @@ class TCP4_775(BaseTest):
         pageProcessCanvass = PageProcessCanvas(self.driver, data)
 
         # STEP 2: Go to the designer section.
-        self.log.append('Step 2: Opens the designer section////////////////')')
+        self.log.append('Step 2: Opens the designer section////////////////')
         pageMenu.goto_designer()
 
         # STEP 3: Creates a new process.
-        self.log.append('Step 3: Creates a new process////////////////')')
+        self.log.append('Step 3: Creates a new process////////////////')
         pageProcesses.create_process()
         pageNewProcess.fill_new_process(process_category)
 
         # STEP 4: Fills process.
-        self.log.append('Step 4: Fills a process////////////////')')
+        self.log.append('Step 4: Fills a process////////////////')
 
         # Drages every element by an offset of X, Y
         pageProcessCanvass.drag_n_drop("start_origin", 300, 100)

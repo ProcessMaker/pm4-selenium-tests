@@ -25,11 +25,11 @@
   },
   {
     "name": "774_opens-a-task",
-    "path": "tests/test_TCP4_774.py"
+    "path": "tests/task/test_TCP4_774.py"
   },
   {
     "name": "783_creates-a-new-saved-search",
-    "path": "tests/test_TCP4_783.py"
+    "path": "tests/task/test_TCP4_783.py"
   },
   {
     "name": "778_starts_a_request",
