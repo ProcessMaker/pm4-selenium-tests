@@ -31,7 +31,7 @@ class TCP4_775(BaseTest):
 
         # Log in and note step in log
         self.log.append('Log in to server')
-        self.log.append('Step 1: Load Login page////////////////')')
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver.get(data['server_url'])
         login_page = PageLogin(self.driver, data)
         login_page.login()
