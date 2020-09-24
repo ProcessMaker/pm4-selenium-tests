@@ -48,8 +48,11 @@
     "path": "tests/designer/test_TCP4_775.py"
   },
   {
-
     "name": "785_create-data_connector",
     "path": "tests/designer/test_TCP4_785.py"
+  },
+  {
+    "name": "1661_delete-data_connector",
+    "path": "tests/designer/test_TCP4_1661.py"
   }
 ]

@@ -15,6 +15,8 @@ class PageConnectors:
     CONNECTORS_TABLE_XPATH = "//*[@id='dataSourceIndex']/div[2]/div[2]"
     LOADING_MESSAGE_XPATH = "//*[@id='dataSourceIndex']/div[2]/div[1]"
 
+    CONFIRM_DELETE_BUTTON_XPATH = "//button[text()='Confirm']"
+
     def __init__(self, driver, data):
         ''' Instantiate PageCollection object. '''
         self.driver = driver
@@ -77,3 +79,13 @@ class PageConnectors:
             return None
         else:
             return None
+
+    def delete_connector(self, element):
+        buttons = element.find_elements(By.TAG_NAME, "button")
+        buttons[1].click()
+        confirm_deleted_connector = self.wait.until(
+            EC.visibility_of_element_located((By.XPATH, PageConnectors.CONFIRM_DELETE_BUTTON_XPATH)))
+        confirm_deleted_connector.click()
+        delete_connector_succes = self.wait.until(EC.visibility_of_element_located(
+            (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+
