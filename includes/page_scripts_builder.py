@@ -31,7 +31,18 @@ class PageScriptsBuilder:
 
     def create_scripts_builder(self, code):
         self.paths_create_scripts_builder()
-        self.code.send_keys(code)
+        self.code.wait.until(EC.visibility_of_element_located((By.XPATH,"//span[contains(.,'type here to search')]")))
+        codeHTML = '''
+                <div style="top:228px;height:19px;" class="view-line">
+                    <span><span class="mtk1">&nbsp;</span>
+                    <span class="mtk6">return ;</span>
+                    <span class="mtk1">&nbsp;"this is my test";</span>
+                    </span>
+                </div>
+                '''
+        codeJS
+        self.execute_script()
+        
         script_code = {
             'script_builder_code': code
             }
