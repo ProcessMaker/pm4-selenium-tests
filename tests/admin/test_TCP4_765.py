@@ -58,7 +58,10 @@ class TCP4_765(BaseTest):
         except AssertionError as e:
             raise Exception('Error in search_collection function', e)
 
+        self.log.append('Test created collection completed////////////////')
+
 
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_765, data, __main__)
+
