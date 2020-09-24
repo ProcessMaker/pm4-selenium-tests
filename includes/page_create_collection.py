@@ -43,6 +43,10 @@ class PageCreateCollection:
                  "//label[@for='create_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         input_create_screen.send_keys(screen_edit)
         input_create_screen.send_keys(Keys.ENTER)
+        self.wait.until(
+            EC.invisibility_of_element_located(
+                (By.XPATH,
+                 "//label[@for='create_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
 
 
     def select_view_screen(self, screen_display):
@@ -53,7 +57,10 @@ class PageCreateCollection:
                  "//label[@for='read_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         view_edit_screen.send_keys(screen_display)
         view_edit_screen.send_keys(Keys.ENTER)
-
+        self.wait.until(
+            EC.invisibility_of_element_located(
+                (By.XPATH,
+                 "//label[@for='read_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
 
     def select_edit_screen(self, screen_edit):
         self.edit_screen_list.click()
@@ -63,6 +70,10 @@ class PageCreateCollection:
                  "//label[@for='update_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         input_edit_screen.send_keys(screen_edit)
         input_edit_screen.send_keys(Keys.ENTER)
+        self.wait.until(
+            EC.invisibility_of_element_located(
+                (By.XPATH,
+                 "//label[@for='update_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         self.description_textarea.click()
 
 
@@ -73,6 +84,7 @@ class PageCreateCollection:
         self.description_textarea.send_keys(self.description_textarea_val)
 
         self.select_create_screen(screen_edit)
+
         self.select_view_screen(screen_display)
         if ("type here to search" in self.create_screen_list.text):
             self.select_create_screen(screen_edit)
