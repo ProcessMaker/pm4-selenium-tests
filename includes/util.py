@@ -74,8 +74,8 @@ def run_test(classname, data, modulename):
             elif 'WARNING' in log[-1]:
                 log[-1] = parse_log_warning(log[-1])
             test_output = buffer.getvalue()
-            #return {"result": parse_results(test_output), "message": log}
-            return {"result": parse_results(test_output), "message": test_output}
+            return {"result": parse_results(test_output), "message": log}
+            #return {"result": parse_results(test_output), "message": test_output}
 
 
 def parse_results(buffer):
