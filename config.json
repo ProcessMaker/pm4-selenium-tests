@@ -44,6 +44,10 @@
     "path": "tests/designer/test_TCP4_237.py"
   },
   {
+    "name": "1680_delete_category",
+    "path": "tests/designer/test_TCP4_1680.py"
+  },
+  {
     "name": "775_create-a_new_process",
     "path": "tests/designer/test_TCP4_775.py"
   },
