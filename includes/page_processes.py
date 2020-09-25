@@ -21,6 +21,8 @@ class PageProcesses:
     LOADING_MESSAGE_XPATH = "//*[@id='categories-listing']/div[2]/div[1]"
     CATEGORY_TABLE_XPATH = "//*[@id='categories-listing']/div[2]/div[2]"
 
+    CONFIRM_DELETE_XPATH = "//button[text()='Confirm']"
+
     def __init__(self, driver, data):
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
@@ -43,6 +45,7 @@ class PageProcesses:
 
     def tab_categories(self):
         ''' Function to click tab categories. '''
+        self.paths_processes()
         self.categories.click()
         self.btnCategory = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BTN_CREATE_CATEGORY)))
         self.category_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.CATEGORY_SEARCH_BAR_XPATH)))
@@ -106,7 +109,18 @@ class PageProcesses:
                 category = col[0].text
                 if (category == category_name):
                     # returns the column where the edit and delete buttons are located
-                    return col[0]
+                    return col[5]
             return None
         else:
             return None
+
+    def delete_category(self, element):
+        '''Function to delete a category from process'''
+        buttons = element.find_elements(By.TAG_NAME, "button")
+        buttons[1].click()
+        confirm_deleted_category = self.wait.until(
+            EC.visibility_of_element_located((By.XPATH, PageProcesses.CONFIRM_DELETE_XPATH)))
+        confirm_deleted_category.click()
+        delete_category_succes = self.wait.until(EC.visibility_of_element_located(
+            (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+

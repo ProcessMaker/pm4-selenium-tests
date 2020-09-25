@@ -45,7 +45,6 @@ class TCP4_768(BaseTest):
         pageProcesses.create_process()
 
         try:
-            # print('Step 5: Verify if the user was created')
             self.assertTrue(pageNewProcess.fill_new_process('any'))
 
         except AssertionError as e:

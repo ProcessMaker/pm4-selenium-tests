@@ -66,6 +66,30 @@ class PageRecordCollection:
         ''' Function to search a record in the list using =. '''
         return self.search_record('=' + value)
 
+    def search_record_pmql_less_than_or_equal_to(self, value):
+        ''' Function to search a record in the list using <= '''
+        return self.search_record('<=' + value)
+
+    def search_record_pmql_greater_than_or_equal_to(self, value):
+        ''' Function to search a record in the list using >= '''
+        return self.search_record('>=' + value)
+
+    def search_record_pmql_and(self, value):
+        ''' Function to search a record in the list using AND '''
+        criteria = 'data.option = ' + value + ' AND ' + 'data.option = ' + value
+        self.paths_record_collection()
+        self.search_collection_bar.send_keys(criteria)
+        self.search_button.click()
+        return self.search_wait_loading()
+
+    def search_record_pmql_or(self, value):
+        ''' Function to search a record in the list using OR '''
+        criteria = 'data.option = ' + value + ' OR ' + 'data.option = ' + value
+        self.paths_record_collection()
+        self.search_collection_bar.send_keys(criteria)
+        self.search_button.click()
+        return self.search_wait_loading()
+
     def clean_search_box(self):
         ''' Function to clear of text box '''
         self.search_collection_bar.clear()

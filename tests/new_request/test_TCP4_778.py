@@ -36,7 +36,6 @@ class TCP4_778(BaseTest):
         self.log.append('Step 2: Starts a request')
         pageMenu.start_request()
         try:
-            # print('Step 5: Verify if the user was created')
             self.assertTrue(pageNewRequest.open_request('any'))
 
         except AssertionError as e:

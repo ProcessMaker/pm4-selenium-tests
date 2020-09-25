@@ -35,14 +35,17 @@ class TCP4_766(BaseTest):
 
         # STEP 1: Load login page.
         # print('Step 1: Load Login page')
+        self.log.append('Step 1: Load Login page////////////////')
         self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to Collections.
         # print('STEP 2: Go to Collections')
+        self.log.append('Step 2: Go to collections////////////////')
         pageMenu.goto_collections()
 
         # STEP 3: Search the collection to add Records.
         # print('STEP 3: Search the collection to add Records')
+        self.log.append('Step 3: Search the collection////////////////')
         try:
             collection_result_search = pageCollection.search_collection('AutomationTrogdorCollection001')
             self.assertTrue(collection_result_search is not None)
@@ -51,14 +54,17 @@ class TCP4_766(BaseTest):
 
         # STEP 4: Select the collection.
         # print('STEP 4: Select the collection')
+        self.log.append('Step 4: Select collection////////////////')
         pageCollection.select_collection(collection_result_search)
 
         # STEP 5: Open record form.
         # print('STEP 5: Open record form')
+        self.log.append('Step 5: Opens record form////////////////')
         record_collection_data = pageRecordCollection.add_record()
 
         # STEP 6: Verify if the record was created .
         # print('STEP 6: Verify if the record was created ')
+        self.log.append('Step 6: Verify created record////////////////')
         try:
             result_record = pageRecordCollection.search_record_pmql_equal(record_collection_data['record_option'])
             self.assertTrue(result_record)
