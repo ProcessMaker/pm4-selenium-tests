@@ -15,12 +15,14 @@ from page_menu import PageMenu
 from page_processes import PageProcesses
 from page_new_process import PageNewProcess
 from page_process_canvas import PageProcessCanvas
+from page_screens import PageScreens
+from page_new_screen import PageNewScreen
+from page_screen_canvas import PageScreenCanvas
 import unittest
 import time
-import pprint
 
 
-class TCP4_775(BaseTest):
+class TCP4_770(BaseTest):
     ''' Creates a process '''
 
     def setUp(self):
@@ -39,43 +41,26 @@ class TCP4_775(BaseTest):
         # For use with logs
         self.assertionFailures = []
 
-    def test_tcp4_775(self):
+    def test_tcp4_770(self):
         ''' Creates a process '''
-        # constant
-        process_category = "any"
 
         # Pages Instance
-        pageMenu = PageMenu(self.driver, data)
         pageProcesses = PageProcesses(self.driver, data)
-        pageNewProcess = PageNewProcess(self.driver, data)
-        pageProcessCanvass = PageProcessCanvas(self.driver, data)
+        pageScreens = PageScreens(self.driver, data)
+        pageNewScreen = PageNewScreen(self.driver, data)
+        pageScreenCanvas = PageScreenCanvas(self.driver, data)
 
-        # STEP 2: Go to the designer section.
-        self.log.append('Step 2: Opens the designer section////////////////')
-        pageMenu.goto_designer()
+        # STEP 2: Opens screens screen.
+        self.log.append('Step 2: Opens the screens screen////////////////')
+        pageProcesses.goto_screens()
 
-        # STEP 3: Creates a new process.
-        self.log.append('Step 3: Creates a new process////////////////')
-        pageProcesses.create_process()
-        pageNewProcess.fill_new_process(process_category)
+        # STEP 3: Create screen.
+        self.log.append('Step 3: Creates a new screen////////////////')
+        pageScreens.create_screen()
+        pageNewScreen.fill_screen()
 
-        # STEP 4: Fills process.
-        self.log.append('Step 4: Fills a process////////////////')
-
-        # Drages every element by an offset of X, Y
-        pageProcessCanvass.drag_n_drop("start_origin", 300, 100)
-        pageProcessCanvass.drag_n_drop("task_origin", 300, 100)
-        pageProcessCanvass.drag_n_drop("end_origin", 300, 300)
-
-        # Connects two previously dragged elements
-        pageProcessCanvass.connect_element("start", "task")
-        pageProcessCanvass.connect_element("task", "end")
-
-        # Assert the saving was succesfull
-        try:
-            self.assertTrue(pageProcessCanvass.save_process())
-        except AssertionError as e:
-            raise Exception('Error in search_collection function', e)
+        pageScreenCanvas.drag_n_drop()
+        
 
     def tearDown(self):
         ''' Method to run after each test method. '''
@@ -110,5 +95,5 @@ if __name__ == "__main__":
     run_test() is the method that provides this dictionary. It requires the class name,
       the data object, and the __main__ module.
     '''
-    output = util.run_test(TCP4_775, data, __main__)
+    output = util.run_test(TCP4_770, data, __main__)
     print(output)
