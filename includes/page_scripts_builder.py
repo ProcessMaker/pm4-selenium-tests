@@ -5,10 +5,6 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import time
-import string
-import util
-import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -57,7 +53,7 @@ class PageScriptsBuilder:
 
     def run_script_builder(self):
         self.button_run.click()
-        wait = WebDriverWait(self.driver, 200)
+        wait = WebDriverWait(self.driver, 300)
         wait.until(EC.visibility_of_element_located((By.XPATH, PageScriptsBuilder.FINISH_LOADING_SCRIPT_XPATH)))
 
     def put_script_code(self, code):

@@ -32,7 +32,6 @@ class TCP4_784(BaseTest):
 
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
-        PageProcess = PageProcesses(self.driver, data)
         pageScript = PageScripts(self.driver, data)
         pageScriptsBuilder = PageScriptsBuilder(self.driver,data)
 
@@ -48,7 +47,7 @@ class TCP4_784(BaseTest):
 
         # STEP 3: Go to Scripts.
         self.log.append('Step 3: Go to Scripts')
-        PageProcess.goto_scripts()
+        pageMenu.goto_scripts()
 
         # STEP 4: Create a new Script.
         self.log.append('STEP 4: Create a new Script')
