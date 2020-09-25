@@ -1,6 +1,10 @@
 [
   {
-    "name": "creates_a_script",
+    "name": "creates_and_run_script",
     "path": "tests/designer/test_TCP4_784.py"
+  },
+  {
+    "name": "delete_a_script",
+    "path": "tests/designer/test_TCP4_1699.py"
   }
 ]
