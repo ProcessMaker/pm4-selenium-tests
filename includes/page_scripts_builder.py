@@ -11,10 +11,6 @@ import util
 import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-SCRIPT_CODE = """
-<?php  
-return "smoke";
-"""
 
 class PageScriptsBuilder:
     ''' Page object model for category page'''
@@ -85,7 +81,9 @@ class PageScriptsBuilder:
             (By.XPATH, "//*[@id='script-container']/div/div/div[2]/div/div[1]/div/div/div[1]/textarea")))
         textarea.send_keys(Keys.CONTROL + "a")
         textarea.send_keys(Keys.DELETE)
-        textarea.send_keys(SCRIPT_CODE)
+        with open("script.php") as f:
+            script_php = f.read()
+        textarea.send_keys(script_php)
         # print('el texto es :', textarea.get_property('value'))
         # print('el texto es 2 :', textarea.text)
 
