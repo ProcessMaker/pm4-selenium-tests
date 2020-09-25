@@ -17,7 +17,10 @@ from page_scripts import PageScripts
 from page_scripts_builder import PageScriptsBuilder
 import unittest
 
-
+SCRIPT_CODE = """
+<?php  
+return "smoke";
+"""
 class TCP4_784(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
@@ -31,7 +34,7 @@ class TCP4_784(BaseTest):
         pageMenu = PageMenu(self.driver, data)
         PageProcess = PageProcesses(self.driver, data)
         pageScript = PageScripts(self.driver, data)
-        pageScriptsBuilder = PageScriptsBuilder(self.driver, data)
+        pageScriptsBuilder = PageScriptsBuilder(self.driver,data)
 
         # STEP 1: Load login page.
         self.log.append('Step 1: Load Login page')
@@ -39,33 +42,31 @@ class TCP4_784(BaseTest):
         login_page = PageLogin(self.driver, data)
         login_page.login()
 
-        self.driver.get("https://release-testing.processmaker.net/designer/scripts/197/builder")
-        pageScriptsBuilder.put_text()
-        pageScriptsBuilder.save_script_builder()
+        # STEP 2: Go to Designer.
+        self.log.append('Step 2: Go to Designer')
+        pageMenu.goto_designer()
 
+        # STEP 3: Go to Scripts.
+        self.log.append('Step 3: Go to Scripts')
+        PageProcess.goto_scripts()
 
-        # # STEP 2: Go to Designer.
-        # self.log.append('Step 2: Go to Designer')
-        # pageMenu.goto_designer()
-        #
-        # # STEP 3: Go to Scripts.
-        # self.log.append('Step 3: Go to Scripts')
-        # PageProcess.goto_scripts()
-        # pageScript = PageScripts(self.driver, data)
-        #
-        # # STEP 4: Create a new Script.
-        # self.log.append('STEP 4: Create a new Script')
-        # script_data = pageScript.create_scripts('Test Script desc', 'Uncategorize', 'php - PHP Executor', 'Admin User', '60')
-        # print(script_data, file=sys.stderr)
-        # pageScriptsBuilder = PageScriptsBuilder(self.driver,data)
-        #
-        # # STEP 5: Create a code.
-        # self.log.append('STEP 5: Create a code')
-        # mycode= "<?php return 'smoke test' ?>"
-        # result_code = pageScriptsBuilder.create_scripts_builder(mycode)
-        # print(result_code, file=sys.stderr)
+        # STEP 4: Create a new Script.
+        self.log.append('STEP 4: Create a new Script')
+        script_data = pageScript.create_scripts('Test Script desc', 'Uncategorize', 'php - PHP Executor', 'Admin User', '60')
+
+        # STEP 5: Create a code.
+        self.log.append('STEP 5: Create a code')
+        result_code = pageScriptsBuilder.create_scripts_builder(SCRIPT_CODE)
+
+        #STEP 6: Verify if the script ran correctly
+        try:
+            self.log.append('STEP 6: Verify if the script ran correctly')
+            self.assertIn('"output": "smoke"', result_code['script_builder_code'])
+        except AssertionError as e:
+            self.log.append('Error in search_user function', e)
+            raise Exception('Error in search_user function', e)
+
 
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_784, data, __main__)
-    # print(output)
