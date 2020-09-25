@@ -30,6 +30,8 @@ class TCP4_784(BaseTest):
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
         PageProcess = PageProcesses(self.driver, data)
+        pageScript = PageScripts(self.driver, data)
+        pageScriptsBuilder = PageScriptsBuilder(self.driver, data)
 
         # STEP 1: Load login page.
         self.log.append('Step 1: Load Login page')
@@ -37,37 +39,33 @@ class TCP4_784(BaseTest):
         login_page = PageLogin(self.driver, data)
         login_page.login()
 
-        # STEP 2: Go to Designer.
-        self.log.append('Step 2: Go to Designer')
-        pageMenu.goto_designer()
+        self.driver.get("https://release-testing.processmaker.net/designer/scripts/197/builder")
+        pageScriptsBuilder.put_text()
+        pageScriptsBuilder.save_script_builder()
 
-        # STEP 3: Go to Scripts.
-        self.log.append('Step 3: Go to Scripts')
-        PageProcess.goto_scripts()
-        pageScript = PageScripts(self.driver, data)
 
-        # STEP 4: Create a new Script.
-        self.log.append('STEP 4: Create a new Script')
-        script_data = pageScript.create_scripts('Test Script desc', 'Uncategorize', 'php - PHP Executor', 'Admin User', '60')
-        print(script_data)
-        pageScriptsBuilder = PageScriptsBuilder(self.driver,data)
-
-        # STEP 5: Create a code.
-        self.log.append('STEP 5: Create a code')
-        mycode= "<?php return 'smoke test' ?>"
-        result_code = pageScriptsBuilder.create_scripts_builder(mycode)
-        print(result_code)
-"""
-        try:
-            # STEP 4: Verify the Category
-            category_result_search = PageProcess.search_category(category_data['category_name'])
-            # print(category_result_search)
-            self.assertTrue(category_result_search is not None)
-        except AssertionError as e:
-            raise Exception('Error in search_category', e)
-"""
+        # # STEP 2: Go to Designer.
+        # self.log.append('Step 2: Go to Designer')
+        # pageMenu.goto_designer()
+        #
+        # # STEP 3: Go to Scripts.
+        # self.log.append('Step 3: Go to Scripts')
+        # PageProcess.goto_scripts()
+        # pageScript = PageScripts(self.driver, data)
+        #
+        # # STEP 4: Create a new Script.
+        # self.log.append('STEP 4: Create a new Script')
+        # script_data = pageScript.create_scripts('Test Script desc', 'Uncategorize', 'php - PHP Executor', 'Admin User', '60')
+        # print(script_data, file=sys.stderr)
+        # pageScriptsBuilder = PageScriptsBuilder(self.driver,data)
+        #
+        # # STEP 5: Create a code.
+        # self.log.append('STEP 5: Create a code')
+        # mycode= "<?php return 'smoke test' ?>"
+        # result_code = pageScriptsBuilder.create_scripts_builder(mycode)
+        # print(result_code, file=sys.stderr)
 
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_784, data, __main__)
-    print(output)
+    # print(output)
