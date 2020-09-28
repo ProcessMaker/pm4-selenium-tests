@@ -57,8 +57,8 @@ class PageScriptsBuilder:
 
     def run_script_builder(self):
         self.button_run.click()
-        wait = WebDriverWait(self.driver, 100)
-        wait.until(EC.visibility_of_element_located((By.XPATH, PageScriptsBuilder.FINISH_LOADING_SCRIPT_XPATH)))
+        # wait = WebDriverWait(self.driver, 100)
+        self.wait.until(EC.visibility_of_element_located((By.XPATH, PageScriptsBuilder.FINISH_LOADING_SCRIPT_XPATH)))
 
     def put_script_code(self, code):
         textarea =self.wait.until(EC.visibility_of_element_located(
