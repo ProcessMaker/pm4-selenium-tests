@@ -28,7 +28,7 @@ class PageScriptsBuilder:
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 30)
+        self.wait = WebDriverWait(driver, 40)
 
     def paths_create_scripts_builder(self):
         ''' Function to get page elements. '''
