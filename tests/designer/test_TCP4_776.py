@@ -15,10 +15,11 @@ from page_menu import PageMenu
 from page_processes import PageProcesses
 from page_new_process import PageNewProcess
 from page_process_canvas import PageProcessCanvas
+from page_new_request import PageNewRequest
 import util
 
 
-class TCP4_775(BaseTest):
+class TCP4_776(BaseTest):
     ''' Creates a process '''
 
     def setUp(self):
@@ -37,17 +38,18 @@ class TCP4_775(BaseTest):
         # For use with logs
         self.assertionFailures = []
 
-    def test_tcp4_775(self):
+    def test_tcp4_776(self):
         ''' Creates a process '''
         # constant
-        process_category = "any"
         process_name = util.generate_text()
+        process_category = "any"
 
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)
         pageProcesses = PageProcesses(self.driver, data)
         pageNewProcess = PageNewProcess(self.driver, data)
         pageProcessCanvass = PageProcessCanvas(self.driver, data)
+        pageNewRequest = PageNewRequest(self.driver, data)
 
         # STEP 2: Go to the designer section.
         self.log.append('Step 2: Opens the designer section////////////////')
@@ -62,19 +64,29 @@ class TCP4_775(BaseTest):
         self.log.append('Step 4: Fills a process////////////////')
 
         # Drages every element by an offset of X, Y
+        self.log.append('Step 5: Drops elements on canvas////////////////')
         pageProcessCanvass.drag_n_drop("start_origin", 300, 100)
         pageProcessCanvass.drag_n_drop("task_origin", 300, 100)
         pageProcessCanvass.drag_n_drop("end_origin", 300, 300)
 
         # Connects two previously dragged elements
+        self.log.append('Step 6: Connects elements on canvas////////////////')
         pageProcessCanvass.connect_element("start", "task")
         pageProcessCanvass.connect_element("task", "end")
 
         # Assert the saving was succesfull
+        self.log.append('Step 7: Saves process////////////////')
+        pageProcessCanvass.save_process()
+
+        # starts request
+        self.log.append('Step 8: Starts a request with the created process////////////////')
+        pageMenu.start_request()        
+
+        # Assert the saving was succesfull
         try:
-            self.assertTrue(pageProcessCanvass.save_process())
+            self.assertTrue(pageNewRequest.open_request(process_name))
         except AssertionError as e:
-            raise Exception('Error creating process', e)
+            raise Exception('Error opening the request', e)
 
     def tearDown(self):
         ''' Method to run after each test method. '''
@@ -109,5 +121,5 @@ if __name__ == "__main__":
     run_test() is the method that provides this dictionary. It requires the class name,
       the data object, and the __main__ module.
     '''
-    output = util.run_test(TCP4_775, data, __main__)
+    output = util.run_test(TCP4_776, data, __main__)
     print(output)

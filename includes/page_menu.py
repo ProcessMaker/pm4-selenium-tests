@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 class PageMenu:
     ''' Page object model for Navigation Menu. '''
 
+    REQUEST_BUTTON_ID = "navbar-request-button"
+
     def __init__(self, driver, data):
         ''' Instantiate PageMenu object. '''
         self.driver = driver
@@ -18,7 +20,7 @@ class PageMenu:
     def paths_menu(self):
         ''' Function to get page elements. '''
         self.avatar = self.wait.until(EC.visibility_of_element_located((By.ID, 'avatarMenu')))
-        self.request_button = self.wait.until(EC.visibility_of_element_located((By.ID, 'navbar-request-button')))
+        self.request_button = self.wait.until(EC.visibility_of_element_located((By.ID, PageMenu.REQUEST_BUTTON_ID)))
 
     def goto_admin(self):
         ''' Function to navigate to the admin tab. '''

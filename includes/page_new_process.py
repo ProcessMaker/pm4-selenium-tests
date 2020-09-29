@@ -37,17 +37,16 @@ class PageNewProcess:
 
         self.process_save = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_SAVE_CSS)))
 
-    def fill_new_process(self, category):
+    def fill_new_process(self, category, name):
         ''' Logs out the current user '''
-        name = generate_text()
 
         self.paths_menu()
         self.process_name.send_keys(name)
-        self.process_description.send_keys(name)
-
-        self.process_category.click()
-        self.process_any_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_ANY_CATEGORY_CSS)))
-        if(category == 'any'):
+        self.process_description.send_keys(name)        
+        
+        if(category != 'any'):
+            self.process_category.click()
+            self.process_any_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_ANY_CATEGORY_CSS)))
             self.process_any_category.click()
 
         self.process_save.click()
