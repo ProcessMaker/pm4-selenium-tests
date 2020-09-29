@@ -1,5 +1,9 @@
 [
   {
+    "name": "creates_a_category",
+    "path": "tests/designer/test_TCP4_237.py"
+  },
+  {
     "name": "creates_a_script",
     "path": "tests/designer/test_TCP4_784.py"
   }
