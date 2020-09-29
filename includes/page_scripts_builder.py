@@ -57,7 +57,7 @@ class PageScriptsBuilder:
 
     def run_script_builder(self):
         self.button_run.click()
-        wait = WebDriverWait(self.driver, 85)
+        wait = WebDriverWait(self.driver, 99)
         self.wait.until(EC.visibility_of_element_located((By.XPATH, PageScriptsBuilder.FINISH_LOADING_SCRIPT_XPATH)))
 
     def put_script_code(self, code):
