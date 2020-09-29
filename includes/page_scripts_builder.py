@@ -28,7 +28,7 @@ class PageScriptsBuilder:
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
         self.data = data
-        self.wait = WebDriverWait(driver, 10)
+        self.wait = WebDriverWait(driver, 30)
 
     def paths_create_scripts_builder(self):
         ''' Function to get page elements. '''
@@ -57,8 +57,8 @@ class PageScriptsBuilder:
 
     def run_script_builder(self):
         self.button_run.click()
-        wait = WebDriverWait(self.driver, 40)
-        wait.until(EC.visibility_of_element_located((By.XPATH, PageScriptsBuilder.FINISH_LOADING_SCRIPT_XPATH)))
+        # wait = WebDriverWait(self.driver, 30)
+        self.wait.until(EC.visibility_of_element_located((By.XPATH, PageScriptsBuilder.FINISH_LOADING_SCRIPT_XPATH)))
 
     def put_script_code(self, code):
         textarea =self.wait.until(EC.visibility_of_element_located(
