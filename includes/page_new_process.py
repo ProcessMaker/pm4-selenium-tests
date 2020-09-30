@@ -42,7 +42,12 @@ class PageNewProcess:
 
         self.paths_menu()
         self.process_name.send_keys(name)
-        self.process_description.send_keys(name)        
+        self.process_description.send_keys(name)    
+
+        self.process_category.click()
+        self.process_any_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_ANY_CATEGORY_CSS)))
+        if(category == 'any'):
+            self.process_any_category.click()    
         
         if(category != 'any'):
             self.process_category.click()

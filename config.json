@@ -24,10 +24,6 @@
     "path": "tests/admin/test_TCP4_1653.py"
   },
   {
-    "name": "774_opens-a-task",
-    "path": "tests/task/test_TCP4_774.py"
-  },
-  {
     "name": "783_creates-a-new-saved-search",
     "path": "tests/task/test_TCP4_783.py"
   },
@@ -50,6 +46,10 @@
   {
     "name": "775_create-a_new_process",
     "path": "tests/designer/test_TCP4_775.py"
+  },
+  {
+    "name": "774_opens-a-task",
+    "path": "tests/task/test_TCP4_774.py"
   },
   {
     "name": "785_create-data_connector",
