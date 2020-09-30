@@ -48,6 +48,10 @@
     "path": "tests/designer/test_TCP4_775.py"
   },
   {
+    "name": "776_request_775_process",
+    "path": "tests/designer/test_TCP4_776.py"
+  },
+  {
     "name": "774_opens-a-task",
     "path": "tests/task/test_TCP4_774.py"
   },
