@@ -26,6 +26,7 @@ from page_savedsearch import PageSavedsearch
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import unittest
 
 
 class TCP4_783(BaseTest):

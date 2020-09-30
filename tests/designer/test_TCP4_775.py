@@ -16,6 +16,7 @@ from page_processes import PageProcesses
 from page_new_process import PageNewProcess
 from page_process_canvas import PageProcessCanvas
 import util
+import unittest
 
 
 class TCP4_775(BaseTest):
