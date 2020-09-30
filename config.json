@@ -44,7 +44,7 @@
     "path": "tests/designer/test_TCP4_1680.py"
   },
   {
-    "name": "775_create-a_new_process",
+    "name": "775_create_new_selfservice_process",
     "path": "tests/designer/test_TCP4_775.py"
   },
   {

@@ -41,8 +41,8 @@ class PageNewProcess:
         ''' Logs out the current user '''
 
         self.paths_menu()
-        self.process_name.send_keys(name)
-        self.process_description.send_keys(name)    
+        self.process_name.send_keys(name + ": Process Self Service")
+        self.process_description.send_keys("Test Selfservice Smoke test")    
 
         self.process_category.click()
         self.process_any_category = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageNewProcess.PROCESS_ANY_CATEGORY_CSS)))
