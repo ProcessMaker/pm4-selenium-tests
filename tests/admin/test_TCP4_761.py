@@ -56,6 +56,11 @@ class TCP4_761(BaseTest):
             raise Exception('Error in search_user function', e)
             # print('User was not found, an error ocurred')
 
+        # STEP 6: Deleted user created.
+        self.log.append('Step 6: Delete created user////////////////')
+        pageUser.delete_user(user_result_search)
+
+
         # print('Create User Test completed')
 
 
