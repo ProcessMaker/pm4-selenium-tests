@@ -56,6 +56,7 @@ class TCP4_765(BaseTest):
             collection_result_search = pageCollection.search_collection(collection_data['collection_name'])
             self.assertTrue(collection_result_search is not None)
         except AssertionError as e:
+            self.log.append('Error in search_collection function////////////////')
             raise Exception('Error in search_collection function', e)
 
         self.log.append('Test created collection completed////////////////')
