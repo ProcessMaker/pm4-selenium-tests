@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class PageNewRequest:
     ''' Page object model for Navigation Menu. '''
 
-    START_SPECIFIC_XPATH = "//div[text()[contains(.,'"
+    START_SPECIFIC_XPATH = "(//div[text()[contains(.,'"
     REQUEST_SEARCH_CSS = "input[placeholder='Search...']"   
 
     def __init__(self, driver, data):
@@ -34,7 +34,7 @@ class PageNewRequest:
 
         else:
             self.request_search.send_keys(request)
-            request_name = PageNewRequest.START_SPECIFIC_XPATH + request + "')]]/following-sibling::div"
+            request_name = PageNewRequest.START_SPECIFIC_XPATH + request + "')]])[3]/following-sibling::div"
             self.start_specific = self.wait.until(EC.visibility_of_element_located((By.XPATH, request_name)))
             self.start_specific.click()            
 

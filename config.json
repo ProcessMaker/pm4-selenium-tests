@@ -24,10 +24,6 @@
     "path": "tests/admin/test_TCP4_1653.py"
   },
   {
-    "name": "774_opens-a-task",
-    "path": "tests/task/test_TCP4_774.py"
-  },
-  {
     "name": "783_creates-a-new-saved-search",
     "path": "tests/task/test_TCP4_783.py"
   },
@@ -48,16 +44,16 @@
     "path": "tests/designer/test_TCP4_1680.py"
   },
   {
-    "name": "784_create_and_script",
-    "path": "tests/designer/test_TCP4_784.py"
-  },
-  {
-    "name": "1699_delete_a_script",
-    "path": "tests/designer/test_TCP4_1699.py"
-  },
-  {
-    "name": "775_create-a_new_process",
+    "name": "775_create_new_selfservice_process",
     "path": "tests/designer/test_TCP4_775.py"
+  },
+  {
+    "name": "776_request_775_process",
+    "path": "tests/designer/test_TCP4_776.py"
+  },
+  {
+    "name": "774_opens-a-task",
+    "path": "tests/task/test_TCP4_774.py"
   },
   {
     "name": "785_create-data_connector",

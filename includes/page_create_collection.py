@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 import sys
+import time
 
 class PageCreateCollection:
     ''' Page object model for create collection page'''
@@ -37,17 +38,14 @@ class PageCreateCollection:
 
     def select_create_screen(self, screen_edit):
         self.create_screen_list.click()
-        input_create_screen = self.wait.until(
-            EC.visibility_of_element_located(
-                (By.XPATH,
+        input_create_screen = self.wait.until(EC.visibility_of_element_located((By.XPATH,
                  "//label[@for='create_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         input_create_screen.send_keys(screen_edit)
-        input_create_screen.send_keys(Keys.ENTER)
-        self.wait.until(
-            EC.invisibility_of_element_located(
-                (By.XPATH,
-                 "//label[@for='create_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
-
+        li = self.wait.until(EC.visibility_of_element_located((By.XPATH,
+                 "//label[@for='create_screen_id']/following-sibling::div/div/ul/li/span[.='" + screen_edit + "']")))
+        li.click()
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH,
+                 "//label[@for='create_screen_id']/following-sibling::div/div/ul/li/span[.='" + screen_edit + "']")))
 
     def select_view_screen(self, screen_display):
         self.view_screen_list.click()
@@ -56,11 +54,11 @@ class PageCreateCollection:
                 (By.XPATH,
                  "//label[@for='read_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         view_edit_screen.send_keys(screen_display)
-        view_edit_screen.send_keys(Keys.ENTER)
-        self.wait.until(
-            EC.invisibility_of_element_located(
-                (By.XPATH,
-                 "//label[@for='read_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
+        li = self.wait.until(EC.visibility_of_element_located((By.XPATH,
+                 "//label[@for='read_screen_id']/following-sibling::div/div/ul/li/span[.='"+screen_display+"']")))
+        li.click()
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH,
+                 "//label[@for='read_screen_id']/following-sibling::div/div/ul/li/span[.='" + screen_display + "']")))
 
     def select_edit_screen(self, screen_edit):
         self.edit_screen_list.click()
@@ -69,13 +67,11 @@ class PageCreateCollection:
                 (By.XPATH,
                  "//label[@for='update_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
         input_edit_screen.send_keys(screen_edit)
-        input_edit_screen.send_keys(Keys.ENTER)
-        self.wait.until(
-            EC.invisibility_of_element_located(
-                (By.XPATH,
-                 "//label[@for='update_screen_id']/following-sibling::div/div[@class='multiselect__tags']/input")))
-        self.description_textarea.click()
-
+        li = self.wait.until(EC.visibility_of_element_located((By.XPATH,
+                 "//label[@for='update_screen_id']/following-sibling::div/div/ul/li/span[.='"+screen_edit+"']")))
+        li.click()
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH,
+                 "//label[@for='update_screen_id']/following-sibling::div/div/ul/li/span[.='"+screen_edit+"']")))
 
     def fill_new_collection(self, screen_edit, screen_display):
         ''' Fills the fields of a new user'''
@@ -83,17 +79,14 @@ class PageCreateCollection:
         self.name_text.send_keys(self.name_text_val)
         self.description_textarea.send_keys(self.description_textarea_val)
 
-        self.select_create_screen(screen_edit)
+        self.select_create_screen("01 Form Edit")
+        self.select_create_screen("AutomationTrogdorCollectionEditScreen")
 
-        self.select_view_screen(screen_display)
-        if ("type here to search" in self.create_screen_list.text):
-            self.select_create_screen(screen_edit)
+        self.select_view_screen("01 Form Display")
+        self.select_view_screen("AutomationTrogdorCollectionDisplayScreen")
 
-        self.select_edit_screen(screen_edit)
-        if ("type here to search" in self.view_screen_list.text):
-            self.select_view_screen(screen_display)
-        if ("type here to search" in self.edit_screen_list.text):
-            self.select_edit_screen(screen_edit)
+        self.select_edit_screen("01 Form Edit")
+        self.select_edit_screen("AutomationTrogdorCollectionEditScreen")
 
         self.save_collection_button.click()
         collection_data = {'collection_name': self.name_text_val, 'collection_description': self.description_textarea_val,

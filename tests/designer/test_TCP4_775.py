@@ -16,6 +16,7 @@ from page_processes import PageProcesses
 from page_new_process import PageNewProcess
 from page_process_canvas import PageProcessCanvas
 import util
+import unittest
 
 
 class TCP4_775(BaseTest):
@@ -110,4 +111,3 @@ if __name__ == "__main__":
       the data object, and the __main__ module.
     '''
     output = util.run_test(TCP4_775, data, __main__)
-    print(output)
