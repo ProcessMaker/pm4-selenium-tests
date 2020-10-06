@@ -50,6 +50,18 @@ class PageMenu:
        ''' Function to navigate to the Data connectors tab. '''
        self.driver.get(self.data['server_url'] + '/designer/data-sources')
 
+    def goto_scripts(self):
+        ''' Function to go to scripts. '''
+        self.driver.get(self.data['server_url'] + '/designer/scripts')
+
+    def goto_processes(self):
+        ''' Function to go to scripts. '''
+        self.driver.get(self.data['server_url'] + '/processes')
+
+    def goto_environment_varibles(self):
+        ''' Function to go to environment variables. '''
+        self.driver.get(self.data['server_url'] + '/designer/environment-variables')
+
     def log_out(self):
         ''' Logs out the current user '''
         self.paths_menu()

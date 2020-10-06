@@ -37,23 +37,6 @@ class PageProcesses:
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
         self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
 
-    # buttons sidebar left
-    def goto_processes(self):
-        ''' Function to go to scripts. '''
-        self.driver.get(self.data['server_url'] + '/processes')
-
-    def goto_scripts(self):
-        ''' Function to go to scripts. '''
-        self.driver.get(self.data['server_url'] + '/designer/scripts')
-
-    def goto_screens(self):
-        ''' Function to go to screens. '''
-        self.driver.get(self.data['server_url'] + '/designer/screens')
-
-    def goto_environment_varibles(self):
-        ''' Function to go to environment variables. '''
-        self.driver.get(self.data['server_url'] + '/designer/environment-variables')
-
     # tab and buttons
     def tab_processes(self):
         ''' Function to click tab processecs. '''
