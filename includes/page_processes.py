@@ -6,12 +6,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
 from page_create_category import PageCreateCategory
+import time
 
 
 class PageProcesses:
     ''' Page object model for users page'''
     TAB_PROCESSES_CSS = "a[id='nav-sources-tab']"
     BUTTON_NEW_PROCESS_XPATH = "//a[@id='create_process']"
+    PROCESS_SEARCH_CSS = "input[placeholder='Search']"
+    PROCESS_EXPORT = "button[title='Export']"
+    SAVE_BUTTON = "div[class = 'card-footer bg-light'] > [class = 'btn btn-secondary ml-2']"
 
     TAB_CATEGORIES = "//*[@id='nav-categories-tab']"
     TAB_ARCHIVED_PROCESSES = "//*[@id='nav-archived-tab']"
@@ -23,6 +27,8 @@ class PageProcesses:
 
     CONFIRM_DELETE_XPATH = "//button[text()='Confirm']"
 
+    
+
     def __init__(self, driver, data):
         ''' Instantiate PageProcesses object. '''
         self.driver = driver
@@ -33,6 +39,8 @@ class PageProcesses:
         ''' Function to get page elements. '''
         self.processes = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.TAB_PROCESSES_CSS)))
         self.new_process_button = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BUTTON_NEW_PROCESS_XPATH)))
+        self.process_search = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[placeholder='Search']")))
+        self.process_export = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.PROCESS_EXPORT)))
 
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
         self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
@@ -141,3 +149,8 @@ class PageProcesses:
         delete_category_succes = self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
 
+    def search_process(self, name):
+        '''Function to delete a category from process'''
+        self.paths_processes()
+        self.process_search.send_keys(name)
+        self.process_export.click()
