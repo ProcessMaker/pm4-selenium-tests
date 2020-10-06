@@ -4,6 +4,14 @@
     "path": "tests/admin/test_TCP4_761.py"
   },
   {
+    "name": "762_test_fill_user_information",
+    "path": "tests/admin/test_TCP4_762.py"
+  },
+  {
+    "name": "763_test_deleted_user",
+    "path": "tests/admin/test_TCP4_763.py"
+  },
+  {
     "name": "765_test_create_collection",
     "path": "tests/admin/test_TCP4_765.py"
   },
@@ -54,13 +62,5 @@
   {
     "name": "1661_delete-data_connector",
     "path": "tests/designer/test_TCP4_1661.py"
-  },
-  {
-    "name": "762_test_fill_user_information",
-    "path": "tests/admin/test_TCP4_762.py"
-  },
-  {
-    "name": "763_test_deleted_user",
-    "path": "tests/admin/test_TCP4_763.py"
   }
 ]
