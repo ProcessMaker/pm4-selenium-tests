@@ -22,6 +22,7 @@ class PageRequest:
     def paths_request(self):
         ''' Function to get page elements. '''
         self.new_savedsearch = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageRequest.NEW_SAVEDSEARCH_XPATH)))
+        self.search_field = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, PageRequest.REQUEST_SEARCH_CSS)))
 
     def create_savedsearch(self):
         ''' Creates a new saved search. '''
@@ -31,10 +32,7 @@ class PageRequest:
     def search_request(self, name):
         ''' Creates a new saved search. '''
         self.paths_request()
-        self.driver.executeScript ("document.getElementById ('" + PageRequest.REQUEST_SEARCH_CSS + "') .innerHTML= 'absolute'");
-
-
-
+        self.search_field.send_keys(name)
         request_name = PageRequest.SPECIFIC_NAME_XPATH + name + "']"
         self.start_request = self.wait.until(EC.visibility_of_element_located((By.XPATH, request_name)))
         self.start_request.click()  
