@@ -20,6 +20,10 @@
     "path": "tests/admin/test_TCP4_766.py"
   },
   {
+    "name": "1621_test_delete_collection",
+    "path": "tests/admin/test_TCP4_1621.py"
+  },
+  {
     "name": "1653_test_verify_searcher_PMQL_in_collection",
     "path": "tests/admin/test_TCP4_1653.py"
   },
