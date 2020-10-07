@@ -20,6 +20,18 @@ import unittest
 class TCP4_762(BaseTest):
     ''' Test to verify the creation of users with special characters '''
 
+    def setUp(self):
+        ''' Method to run before each test method. '''
+        # Load server url and note step in log
+        self.log.append('Load server url')
+        self.driver.get(data['server_url'])
+
+        # Log in and note step in log
+        self.log.append('Step 1: Load Login page////////////////')
+        self.driver.get(data['server_url'])
+        self.driver = PageLogin(self.driver, data).login()
+
+
     def test_fill_user_information(self):
         ''' Create user with Complete User information '''
         # Constants
@@ -31,11 +43,6 @@ class TCP4_762(BaseTest):
         pageMenu = PageMenu(self.driver, data)
         pageUser = PageUsers(self.driver, data)
         pageUserInformation = PageUserInformation(self.driver, data)
-
-        # STEP 1: Load login page.
-        # print('Step 1: Load Login page')
-        self.log.append('Step 1: Load Login page////////////////')
-        self.driver = PageLogin(self.driver, data).login()
 
         # STEP 2: Go to admin.
         # print('Step 2: Go to Admin')
