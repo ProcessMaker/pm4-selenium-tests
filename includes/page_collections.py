@@ -15,6 +15,7 @@ class PageCollection:
     COLLECTION_SEARCH_BAR_XPATH = "//*[@placeholder='Search']"
     COLLECTION_TABLE_XPATH = "//*[@id='collectionIndex']/div[2]/div"
     NO_DATA_AVAILABLE_XPATH = "//tbody/child::tr/td[@class='vuetable-empty-result']"
+    CONFIRM_DELETE_COLLECTION_ID = "confirm"
 
     def __init__(self, driver, data):
         ''' Instantiate PageCollection object. '''
@@ -77,3 +78,13 @@ class PageCollection:
         ''' Function to select an collection. '''
         buttons = element.find_elements(By.TAG_NAME, "button")
         buttons[0].click()
+
+    def delete_collection(self, element):
+        ''' Function to deleted a collection. '''
+        buttons = element.find_elements(By.TAG_NAME, "button")
+        buttons[2].click()
+        confirm_deleted_collection = self.wait.until(
+            EC.visibility_of_element_located((By.ID, PageCollection.CONFIRM_DELETE_COLLECTION_ID)))
+        confirm_deleted_collection.click()
+        self.wait.until(EC.visibility_of_element_located(
+            (By.XPATH, PageCollection.COLLECTION_TABLE_XPATH)))
