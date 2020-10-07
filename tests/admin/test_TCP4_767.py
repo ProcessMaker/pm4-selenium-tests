@@ -19,9 +19,11 @@ class TCP4_767(BaseTest):
     ''' Test to verify import a collections'''
 
     def test_import_collection(self):
-        file_name = 'id1.png'
+        file_name = 'id2.png'
         # print(os.path.abspath(file_name), file=sys.stderr)
         self.log.append(os.path.abspath(file_name))
+        cwd = os.getcwd()
+        self.log.append(cwd)
 
 
 
