@@ -42,9 +42,8 @@ class TCP4_767(BaseTest):
 
         pageMenu.goto_collections()
 
-        route =  pageCollection.import_collection(path)
+        pageCollection.import_collection(path)
         self.log.append("File includes")
-        self.log.append(route)
 
 
 
@@ -52,3 +51,4 @@ class TCP4_767(BaseTest):
 if __name__ == "__main__":
     import __main__
     output = util.run_test(TCP4_767, data, __main__)
+    print(output)
