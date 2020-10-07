@@ -18,6 +18,7 @@ from page_process_canvas import PageProcessCanvas
 from page_export_process import PageExportProcess
 import util
 import unittest
+import time
 
 
 class TCP4_718(BaseTest):
@@ -55,9 +56,12 @@ class TCP4_718(BaseTest):
         pageMenu.goto_designer()
 
         # STEP 3: Creates a new process.
-        self.log.append('Step 3: Exports a process////////////////')
+        self.log.append('Step 3: Creates a process////////////////')
         pageProcesses.search_process(process_name)
-        pageExportProcess.export_process()
+
+        # STEP 4: Exports a new process.
+        self.log.append('Step 4: Exports a process////////////////')
+        self.assertTrue(pageExportProcess.export_process())
 
 
     def tearDown(self):
@@ -94,3 +98,4 @@ if __name__ == "__main__":
       the data object, and the __main__ module.
     '''
     output = util.run_test(TCP4_718, data, __main__)
+    print(output)

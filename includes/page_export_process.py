@@ -12,6 +12,7 @@ import time
 class PageExportProcess:
     ''' Page object model for users page'''
     SAVE_BUTTON = "div[class = 'card-footer bg-light'] > [class = 'btn btn-secondary ml-2']"
+    EXPORTED_PROCESS = "pre[style='word-wrap: break-word; white-space: pre-wrap;']"
     
 
     def __init__(self, driver, data):
@@ -28,3 +29,13 @@ class PageExportProcess:
         '''Function to delete a category from process'''
         self.paths_export_processes()
         self.save_button.click()
+        self.driver.get("file://C://Users//zolut//Downloads//fROxxxBOLj_Process_Self_Service.json")
+        try:
+            self.exported_process = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.EXPORTED_PROCESS)))
+            passed = True
+
+        except AssertionError as e:
+            passed = False
+            raise Exception('Error while opening exported process', e)
+
+        return passed
