@@ -1,12 +1,14 @@
 #!/usr/local/bin/python3
 """ Collections Page class. """
-
+import os.path
+import sys
 from page_create_collection import PageCreateCollection
 
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+import time
 
 
 class PageCollection:
@@ -16,6 +18,7 @@ class PageCollection:
     COLLECTION_TABLE_XPATH = "//*[@id='collectionIndex']/div[2]/div"
     NO_DATA_AVAILABLE_XPATH = "//tbody/child::tr/td[@class='vuetable-empty-result']"
     CONFIRM_DELETE_COLLECTION_ID = "confirm"
+    IMPORT_COLLECTION_BUTTON_ID = "import_collection"
 
     def __init__(self, driver, data):
         ''' Instantiate PageCollection object. '''
@@ -27,6 +30,7 @@ class PageCollection:
         ''' Function to get page elements. '''
         self.create_collection_button = self.wait.until(EC.visibility_of_element_located((By.ID, PageCollection.CREATE_COLLECTION_BUTTON_ID)))
         self.collection_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.COLLECTION_SEARCH_BAR_XPATH)))
+        self.import_collection_button = self.wait.until(EC.visibility_of_element_located((By.ID, self.IMPORT_COLLECTION_BUTTON_ID)))
 
     def create_new_collection(self, edit_screen, display_screen):
         ''' Function to create a new collection. '''
@@ -88,3 +92,22 @@ class PageCollection:
         confirm_deleted_collection.click()
         self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, PageCollection.COLLECTION_TABLE_XPATH)))
+
+    def import_collection(self, path):
+        '''Function to import a collection'''
+        self.paths_collection()
+        self.import_collection_button.click()
+        file_name = 'automation_trogdor_collection001.json'
+        # print(os.path.abspath(file_name), file=sys.stderr)
+        path1 = '"'+os.path.realpath(__file__)+'"'
+        # print("La ruta de inlcudes ", file=sys.stderr)
+        # print(path1, file=sys.stderr)
+        return path1
+
+        # input = self.wait.until(EC.presence_of_element_located(
+        #     (By.XPATH, "//*[@id='importCollection']/div/div/div/div[2]/input")))
+        # input.send_keys("")
+        # button_import = self.wait.until(EC.presence_of_element_located(
+        #     (By.XPATH,"//*[@id='importCollection']/div/div/div/div[3]/button[2]")))
+        # button_import.click()
+        # time.sleep(10)

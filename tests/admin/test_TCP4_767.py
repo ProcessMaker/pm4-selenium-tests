@@ -13,17 +13,42 @@ if getenv('ENVIRONMENT') == 'local':
 from test_parent import BaseTest
 import util
 import unittest
-
+from page_login import PageLogin
+from page_menu import PageMenu
+from page_collections import PageCollection
 
 class TCP4_767(BaseTest):
     ''' Test to verify import a collections'''
 
+    def setUp(self):
+        ''' Method to run before each test method. '''
+        # Load server url and note step in log
+        self.log.append('Load server url')
+        self.driver.get(data['server_url'])
+
+        # Log in and note step in log
+        self.log.append('Step 1: Load Login page////////////////')
+        self.driver.get(data['server_url'])
+        self.driver = PageLogin(self.driver, data).login()
+
     def test_import_collection(self):
-        file_name = 'id2.png'
+        # file_name = '../../includes/file/automation_trogdor_collection001.json'
         # print(os.path.abspath(file_name), file=sys.stderr)
-        self.log.append(os.path.abspath(file_name))
-        cwd = os.getcwd()
-        self.log.append(cwd)
+        # self.log.append(os.path.abspath(file_name))
+
+        # Pages Instance
+        pageMenu = PageMenu(self.driver, data)
+        pageCollection = PageCollection(self.driver, data)
+
+        pageMenu.goto_collections()
+        path1 = '"'+os.path.realpath(__file__)+'"'
+        self.log.append("File test")
+        self.log.append(path1)
+
+        route =  pageCollection.import_collection(path)
+        self.log.append("File includes")
+        self.log.append(route)
+
 
 
 
