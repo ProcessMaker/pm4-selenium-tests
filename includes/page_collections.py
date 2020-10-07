@@ -102,7 +102,7 @@ class PageCollection:
         path1 = os.path.realpath(__file__)
         # print("La ruta de inlcudes ", file=sys.stderr)
         # print(path1, file=sys.stderr)
-        print(path1)
+        return path1
 
         # input = self.wait.until(EC.presence_of_element_located(
         #     (By.XPATH, "//*[@id='importCollection']/div/div/div/div[2]/input")))
