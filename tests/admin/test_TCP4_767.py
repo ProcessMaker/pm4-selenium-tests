@@ -32,9 +32,6 @@ class TCP4_767(BaseTest):
         self.driver = PageLogin(self.driver, data).login()
 
     def test_import_collection(self):
-        # file_name = '../../includes/file/automation_trogdor_collection001.json'
-        # print(os.path.abspath(file_name), file=sys.stderr)
-        # self.log.append(os.path.abspath(file_name))
 
         # Pages Instance
         pageMenu = PageMenu(self.driver, data)

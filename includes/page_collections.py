@@ -95,22 +95,19 @@ class PageCollection:
 
     def import_collection(self, path):
         '''Function to import a collection'''
+        file_name = "automation_trogdor_collection001.json"
+        path1 = os.path.dirname(os.path.realpath(__file__))
+        path1 = os.path.join(path1, "import")
+        file_to_open = os.path.join(path1, file_name)
+
         self.paths_collection()
         self.import_collection_button.click()
-        file_name = 'automation_trogdor_collection001.json'
-        # print(os.path.abspath(file_name), file=sys.stderr)
+        input = self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//*[@id='importCollection']/div/div/div/div[2]/input")))
+        input.send_keys(file_to_open)
+        button_import = self.wait.until(EC.presence_of_element_located(
+            (By.XPATH,"//*[@id='importCollection']/div/div/div/div[3]/button[2]")))
+        button_import.click()
+        time.sleep(10)
 
-        # print("La ruta de inlcudes ", file=sys.stderr)
-        # print(path1, file=sys.stderr)
-
-        path1 = os.path.dirname(os.path.realpath(__file__))
-        return path1
-
-
-        # input = self.wait.until(EC.presence_of_element_located(
-        #     (By.XPATH, "//*[@id='importCollection']/div/div/div/div[2]/input")))
-        # input.send_keys("")
-        # button_import = self.wait.until(EC.presence_of_element_located(
-        #     (By.XPATH,"//*[@id='importCollection']/div/div/div/div[3]/button[2]")))
-        # button_import.click()
-        # time.sleep(10)
+        return file_to_open
