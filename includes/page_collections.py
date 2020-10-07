@@ -99,10 +99,13 @@ class PageCollection:
         self.import_collection_button.click()
         file_name = 'automation_trogdor_collection001.json'
         # print(os.path.abspath(file_name), file=sys.stderr)
-        path1 = os.path.realpath(__file__)
+
         # print("La ruta de inlcudes ", file=sys.stderr)
         # print(path1, file=sys.stderr)
+
+        path1 = os.path.dirname(os.path.realpath(__file__))
         return path1
+
 
         # input = self.wait.until(EC.presence_of_element_located(
         #     (By.XPATH, "//*[@id='importCollection']/div/div/div/div[2]/input")))

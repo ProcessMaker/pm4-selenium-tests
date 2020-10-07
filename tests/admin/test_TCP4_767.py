@@ -41,14 +41,9 @@ class TCP4_767(BaseTest):
         pageCollection = PageCollection(self.driver, data)
 
         pageMenu.goto_collections()
-        path1 = '"'+os.path.realpath(__file__)+'"'
-        self.log.append("File test")
-        self.log.append(path1)
 
-        route =  pageCollection.import_collection("path")
-        self.log.append("File includes")
+        route =  pageCollection.import_collection("hola")
         self.log.append(route)
-
 
 
 
