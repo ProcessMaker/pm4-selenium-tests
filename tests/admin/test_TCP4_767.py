@@ -20,7 +20,8 @@ class TCP4_767(BaseTest):
 
     def test_import_collection(self):
         file_name = 'id1.png'
-        print(os.path.abspath(file_name), file=sys.stderr)
+        # print(os.path.abspath(file_name), file=sys.stderr)
+        self.log.append(os.path.abspath(file_name))
 
 
 
