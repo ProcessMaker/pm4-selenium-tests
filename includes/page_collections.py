@@ -19,6 +19,9 @@ class PageCollection:
     NO_DATA_AVAILABLE_XPATH = "//tbody/child::tr/td[@class='vuetable-empty-result']"
     CONFIRM_DELETE_COLLECTION_ID = "confirm"
     IMPORT_COLLECTION_BUTTON_ID = "import_collection"
+    IMPORT_FILE_INPUT_XPATH = "//*[@id='importCollection']/div/div/div/div[2]/input"
+    IMPORT_CONFIRM_COLLECTION_XPATH = "//*[@id='importCollection']/div/div/div/div[3]/button[2]"
+    LIST_COLLECTIONS_BUTTON_XPATH = "//footer[@id='__BVID__58___BV_modal_footer_']/div/button"
 
     def __init__(self, driver, data):
         ''' Instantiate PageCollection object. '''
@@ -93,21 +96,18 @@ class PageCollection:
         self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, PageCollection.COLLECTION_TABLE_XPATH)))
 
-    def import_collection(self, path):
+    def import_collection(self, file_name):
         '''Function to import a collection'''
-        file_name = "automation_trogdor_collection001.json"
         path1 = os.path.dirname(os.path.realpath(__file__))
         path1 = os.path.join(path1, "import")
         file_to_open = os.path.join(path1, file_name)
 
         self.paths_collection()
         self.import_collection_button.click()
-        input = self.wait.until(EC.presence_of_element_located(
-            (By.XPATH, "//*[@id='importCollection']/div/div/div/div[2]/input")))
+        input = self.wait.until(EC.presence_of_element_located((By.XPATH, self.IMPORT_FILE_INPUT_XPATH)))
         input.send_keys(file_to_open)
-        button_import = self.wait.until(EC.presence_of_element_located(
-            (By.XPATH,"//*[@id='importCollection']/div/div/div/div[3]/button[2]")))
+        button_import = self.wait.until(EC.presence_of_element_located((By.XPATH, self.IMPORT_CONFIRM_COLLECTION_XPATH)))
         button_import.click()
-        time.sleep(10)
 
+        button_list_collections=self.wait.until(EC.presence_of_element_located((By.XPATH, self.LIST_COLLECTIONS_BUTTON_XPATH)))
         return file_to_open
