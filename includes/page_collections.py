@@ -1,12 +1,14 @@
 #!/usr/local/bin/python3
 """ Collections Page class. """
-
+import os.path
+import sys
 from page_create_collection import PageCreateCollection
 
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+import time
 
 
 class PageCollection:
@@ -16,6 +18,10 @@ class PageCollection:
     COLLECTION_TABLE_XPATH = "//*[@id='collectionIndex']/div[2]/div"
     NO_DATA_AVAILABLE_XPATH = "//tbody/child::tr/td[@class='vuetable-empty-result']"
     CONFIRM_DELETE_COLLECTION_ID = "confirm"
+    IMPORT_COLLECTION_BUTTON_ID = "import_collection"
+    IMPORT_FILE_INPUT_XPATH = "//*[@id='importCollection']/div/div/div/div[2]/input"
+    IMPORT_CONFIRM_COLLECTION_XPATH = "//*[@id='importCollection']/div/div/div/div[3]/button[2]"
+    LIST_COLLECTIONS_BUTTON_XPATH = "//footer[@id='__BVID__58___BV_modal_footer_']/div/button"
 
     def __init__(self, driver, data):
         ''' Instantiate PageCollection object. '''
@@ -27,6 +33,7 @@ class PageCollection:
         ''' Function to get page elements. '''
         self.create_collection_button = self.wait.until(EC.visibility_of_element_located((By.ID, PageCollection.CREATE_COLLECTION_BUTTON_ID)))
         self.collection_search_bar = self.wait.until(EC.visibility_of_element_located((By.XPATH, PageCollection.COLLECTION_SEARCH_BAR_XPATH)))
+        self.import_collection_button = self.wait.until(EC.visibility_of_element_located((By.ID, self.IMPORT_COLLECTION_BUTTON_ID)))
 
     def create_new_collection(self, edit_screen, display_screen):
         ''' Function to create a new collection. '''
@@ -88,3 +95,19 @@ class PageCollection:
         confirm_deleted_collection.click()
         self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, PageCollection.COLLECTION_TABLE_XPATH)))
+
+    def import_collection(self, file_name):
+        '''Function to import a collection'''
+        path1 = os.path.dirname(os.path.realpath(__file__))
+        path1 = os.path.join(path1, "import")
+        file_to_open = os.path.join(path1, file_name)
+
+        self.paths_collection()
+        self.import_collection_button.click()
+        input = self.wait.until(EC.presence_of_element_located((By.XPATH, self.IMPORT_FILE_INPUT_XPATH)))
+        input.send_keys(file_to_open)
+        button_import = self.wait.until(EC.presence_of_element_located((By.XPATH, self.IMPORT_CONFIRM_COLLECTION_XPATH)))
+        button_import.click()
+
+        button_list_collections=self.wait.until(EC.presence_of_element_located((By.XPATH, self.LIST_COLLECTIONS_BUTTON_XPATH)))
+        return file_to_open

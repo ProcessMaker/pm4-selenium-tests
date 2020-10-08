@@ -20,6 +20,10 @@
     "path": "tests/admin/test_TCP4_766.py"
   },
   {
+    "name": "767_import_collection",
+    "path": "tests/admin/test_TCP4_767.py"
+  },
+  {
     "name": "1621_test_delete_collection",
     "path": "tests/admin/test_TCP4_1621.py"
   },
