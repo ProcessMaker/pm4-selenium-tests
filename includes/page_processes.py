@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 import time
+import os.path
 from page_create_category import PageCreateCategory
 
 
@@ -16,7 +17,14 @@ class PageProcesses:
     TAB_CATEGORIES = "//*[@id='nav-categories-tab']"
     TAB_ARCHIVED_PROCESSES = "//*[@id='nav-archived-tab']"
     BTN_CREATE_CATEGORY = "//*[@id='create_category']"
+    IMPORT_PROCESS_BUTTON_ID = "import_process"
 
+    #XPATH to import process
+    IMPORT_FILE_INPUT_XPATH = "//div[@id='pre-import']/div/following-sibling::input"
+    IMPORT_CONFIRM_COLLECTION_XPATH = "//div[@id='card-footer-pre-import']/button/following-sibling::button"
+    SAVE_IMPORT_PROCESS_BUTTON_XPATH = "//div[@id='card-footer-post-import']/div/button"
+
+    # XPATH to categories
     CATEGORY_SEARCH_BAR_XPATH = "(//input[@placeholder='Search'])[2]"   # "//input[@placeholder='Search']"
     LOADING_MESSAGE_XPATH = "//*[@id='categories-listing']/div[2]/div[1]"
     CATEGORY_TABLE_XPATH = "//*[@id='categories-listing']/div[2]/div[2]"
@@ -33,6 +41,7 @@ class PageProcesses:
         ''' Function to get page elements. '''
         self.processes = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.TAB_PROCESSES_CSS)))
         self.new_process_button = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BUTTON_NEW_PROCESS_XPATH)))
+        self.import_process_button = self.wait.until(EC.visibility_of_element_located((By.ID, self.IMPORT_PROCESS_BUTTON_ID)))
 
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
         self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
@@ -123,4 +132,20 @@ class PageProcesses:
         confirm_deleted_category.click()
         delete_category_succes = self.wait.until(EC.visibility_of_element_located(
             (By.XPATH, "//div[@class='alert d-none d-lg-block alertBox alert-dismissible alert-success']")))
+
+    def import_process(self, file_name):
+        '''Function to import a process on designer'''
+        path = os.path.dirname(os.path.realpath(__file__))
+        path = os.path.join(path, "import")
+        file_to_open = os.path.join(path, file_name)
+
+        self.paths_processes()
+        self.import_process_button.click()
+        input = self.wait.until(EC.presence_of_element_located((By.XPATH, self.IMPORT_FILE_INPUT_XPATH)))
+        input.send_keys(file_to_open)
+        button_import = self.wait.until(EC.presence_of_element_located((By.XPATH, self.IMPORT_CONFIRM_COLLECTION_XPATH)))
+        button_import.click()
+
+        self.wait.until(EC.presence_of_element_located((By.XPATH, self.SAVE_IMPORT_PROCESS_BUTTON_XPATH)))
+
 
