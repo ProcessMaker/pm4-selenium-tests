@@ -1,6 +1,6 @@
 [
   {
     "name": "718_exports_process",
-    "path": "tests/designer/test_TCP4_718.py"
+    "path": "tests/export/test_TCP4_718.py"
   }
 ]
