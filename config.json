@@ -60,6 +60,10 @@
     "path": "tests/designer/test_TCP4_1699.py"
   },
   {
+    "name": "1760_import_screen",
+    "path": "tests/designer/test_TCP4_1760.py"
+  },
+  {
     "name": "775_create_new_selfservice_process",
     "path": "tests/designer/test_TCP4_775.py"
   },
