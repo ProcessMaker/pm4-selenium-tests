@@ -28,6 +28,9 @@ class PageProcesses:
     CONFIRM_DELETE_XPATH = "//button[text()='Confirm']"
 
     
+    EXPORT_XPATH = "//td[text()='"
+    EXPORT_BUTTON_XPATH ="//button[@title='Export']"
+    TABLE_ELEMENT_XPATH = "//tr[@item-index='0']"
 
     def __init__(self, driver, data):
         ''' Instantiate PageProcesses object. '''
@@ -40,7 +43,6 @@ class PageProcesses:
         self.processes = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.TAB_PROCESSES_CSS)))
         self.new_process_button = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.BUTTON_NEW_PROCESS_XPATH)))
         self.process_search = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[placeholder='Search']")))
-        self.process_export = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.PROCESS_EXPORT)))
 
         self.categories = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_CATEGORIES)))
         self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TAB_ARCHIVED_PROCESSES)))
@@ -152,5 +154,14 @@ class PageProcesses:
     def search_process(self, name):
         '''Function to delete a category from process'''
         self.paths_processes()
-        self.process_search.send_keys(name)
-        self.process_export.click()
+        self.archive_processes = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.TABLE_ELEMENT_XPATH)))
+        self.process_search.send_keys(name)        
+        self.dynamic_selector = PageProcesses.EXPORT_XPATH + name + " ']/following-sibling::td/div/div/button[@title='Export']"
+        self.process_export = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.dynamic_selector)))
+
+    def export_found(self, name):
+        '''Function to delete a category from process'''
+        self.paths_processes()
+        self.dynamic_selector = PageProcesses.EXPORT_XPATH + name + " ']/following-sibling::td/div/div/button[@title='Export']"
+        self.process_export = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.dynamic_selector)))
+        self.process_export.click()    

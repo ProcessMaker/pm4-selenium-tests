@@ -16,6 +16,8 @@ from page_processes import PageProcesses
 from page_new_process import PageNewProcess
 from page_process_canvas import PageProcessCanvas
 from page_export_process import PageExportProcess
+from page_new_process import PageNewProcess
+from page_process_canvas import PageProcessCanvas
 import util
 import unittest
 import time
@@ -50,18 +52,39 @@ class TCP4_718(BaseTest):
         pageMenu = PageMenu(self.driver, data)
         pageProcesses = PageProcesses(self.driver, data)
         pageExportProcess = PageExportProcess(self.driver, data)
+        pageNewProcess = PageNewProcess(self.driver, data)
+        pageProcessCanvass = PageProcessCanvas(self.driver, data)
 
         # STEP 2: Go to the designer section.
         self.log.append('Step 2: Opens the designer section////////////////')
         pageMenu.goto_designer()
 
         # STEP 3: Creates a new process.
-        self.log.append('Step 3: Creates a process////////////////')
-        pageProcesses.search_process(process_name)
+        self.log.append('Step 3: Creates a new process////////////////')
+        pageProcesses.create_process()
+        pageNewProcess.fill_new_process(process_category, process_name)
 
-        # STEP 4: Exports a new process.
-        self.log.append('Step 4: Exports a process////////////////')
-        self.assertTrue(pageExportProcess.export_process())
+        # Drages every element by an offset of X, Y
+        pageProcessCanvass.drag_n_drop("start_origin", 300, 100)
+        pageProcessCanvass.drag_n_drop("task_origin", 300, 100)
+        pageProcessCanvass.drag_n_drop("end_origin", 300, 300)
+
+        # Connects two previously dragged elements
+        pageProcessCanvass.connect_element("start", "task")
+        pageProcessCanvass.connect_element("task", "end")
+
+        # Assert the saving was succesfull
+        pageProcessCanvass.save_process()
+
+        # STEP 4: Searches a process.
+        pageMenu.goto_designer()
+        self.log.append('Step 4: Searches for a process////////////////')
+        pageProcesses.search_process(process_name)
+        pageProcesses.export_found(process_name)
+
+        # STEP 5: Exports a new process.
+        self.log.append('Step 5: Exports a process////////////////')
+        self.assertTrue(pageExportProcess.export_process(process_name))
 
 
     def tearDown(self):

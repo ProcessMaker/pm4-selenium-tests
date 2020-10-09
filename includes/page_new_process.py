@@ -41,7 +41,7 @@ class PageNewProcess:
         ''' Logs out the current user '''
 
         self.paths_menu()
-        self.process_name.send_keys(name + ": Process Self Service")
+        self.process_name.send_keys(name)
         self.process_description.send_keys("Test Selfservice Smoke test")    
 
         self.process_category.click()
