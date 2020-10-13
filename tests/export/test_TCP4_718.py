@@ -121,4 +121,3 @@ if __name__ == "__main__":
       the data object, and the __main__ module.
     '''
     output = util.run_test(TCP4_718, data, __main__)
-    print(output)
