@@ -45,7 +45,12 @@ class PageExportProcess:
         return passed
 
     def wait_for_downloads(self):
-        while any([filename.endswith(".crdownload") for filename in 
-                os.listdir("/opt/executor~/Downloads")]):
-            time.sleep(2)
-        time.sleep(2)
+        count = 0
+        wait_download = True
+        while (any([filename.endswith(".crdownload") for filename in 
+                os.listdir("/opt/executor~/Downloads")])) and (wait_download):
+            time.sleep(1)
+            count = count + 1
+            if (count >= 10):
+                wait_download = False
+        time.sleep(1)

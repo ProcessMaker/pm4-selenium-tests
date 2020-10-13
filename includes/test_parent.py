@@ -18,7 +18,7 @@ class BaseTest(unittest.TestCase):
         ''' Set up browser instance. '''
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--window-size=1920,1080")
+        #chrome_options.add_argument("--window-size=1920,1080")
         cls.driver = webdriver.Chrome(options=chrome_options)
 
         # Global driver wait variable
