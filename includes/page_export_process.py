@@ -49,8 +49,8 @@ class PageExportProcess:
         wait_download = True
         while (any([filename.endswith(".crdownload") for filename in 
                 os.listdir("/home/root/Downloads")])) and (wait_download):
-            time.sleep(1)
+            time.sleep(2)
             count = count + 1
             if (count >= 10):
                 wait_download = False
-        time.sleep(1)
+        time.sleep(2)
