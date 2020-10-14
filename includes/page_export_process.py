@@ -35,7 +35,7 @@ class PageExportProcess:
         self.success = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.SUCCESS)))
         # waits for all the files to be completed and returns the paths
         self.wait_for_downloads()
-        self.driver.get("/opt/executor/~/Downloads"+process_name+".json")
+        self.driver.get("file:///home/root/Downloads"+process_name+".json")
         try:
             self.exported_process = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, self.EXPORTED_PROCESS)))
             passed = True
